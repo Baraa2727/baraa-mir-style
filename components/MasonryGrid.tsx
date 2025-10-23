@@ -1,14 +1,47 @@
-import Link from 'next/link'
-export type Item={id:string, kind:'image'|'video', src:string, size:'Small'|'Medium'|'Large'|'Full', title?:string}
-export default function MasonryGrid({items}:{items:Item[]}){
-  return (<div className="grid">
-    {items.map(it=>{
-      const sizeClass = {Small:'size-small', Medium:'size-medium', Large:'size-large', Full:'size-full'}[it.size]
-      const media = it.kind==='video' ? <video src={it.src} muted autoPlay loop playsInline/> : <img src={it.src} alt={it.title||''}/>
-      return (<Link key={it.id} href={`/project/${it.id}`} className={`card ${sizeClass}`}>
-        {media}
-        {it.title ? <div className="caption">{it.title}</div> : null}
-      </Link>)
-    })}
-  </div>)
+import Link from "next/link";
+import items from "../content/items.json";
+
+type Item = {
+  id: string;
+  kind: "image" | "video";
+  src: string;
+  title?: string;
+};
+
+/* Reihenmuster: 2,3,3,2,4, (wiederholt sich) */
+const PATTERN = [2, 3, 3, 2, 4];
+
+function chunkByPattern<T>(arr: T[], pattern: number[]) {
+  const rows: T[][] = [];
+  let i = 0, p = 0;
+  while (i < arr.length) {
+    const take = pattern[p % pattern.length];
+    rows.push(arr.slice(i, i + take));
+    i += take;
+    p++;
+  }
+  return rows;
+}
+
+export default function MasonryGrid() {
+  const data = items as Item[];
+  const rows = chunkByPattern(data, PATTERN);
+
+  return (
+    <section className="rows">
+      {rows.map((row, idx) => (
+        <div className="row" data-cols={PATTERN[idx % PATTERN.length]} key={idx}>
+          {row.map((it) => (
+            <Link href={`/project/${it.id}`} key={it.id} className="tile" prefetch={false}>
+              {it.kind === "video" ? (
+                <video src={it.src} muted autoPlay loop playsInline />
+              ) : (
+                <img src={it.src} alt={it.title || ""} />
+              )}
+            </Link>
+          ))}
+        </div>
+      ))}
+    </section>
+  );
 }
