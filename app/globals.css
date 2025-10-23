@@ -1,0 +1,25 @@
+
+:root { --bg:#fff; --fg:#101010; --muted:#6b6b6b; --gap:14px; --maxw:1520px; }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+a{color:inherit;text-decoration:none} a:hover{text-decoration:underline;text-underline-offset:4px}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.side-dock{position:fixed;top:24px;left:24px;width:112px;background:rgba(255,255,255,.9);border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08);padding:16px 14px;z-index:50;transition:transform .35s ease,opacity .35s ease}
+.side-dock.hidden{transform:translateY(-16px);opacity:0;pointer-events:none}
+.side-dock .logo{font-weight:800;letter-spacing:.02em;margin-bottom:10px}
+.side-dock nav a{display:block;padding:8px 4px;color:var(--muted)}
+.side-dock nav a.active,.side-dock nav a:hover{color:var(--fg);text-decoration:none}
+.header{text-align:center;padding-top:64px;padding-bottom:24px}
+.header h1{font-size:clamp(28px,5vw,56px);margin:0 0 8px 0}
+.header h2{font-size:clamp(18px,2.2vw,36px);font-weight:700;margin:0}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+.card{position:relative;border-radius:8px;overflow:hidden;background:#f2f2f2}
+.card img,.card video{width:100%;height:100%;display:block;object-fit:cover}
+.card .caption{position:absolute;left:12px;bottom:12px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);font-weight:700}
+.size-small{grid-column:span 3;aspect-ratio:4/3}
+.size-medium{grid-column:span 4;aspect-ratio:4/3}
+.size-large{grid-column:span 6;aspect-ratio:16/9}
+.size-full{grid-column:1 / -1;aspect-ratio:21/9;min-height:60svh}
+@media (max-width:1200px){.size-small{grid-column:span 4}.size-medium{grid-column:span 6}.size-large{grid-column:span 12}}
+@media (max-width:780px){.grid{grid-template-columns:repeat(6,1fr)}.size-small,.size-medium{grid-column:span 6}.size-large,.size-full{grid-column:1 / -1}.side-dock{left:12px;top:12px;width:96px}}
+.footer{display:flex;gap:16px;justify-content:center;color:var(--muted);padding:48px 0 80px;font-size:14px}

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "hero-left",
+    "kind": "image",
+    "src": "/media/hero-left.jpg",
+    "size": "Large",
+    "title": "Coastal Retreat"
+  },
+  {
+    "id": "hero-right",
+    "kind": "image",
+    "src": "/media/hero-right.jpg",
+    "size": "Large",
+    "title": "Island Masterplan"
+  },
+  {
+    "id": "nunavut",
+    "kind": "image",
+    "src": "/media/nunavut.jpg",
+    "size": "Medium",
+    "title": "Courtyard Study"
+  },
+  {
+    "id": "varden",
+    "kind": "video",
+    "src": "/media/sample.mp4",
+    "size": "Medium",
+    "title": "Varden Lookout"
+  },
+  {
+    "id": "sanctuary",
+    "kind": "image",
+    "src": "/media/sanctuary.jpg",
+    "size": "Medium",
+    "title": "Sanctuary at Dusk"
+  },
+  {
+    "id": "museum",
+    "kind": "image",
+    "src": "/media/museum.jpg",
+    "size": "Medium",
+    "title": "Museum Atrium"
+  },
+  {
+    "id": "villa",
+    "kind": "image",
+    "src": "/media/villa.jpg",
+    "size": "Small",
+    "title": "Villa P"
+  },
+  {
+    "id": "beach-house",
+    "kind": "image",
+    "src": "/media/beach.jpg",
+    "size": "Small",
+    "title": "Beach House"
+  },
+  {
+    "id": "storm",
+    "kind": "image",
+    "src": "/media/storm.jpg",
+    "size": "Small",
+    "title": "Stormfront"
+  },
+  {
+    "id": "full-panorama",
+    "kind": "image",
+    "src": "/media/panorama.jpg",
+    "size": "Full",
+    "title": "Panorama Hilltop"
+  }
+]
