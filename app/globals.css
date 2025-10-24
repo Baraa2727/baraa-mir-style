@@ -2,12 +2,11 @@
   --bg: #fff;
   --fg: #101010;
   --muted: #6b6b6b;
-  --gap: 16px;         /* etwas größerer Abstand zwischen Bildern */
-  --edge: 16px;        /* etwas größerer Rand am Bildschirmrand */
+  --gap: 16px;       /* doppelt so groß wie vorher */
+  --edge: 16px;      /* größerer Außenrand */
   --maxw: 1520px;
 }
 
-/* Grundlayout */
 * {
   box-sizing: border-box;
 }
@@ -18,169 +17,107 @@ html, body {
   background: var(--bg);
   color: var(--fg);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  overflow-x: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-/* Container */
 .container {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Seitendock links */
+/* ---- Side Dock (ohne Schatten & ohne abgerundete Kanten) ---- */
 .side-dock {
   position: fixed;
   top: 24px;
   left: 24px;
   width: 112px;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 0;       /* keine abgerundeten Kanten */
-  box-shadow: none;       /* kein Schatten */
+  border-radius: 0;        /* keine Rundung */
+  box-shadow: none;        /* kein Schatten */
   padding: 16px 14px;
   z-index: 50;
   transition: transform 0.35s ease, opacity 0.35s ease;
 }
-
 .side-dock.hidden {
   transform: translateY(-16px);
   opacity: 0;
   pointer-events: none;
 }
-
 .side-dock .logo {
   font-weight: 800;
   letter-spacing: 0.02em;
   margin-bottom: 10px;
 }
-
 .side-dock nav a {
   display: block;
   padding: 8px 4px;
   color: var(--muted);
 }
-
 .side-dock nav a.active,
 .side-dock nav a:hover {
   color: var(--fg);
   text-decoration: none;
 }
 
-/* Header / Titelbereich */
+/* ---- Header ---- */
 .header {
   text-align: center;
   padding-top: 64px;
   padding-bottom: 24px;
 }
-
 .header h1 {
   font-size: clamp(28px, 5vw, 56px);
   margin: 0 0 8px 0;
 }
-
 .header h2 {
   font-size: clamp(18px, 2.2vw, 36px);
   font-weight: 700;
   margin: 0;
 }
 
-/* Grid / Galerie */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--gap);
-  margin: var(--edge);
+/* ---- Fullscreen Grid ---- */
+.rows {
+  width: 100%;
+  margin: 0;
 }
+.row {
+  width: 100%;
+  display: grid;
+  gap: var(--gap);
+  padding: 0 var(--edge) var(--gap);
+}
+.row[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
+.row[data-cols="3"] { grid-template-columns: repeat(3, 1fr); }
+.row[data-cols="4"] { grid-template-columns: repeat(4, 1fr); }
 
-.card {
+.tile {
   position: relative;
-  border-radius: 0;
+  width: 100%;
+  aspect-ratio: 1/1;
   overflow: hidden;
+  border-radius: 4px;
   background: #f2f2f2;
 }
-
-.card img,
-.card video {
+.tile img,
+.tile video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
+  display: block;
 }
 
-.card .caption {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  font-weight: 700;
-}
-
-/* Verschiedene Größen */
-.size-small {
-  grid-column: span 3;
-  aspect-ratio: 4 / 3;
-}
-
-.size-medium {
-  grid-column: span 4;
-  aspect-ratio: 4 / 3;
-}
-
-.size-large {
-  grid-column: span 6;
-  aspect-ratio: 16 / 9;
-}
-
-.size-full {
-  grid-column: 1 / -1;
-  aspect-ratio: 21 / 9;
-  min-height: 60svh;
-}
-
-/* Responsive Anpassung */
-@media (max-width: 1200px) {
-  .size-small {
-    grid-column: span 4;
-  }
-  .size-medium {
-    grid-column: span 6;
-  }
-  .size-large {
-    grid-column: span 12;
-  }
-}
-
-@media (max-width: 780px) {
-  .grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .size-small,
-  .size-medium {
-    grid-column: span 6;
-  }
-  .size-large,
-  .size-full {
-    grid-column: 1 / -1;
-  }
-  .side-dock {
-    left: 12px;
-    top: 12px;
-    width: 96px;
-  }
-}
-
-/* Footer */
+/* ---- Footer ---- */
 .footer {
   display: flex;
   gap: 16px;
@@ -188,4 +125,17 @@ a:hover {
   color: var(--muted);
   padding: 48px 0 80px;
   font-size: 14px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 780px) {
+  :root {
+    --gap: 12px;
+    --edge: 12px;
+  }
+  .side-dock {
+    left: 12px;
+    top: 12px;
+    width: 96px;
+  }
 }
