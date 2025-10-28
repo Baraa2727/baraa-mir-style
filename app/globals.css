@@ -2,14 +2,12 @@
   --bg: #fff;
   --fg: #101010;
   --muted: #6b6b6b;
-  --gap: 16px;       /* doppelt so groß wie vorher */
-  --edge: 16px;      /* größerer Außenrand */
+  --gap: 16px;
+  --edge: 16px;
   --maxw: 1520px;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -19,76 +17,33 @@ html, body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-.container {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ---- Side Dock (ohne Schatten & ohne abgerundete Kanten) ---- */
+/* SIDE DOCK */
 .side-dock {
   position: fixed;
   top: 24px;
   left: 24px;
   width: 112px;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 0;        /* keine Rundung */
-  box-shadow: none;        /* kein Schatten */
+  border-radius: 0;
+  box-shadow: none;
   padding: 16px 14px;
   z-index: 50;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  transition: transform .35s ease, opacity .35s ease;
 }
-.side-dock.hidden {
-  transform: translateY(-16px);
-  opacity: 0;
-  pointer-events: none;
-}
-.side-dock .logo {
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  margin-bottom: 10px;
-}
-.side-dock nav a {
-  display: block;
-  padding: 8px 4px;
-  color: var(--muted);
-}
-.side-dock nav a.active,
-.side-dock nav a:hover {
-  color: var(--fg);
-  text-decoration: none;
-}
+.side-dock.hidden { transform: translateY(-16px); opacity: 0; pointer-events: none; }
+.side-dock .logo { font-weight: 800; letter-spacing: .02em; margin-bottom: 10px; }
+.side-dock nav a { display: block; padding: 8px 4px; color: var(--muted); }
+.side-dock nav a.active, .side-dock nav a:hover { color: var(--fg); text-decoration: none; }
 
-/* ---- Header ---- */
-.header {
-  text-align: center;
-  padding-top: 64px;
-  padding-bottom: 24px;
-}
-.header h1 {
-  font-size: clamp(28px, 5vw, 56px);
-  margin: 0 0 8px 0;
-}
-.header h2 {
-  font-size: clamp(18px, 2.2vw, 36px);
-  font-weight: 700;
-  margin: 0;
-}
+/* HEADER */
+.header { text-align: center; padding-top: 64px; padding-bottom: 24px; }
+.header h1 { font-size: clamp(28px, 5vw, 56px); margin: 0 0 8px 0; }
 
-/* ---- Fullscreen Grid ---- */
-.rows {
-  width: 100%;
-  margin: 0;
-}
+/* GRID / ROWS */
+.rows { width: 100%; margin: 0; }
 .row {
   width: 100%;
   display: grid;
@@ -99,16 +54,17 @@ a:hover {
 .row[data-cols="3"] { grid-template-columns: repeat(3, 1fr); }
 .row[data-cols="4"] { grid-template-columns: repeat(4, 1fr); }
 
+/* TILES */
 .tile {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1;
   overflow: hidden;
-  border-radius: 4px;
   background: #f2f2f2;
 }
-.tile img,
-.tile video {
+.tile.square   { aspect-ratio: 1 / 1; }
+.tile.portrait { aspect-ratio: 4 / 5; }
+
+.tile img, .tile video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -117,25 +73,42 @@ a:hover {
   display: block;
 }
 
-/* ---- Footer ---- */
-.footer {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  color: var(--muted);
-  padding: 48px 0 80px;
-  font-size: 14px;
+/* LABEL (Client über Titel) */
+.label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 24px;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+  line-height: 1.25;
+  pointer-events: none;
+}
+.label-title  { font-weight: 800; font-size: clamp(18px, 1.8vw, 28px); color: #fff; }
+.label-client { margin-bottom: 4px; font-weight: 500; font-size: clamp(12px, 1vw, 14px); color: #fff; }
+
+/* FOOTER */
+.footer { display:flex; gap:16px; justify-content:center; color:var(--muted); padding:48px 0 80px; font-size:14px; }
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
+  :root { --gap: 12px; --edge: 12px; }
+  .side-dock { left: 12px; top: 12px; width: 96px; }
+  .label-title { font-size: clamp(16px, 4vw, 22px); }
 }
 
-/* ---- Responsive ---- */
-@media (max-width: 780px) {
-  :root {
-    --gap: 12px;
-    --edge: 12px;
-  }
-  .side-dock {
-    left: 12px;
-    top: 12px;
-    width: 96px;
-  }
+/* === Scroll-Reveal: schnelleres Fade-in + leichtes Hochschieben === */
+.tile {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity .75s ease-out, transform .95s ease-out;
+  will-change: opacity, transform;
+}
+.tile.inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile { opacity: 1; transform: none; transition: none; }
 }

@@ -1,72 +1,52 @@
 [
-  {
-    "id": "hero-left",
-    "kind": "image",
-    "src": "/media/hero-left.jpg",
-    "size": "Large",
-    "title": "Coastal Retreat"
-  },
-  {
-    "id": "hero-right",
-    "kind": "image",
-    "src": "/media/hero-right.jpg",
-    "size": "Large",
-    "title": "Island Masterplan"
-  },
-  {
-    "id": "nunavut",
-    "kind": "image",
-    "src": "/media/nunavut.jpg",
-    "size": "Medium",
-    "title": "Courtyard Study"
-  },
-  {
-    "id": "varden",
-    "kind": "video",
-    "src": "/media/sample.mp4",
-    "size": "Medium",
-    "title": "Varden Lookout"
-  },
-  {
-    "id": "sanctuary",
-    "kind": "image",
-    "src": "/media/sanctuary.jpg",
-    "size": "Medium",
-    "title": "Sanctuary at Dusk"
-  },
-  {
-    "id": "museum",
-    "kind": "image",
-    "src": "/media/museum.jpg",
-    "size": "Medium",
-    "title": "Museum Atrium"
-  },
-  {
-    "id": "villa",
-    "kind": "image",
-    "src": "/media/villa.jpg",
-    "size": "Small",
-    "title": "Villa P"
-  },
-  {
-    "id": "beach-house",
-    "kind": "image",
-    "src": "/media/beach.jpg",
-    "size": "Small",
-    "title": "Beach House"
-  },
-  {
-    "id": "storm",
-    "kind": "image",
-    "src": "/media/storm.jpg",
-    "size": "Small",
-    "title": "Stormfront"
-  },
-  {
-    "id": "full-panorama",
-    "kind": "image",
-    "src": "/media/panorama.jpg",
-    "size": "Full",
-    "title": "Panorama Hilltop"
-  }
+  { "id": "ext-01", "kind": "image", "src": "/media/ext-01.jpg", "title": "THE WID", "client": "Alfons & Alfreda" },
+  { "id": "ext-02", "kind": "image", "src": "/media/ext-02.jpg", "title": "Haus 2", "client": "Phase 5" },
+
+  { "id": "ext-03", "kind": "image", "src": "/media/ext-03.jpg", "title": "Portal Berlin", "client": "terraneo" },
+  { "id": "ext-04", "kind": "video", "src": "/media/ext-04.mp4", "title": "Hinwil", "client": "Backes Zarali Architekten" },
+  { "id": "ext-05", "kind": "image", "src": "/media/ext-05.jpg", "title": "Mainau Insel", "client": "Königs Architekten" },
+
+  { "id": "ext-09", "kind": "image", "src": "/media/ext-09.jpg", "title": "Haus 3", "client": "Urban Agency" },
+  { "id": "ext-10", "kind": "image", "src": "/media/ext-10.jpg", "title": "Farmsen", "client": "Phase 5" },
+
+  { "id": "ext-06", "kind": "image", "src": "/media/ext-06.jpg", "title": "TESTA", "client": "Phase 5" },
+  { "id": "ext-07", "kind": "image", "src": "/media/ext-07.jpg", "title": "Haus 6", "client": "Phase 5" },
+  { "id": "ext-08", "kind": "image", "src": "/media/ext-08.jpg", "title": "Stadtallendorf", "client": "Isabell Battenfeld Architekts" },
+
+  { "id": "ext-11", "kind": "image", "src": "/media/ext-11.jpg", "title": "THE WID", "client": "Alfons & Alfreda" },
+  { "id": "ext-12", "kind": "image", "src": "/media/ext-12.jpg", "title": "Campus Kartause Köln", "client": "Königs Architekten" },
+
+  { "id": "ext-13", "kind": "image", "src": "/media/ext-13.jpg", "title": "", "client": "" },
+  { "id": "ext-14", "kind": "image", "src": "/media/ext-14.jpg", "title": "", "client": "" },
+  { "id": "ext-15", "kind": "image", "src": "/media/ext-15.jpg", "title": "", "client": "" },
+
+  { "id": "ext-16", "kind": "video", "src": "/media/ext-16.mp4", "title": "Königstraße 3", "client": "Phase 5" },
+  { "id": "ext-17", "kind": "image", "src": "/media/ext-17.jpg", "title": "Köln Ehrenfeld", "client": "Isabell Battenfeld Architekts" },
+  { "id": "ext-18", "kind": "image", "src": "/media/ext-18.jpg", "title": "MO 26", "client": "Alfons & Alfreda" },
+  { "id": "ext-19", "kind": "image", "src": "/media/ext-19.jpg", "title": "Marburg", "client": "Isabell Battenfeld Architekts" },
+
+  { "id": "ext-20", "kind": "image", "src": "/media/ext-20.jpg", "title": "Schlägelstraße", "client": "Phase 5" },
+  { "id": "ext-21", "kind": "image", "src": "/media/ext-21.jpg", "title": "Burgfelderstrasse", "client": "Backes Zarali Architekten" },
+  { "id": "ext-22", "kind": "image", "src": "/media/ext-22.jpg", "title": "Potsdam", "client": "Phase 5" },
+
+  { "id": "ext-23", "kind": "image", "src": "/media/ext-23.jpg", "title": "Wohnen im Dach", "client": "adbarchitektur" },
+  { "id": "ext-24", "kind": "image", "src": "/media/ext-24.jpg", "title": "Boutanique", "client": "Isabell Battenfeld Architekts" },
+  { "id": "ext-25", "kind": "image", "src": "/media/ext-25.jpg", "title": "Nürnberger", "client": "Isabell Battenfeld Architekts" },
+  { "id": "ext-26", "kind": "video", "src": "/media/ext-26.mp4", "title": "Terra Calma", "client": "Sevencollection Portugal" },
+
+  { "id": "ext-27", "kind": "image", "src": "/media/ext-27.jpg", "title": "Hillside", "client": "Phase 5" },
+  { "id": "ext-28", "kind": "image", "src": "/media/ext-28.jpg", "title": "Königstraße", "client": "Phase 5" },
+
+  { "id": "ext-29", "kind": "image", "src": "/media/ext-29.jpg", "title": "Office", "client": "Golden Section Office" },
+  { "id": "ext-30", "kind": "image", "src": "/media/ext-30.jpg", "title": "Kloster Eberbach", "client": "Backes Zarali Architekten" },
+  { "id": "ext-31", "kind": "video", "src": "/media/ext-31.mp4", "title": "Haus 10", "client": "Phase 5" },
+  { "id": "ext-32", "kind": "image", "src": "/media/ext-32.jpg", "title": "european street", "client": "" },
+
+  { "id": "ext-33", "kind": "image", "src": "/media/ext-33.jpg", "title": "Park House", "client": "" },
+  { "id": "ext-34", "kind": "image", "src": "/media/ext-34.jpg", "title": "Sarnen", "client": "Backes Zarali Architekten" },
+  { "id": "ext-35", "kind": "image", "src": "/media/ext-35.jpg", "title": "Columbarium church in Emden", "client": "Königs Architekten" },
+
+  { "id": "ext-36", "kind": "image", "src": "/media/ext-36.jpg", "title": "Down by the River", "client": "" },
+  { "id": "ext-37", "kind": "image", "src": "/media/ext-37.jpg", "title": "kagawa", "client": "" },
+  { "id": "ext-38", "kind": "image", "src": "/media/ext-38.jpg", "title": "Astronaut", "client": "" }
 ]

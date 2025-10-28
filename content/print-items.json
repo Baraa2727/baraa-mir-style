@@ -1,0 +1,28 @@
+[
+  { "id": "print01", "kind": "image", "src": "/media/print-01.jpg", "size": "Medium", "title": "Printed Pavilion", "client": "PLA Prototype" },
+  { "id": "print02", "kind": "image", "src": "/media/print-02.jpg", "size": "Medium", "title": "Facade Panel", "client": "Resin Model" },
+
+  { "id": "print03", "kind": "image", "src": "/media/print-03.jpg", "size": "Medium", "title": "3D Structure", "client": "Studio Model" },
+  { "id": "print04", "kind": "video", "src": "/media/print-video-01.mp4", "size": "Medium", "title": "Printing Process", "client": "—" },
+  { "id": "print05", "kind": "image", "src": "/media/print-05.jpg", "size": "Medium", "title": "Material Test", "client": "Concept Series" },
+
+  { "id": "print06", "kind": "image", "src": "/media/print-06.jpg", "size": "Medium", "title": "Topography Base", "client": "PLA 1:200" },
+  { "id": "print07", "kind": "image", "src": "/media/print-07.jpg", "size": "Medium", "title": "Architectural Form", "client": "Resin Prototype" },
+  { "id": "print08", "kind": "image", "src": "/media/print-08.jpg", "size": "Medium", "title": "Print Detail", "client": "Test Print" },
+
+  { "id": "print09", "kind": "image", "src": "/media/print-09.jpg", "size": "Medium", "title": "Structural Test", "client": "Form Study" },
+  { "id": "print10", "kind": "image", "src": "/media/print-10.jpg", "size": "Medium", "title": "Prototype Part", "client": "—" },
+
+  { "id": "print11", "kind": "image", "src": "/media/print-11.jpg", "size": "Medium", "title": "Column Section", "client": "Design Model" },
+  { "id": "print12", "kind": "image", "src": "/media/print-12.jpg", "size": "Medium", "title": "Building Core", "client": "PLA Model" },
+  { "id": "print13", "kind": "video", "src": "/media/print-video-02.mp4", "size": "Medium", "title": "Model Assembly", "client": "Workshop" },
+  { "id": "print14", "kind": "image", "src": "/media/print-14.jpg", "size": "Medium", "title": "3D Mesh", "client": "Digital Fabrication" },
+
+  { "id": "print15", "kind": "image", "src": "/media/print-15.jpg", "size": "Medium", "title": "Surface Study", "client": "PLA+ Matte" },
+  { "id": "print16", "kind": "image", "src": "/media/print-16.jpg", "size": "Medium", "title": "Concept Print", "client": "Form Prototype" },
+  { "id": "print17", "kind": "video", "src": "/media/print-video-03.mp4", "size": "Medium", "title": "Print Timelapse", "client": "Workshop" },
+  { "id": "print18", "kind": "image", "src": "/media/print-18.jpg", "size": "Medium", "title": "Installation", "client": "Project Demo" },
+
+  { "id": "print19", "kind": "image", "src": "/media/print-19.jpg", "size": "Medium", "title": "Test Geometry", "client": "PLA White" },
+  { "id": "print20", "kind": "image", "src": "/media/print-20.jpg", "size": "Medium", "title": "Model Fragment", "client": "Concept Study" }
+]
