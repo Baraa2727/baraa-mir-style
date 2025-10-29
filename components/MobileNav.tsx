@@ -1,52 +1,49 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
 
-  // Body-Scroll sperren wenn Menü offen
+  // ESC zum Schließen
   useEffect(() => {
-    if (open) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
-    }
-  }, [open]);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   return (
     <>
-      {/* Obere Leiste */}
-      <header className="mobile-header only-mobile" aria-label="Mobile Header">
-        <Link href="/" className="mobile-logo" onClick={() => setOpen(false)}>
-          BARAA
-        </Link>
+      {/* Obere Mobile-Bar (nur auf kleinen Screens sichtbar via CSS) */}
+      <div className="mobile-topbar" role="banner">
+        <div className="brand">BARAA</div>
 
         <button
           className="burger"
-          aria-label={open ? "Menü schließen" : "Menü öffnen"}
+          aria-label="Menü öffnen"
+          aria-controls="mobile-panel"
           aria-expanded={open}
-          aria-controls="mobile-menu-panel"
-          onClick={() => setOpen(v => !v)}
+          onClick={() => setOpen(true)}
         >
           <span />
           <span />
           <span />
         </button>
-      </header>
+      </div>
 
-      {/* Overlay + Panel */}
-      <div
-        id="mobile-menu-panel"
-        className={`mobile-menu ${open ? "open" : ""} only-mobile`}
-        role="dialog"
-        aria-modal="true"
+      {/* Vollflächiges Panel, solid, schiebt von rechts rein */}
+      <aside
+        id="mobile-panel"
+        className={`mobile-panel${open ? ' open' : ''}`}
+        aria-hidden={!open}
       >
-        <div className="mobile-menu-header">
-          <span className="mobile-logo">BARAA</span>
+        <div className="panel-header">
+          <div className="brand">BARAA</div>
           <button
-            className="close-x"
+            className="close"
             aria-label="Menü schließen"
             onClick={() => setOpen(false)}
           >
@@ -54,12 +51,15 @@ export default function MobileNav() {
           </button>
         </div>
 
-        <nav className="mobile-menu-nav" onClick={() => setOpen(false)}>
-          <Link href="/">Images</Link>
-          <Link href="/print">3D Print</Link>
-          <Link href="/about">About</Link>
+        <nav className="panel-nav" role="navigation" aria-label="Hauptmenü">
+          <Link href="/" onClick={() => setOpen(false)}>Images</Link>
+          <Link href="/print" onClick={() => setOpen(false)}>3D Print</Link>
+          <Link href="/about" onClick={() => setOpen(false)}>About</Link>
         </nav>
-      </div>
+      </aside>
+
+      {/* Klick auf die Verdunkelung schließt ebenfalls */}
+      {open && <button className="mobile-scrim" aria-hidden onClick={() => setOpen(false)} />}
     </>
   );
 }
