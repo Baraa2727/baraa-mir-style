@@ -95,7 +95,7 @@ export default function MasonryGrid({
   const data = (items ?? (itemsDefault as Item[])).slice();
   const buckets = arrangeVideoPositions(sliceRows(data, maxRows));
 
-  // Scroll-Reveal: schnelleres Fade-in + leichtes Hochschieben
+  // Scroll-Reveal (mobil & desktop gleich, nur CSS ändert Einspaltigkeit)
   useEffect(() => {
     const tiles = Array.from(document.querySelectorAll<HTMLElement>(".tile"));
     if (tiles.length === 0) return;
@@ -124,7 +124,7 @@ export default function MasonryGrid({
             const href = `/project/${it.id}`;
             const aspectClass = b.spec.aspect === "portrait" ? "portrait" : "square";
 
-            // schnellerer Stagger (40ms)
+            // Stagger
             const delayMs = j * 40;
 
             return (
