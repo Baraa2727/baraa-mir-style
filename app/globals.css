@@ -1,212 +1,142 @@
-:root {
-  --bg: #fff;
-  --fg: #101010;
-  --muted: #6b6b6b;
-  --gap: 16px;      /* Abstand zwischen Kacheln */
-  --edge: 16px;     /* Seitenrand, gleich dem gap */
-  --maxw: 1520px;
+/* ====== Design-Variablen ====== */
+:root{
+  --gap: 24px;                /* Zwischenräume */
+  --grid-gap: 24px;           /* Bildabstände */
+  --sidebar-w: 220px;         /* SideDock-Breite Desktop */
+  --mobileMenuBg: #111;       /* Hintergrund Mobile-Menü (nicht transparent) */
+  --mobileMenuFg: #fff;       /* Textfarbe Mobile-Menü */
 }
 
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+/* Basis */
+*{box-sizing:border-box}
+html,body{height:100%}
+html.menu-open, html.menu-open body{overflow:hidden} /* sperrt Scroll wenn Menü offen */
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color:#111;
+  background:#fff;
 }
 
-a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 4px; }
+/* ====== Layout-Rahmen ====== */
+.content{
+  padding: var(--gap);
+  padding-left: calc(var(--sidebar-w) + var(--gap)); /* Platz für SideDock */
+  max-width: 1600px;
+  margin: 0 auto;
+}
 
-/* ===================== Side-Dock ===================== */
-.side-dock {
+/* Bild-Abstände im Masonry bleiben wie gehabt */
+.masonry{
+  --m-gap: var(--grid-gap);
+  gap: var(--m-gap);
+}
+
+/* ====== SideDock – ohne Schatten & keine Abrundung ====== */
+.sidedock{
   position: fixed;
-  top: 24px;
-  left: 24px;
-  width: 112px;
-  background: #fff;          /* keine Transparenz */
-  border-radius: 0;          /* keine abgerundeten Ecken */
-  box-shadow: none;          /* kein Schatten */
-  padding: 16px 14px;
-  z-index: 50;               /* bleibt über den Bildern */
-  transition: transform .35s ease, opacity .35s ease;
-}
-.side-dock.hidden {
-  transform: translateY(-16px);
-  opacity: 0;
-  pointer-events: none;
-}
-.side-dock .logo {
-  font-weight: 800;
-  letter-spacing: .02em;
-  margin-bottom: 10px;
-}
-.side-dock nav a {
-  display: block;
-  padding: 8px 4px;
-  color: var(--muted);
-}
-.side-dock nav a.active,
-.side-dock nav a:hover {
-  color: var(--fg);
-  text-decoration: none;
+  inset: var(--gap) auto auto var(--gap);
+  width: var(--sidebar-w);
+  background: #fff;
+  border-radius: 0;
+  box-shadow: none;      /* explizit kein Schatten */
+  z-index: 20;
 }
 
-/* ===================== Header ===================== */
-.header {
-  text-align: center;
-  padding-top: 64px;
-  padding-bottom: 24px;
-}
-.header h1 {
-  font-size: clamp(28px, 5vw, 56px);
-  margin: 0 0 8px;
-}
-
-/* ===================== Grid / Rows ===================== */
-.rows {
-  width: 100%;
-  margin: 0;
-}
-.row {
-  width: 100%;
-  display: grid;
-  gap: var(--gap);
-  padding: 0 var(--gap) var(--gap); /* Seitenrand = gap */
-}
-.row[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
-.row[data-cols="3"] { grid-template-columns: repeat(3, 1fr); }
-.row[data-cols="4"] { grid-template-columns: repeat(4, 1fr); }
-
-/* ===================== Tiles ===================== */
-.tile {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #f2f2f2;
-
-  /* Scroll-Reveal Animation */
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .55s ease-out, transform .55s ease-out;
-  will-change: opacity, transform;
-}
-.tile.inview {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tile.square   { aspect-ratio: 1 / 1; }
-.tile.portrait { aspect-ratio: 4 / 5; }
-
-.tile img, .tile video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ===================== Label ===================== */
-.label {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 24px;
-  text-align: center;
-  color: #fff;
-  pointer-events: none;
-  line-height: 1.25;
-}
-.label-client {
-  margin-bottom: 4px;
-  font-weight: 600;
-  font-size: clamp(12px, 1vw, 14px);
-}
-.label-title {
-  font-weight: 800;
-  font-size: clamp(18px, 1.8vw, 28px);
-}
-
-/* ===================== Footer ===================== */
-.footer {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  color: var(--muted);
-  padding: 48px 0 80px;
-  font-size: 14px;
-}
-
-/* ===================== Hilfsklassen ===================== */
-.only-desktop { display: block; }
-.only-mobile  { display: none; }
-
-/* ===================== Mobile Layout ===================== */
-@media (max-width: 780px) {
-  :root {
-    --gap: 12px;
-    --edge: 12px;
-  }
-
-  .only-desktop { display: none; }
-  .only-mobile  { display: block; }
-
-  /* Side-Dock ausblenden mobil */
-  .side-dock { display: none; }
-
-  /* Reihen: einspaltig + Seitenabstand */
-  .row {
-    grid-template-columns: 1fr !important;
-    padding-left: var(--edge);
-    padding-right: var(--edge);
-  }
-
-  .label-title { font-size: clamp(16px, 4.4vw, 22px); }
-
-  /* (Optional) Mobile Header + Burger-Menü – nur CSS,
-     falls du später Markup hinzufügst */
-  .mobile-header {
-    position: sticky;
-    top: 0;
-    z-index: 60;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 14px;
-    background: var(--bg);
-    border-bottom: 1px solid #eee;
-  }
-  .mobile-logo {
-    font-weight: 800;
-    letter-spacing: .04em;
-  }
-  .burger { width: 36px; height: 28px; display: flex; flex-direction: column; justify-content: space-between; background: transparent; border: none; padding: 0; cursor: pointer; }
-  .burger span { display: block; height: 3px; background: var(--fg); border-radius: 2px; transition: transform .25s ease, opacity .25s ease; }
-
-  .mobile-menu { position: fixed; inset: 0; z-index: 70; display: flex; flex-direction: column; background: rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
-  .mobile-menu.open { opacity: 1; pointer-events: auto; }
-  .mobile-menu .panel { position: absolute; top: 0; right: 0; height: 100%; width: min(84vw, 420px); background: #111; color: #fff; transform: translateX(100%); transition: transform .35s ease; display: flex; flex-direction: column; }
-  .mobile-menu.open .panel { transform: translateX(0); }
-  .mobile-menu-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; background: #111; color: #fff; }
-  .mobile-menu .mobile-logo { color: #fff; font-weight: 800; }
-  .close-x { background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; }
-  .mobile-menu-nav { display: flex; flex-direction: column; gap: 22px; padding: 28px 24px; }
-  .mobile-menu-nav a { font-size: 22px; color: #fff; text-decoration: none; }
-  .mobile-menu-nav a:hover { text-decoration: underline; }
-}
-
-/* ===================== Weniger Bewegung ===================== */
-@media (prefers-reduced-motion: reduce) {
-  .tile { opacity: 1; transform: none; transition: none; }
-  .mobile-menu .panel { transition: none; }
-}
-
-/* ===================== Content-Wrapper ===================== */
-.site {
+/* ====== Hamburger (nur Mobile sichtbar) ====== */
+.hamburger{
+  display:none;
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 28px;
   padding: 0;
+  border: 0;
+  background: transparent;
+  z-index: 1100;
+  cursor: pointer;
+}
+.hamburger span{
+  display:block;
+  height: 3px;
+  margin: 5px 0;
+  background: #111; /* sichtbar auf weißem Hintergrund */
+  border-radius: 2px;
+}
+
+/* ====== Mobile Slide-in ====== */
+.mobile-menu{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;               /* volle Breite: “blanke Seite” */
+  height: 100vh;
+  background: var(--mobileMenuBg); /* deckend, nicht transparent */
+  color: var(--mobileMenuFg);
+  transform: translateX(100%);     /* von rechts reinschieben */
+  transition: transform .38s ease;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 32px;
+}
+.mobile-menu.open{ transform: translateX(0) }
+
+.mobile-menu__top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position: relative;
+  padding: 6px 8px 16px;
+}
+.mobile-brand{
+  font-weight: 800;
+  letter-spacing: .06em;
+  font-size: 22px;
+}
+.mobile-close{
+  position:absolute;
+  right: 6px;
+  top: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mobileMenuFg);
+  font-size: 28px;
+  line-height: 1;
+  cursor:pointer;
+}
+
+.mobile-nav{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 18px;
+  margin-top: 40px;
+}
+.mobile-nav a{
+  color: var(--mobileMenuFg);
+  text-decoration:none;
+  font-size: 36px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 960px){
+  /* SideDock ausblenden, Content links/rechts gleich große Ränder */
+  .sidedock{ display:none }
+  .content{
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+  }
+  /* Hamburger zeigen */
+  .hamburger{ display:block }
+}
+
+/* Du hattest einen neutralen Header in der Seite – der bleibt unverändert.
+   Falls Überschriften einen Außenspielraum brauchen: */
+header.header{
+  text-align:center;
+  margin: 24px 0 16px;
 }
