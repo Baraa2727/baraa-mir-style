@@ -1,29 +1,28 @@
-// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
 import SideDock from "../components/SideDock";
+import MobileNav from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: {
-    default: "BARAA – 3D Renderings & Visualization",
-    template: "%s | BARAA",
-  },
-  description:
-    "Architectural renderings, 3D visualization and design by Baraa Shareet.",
-  // KEINE icons-Angabe nötig – Next verwendet automatisch app/icon.png
+  title: "BARAA",
+  description: "Architectural Images, 3D Print & Models",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="de">
       <body>
-        <SideDock />
-        {children}
-        <footer className="footer">
-          <a href="/impressum">Impressum</a>
-          <a href="/datenschutz">Datenschutz</a>
-        </footer>
+        {/* Desktop: linke Dock */}
+        <div className="only-desktop">
+          <SideDock />
+        </div>
+
+        {/* Mobile: Top-Bar mit Burger */}
+        <MobileNav />
+
+        {/* Inhalt */}
+        <main className="site">{children}</main>
       </body>
     </html>
   );
