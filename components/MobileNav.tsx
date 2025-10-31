@@ -8,9 +8,7 @@ export default function MobileNav() {
 
   // ESC schließt
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
@@ -30,8 +28,9 @@ export default function MobileNav() {
     };
   }, [open]);
 
-  // UI Abstände (einheitlich)
-  const inset = 12; // rechter Rand für Burger + X und oberer Rand für X
+  // Abstände
+  const insetHeaderRight = 8;   // Burger NOCH näher an den rechten Rand
+  const insetPanel = 12;        // Abstand für das X im Panel (oben + rechts)
 
   return (
     <>
@@ -41,20 +40,17 @@ export default function MobileNav() {
         role="banner"
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 5000,                  // bleibt über dem Content (aber unter dem Panel)
+          top: 0, left: 0, right: 0,
+          zIndex: 5000,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-end',
           minHeight: 56,
           background: '#fff',
           borderBottom: 'none',
-          paddingRight: inset,           // steuert den Abstand der 3 Striche zum Rand
+          paddingRight: insetHeaderRight, // <— näher zum Rand
         }}
       >
-        {/* zentriertes Logo */}
         <div
           className="mobile-logo"
           style={{
@@ -70,7 +66,7 @@ export default function MobileNav() {
           BARAA
         </div>
 
-        {/* minimalistischer Burger (dünn + enger Abstand) */}
+        {/* minimalistischer Burger */}
         <button
           className="burger"
           aria-label="Menü öffnen"
@@ -78,8 +74,8 @@ export default function MobileNav() {
           aria-expanded={open}
           onClick={() => setOpen(true)}
           style={{
-            width: 32,
-            height: 24,
+            width: 30,
+            height: 22,
             display: 'inline-flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -109,16 +105,11 @@ export default function MobileNav() {
           transform: open ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
-        {/* Panel-Fläche (voll deckend) */}
         <div
           className="panel"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'var(--menu-bg, #111)',
-          }}
+          style={{ position: 'absolute', inset: 0, background: 'var(--menu-bg, #111)' }}
         >
-          {/* Panel-Header: Logo mittig, X oben rechts mit gleichem Abstand wie Burger */}
+          {/* Panel-Header: Logo mittig, X oben rechts (gleicher Abstand oben/rechts) */}
           <div
             className="mobile-menu-header"
             style={{
@@ -143,8 +134,8 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
               style={{
                 position: 'absolute',
-                top: inset,              // Punkt 1: leicht nach unten – gleich wie rechter Abstand
-                right: inset,
+                top: insetPanel,          // leicht nach unten
+                right: insetPanel,
                 fontSize: 28,
                 lineHeight: 1,
                 background: 'transparent',
@@ -157,7 +148,7 @@ export default function MobileNav() {
             </button>
           </div>
 
-          {/* Menü mittig im Viewport */}
+          {/* Menü mittig */}
           <div
             className="mobile-menu-body"
             style={{
@@ -171,12 +162,7 @@ export default function MobileNav() {
               className="mobile-menu-nav"
               role="navigation"
               aria-label="Hauptmenü"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 24,
-                textAlign: 'center',
-              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 24, textAlign: 'center' }}
             >
               <Link href="/" onClick={() => setOpen(false)}>Images</Link>
               <Link href="/print" onClick={() => setOpen(false)}>3D Print</Link>
