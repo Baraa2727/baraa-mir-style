@@ -28,9 +28,7 @@ export default function MobileNav() {
     };
   }, [open]);
 
-  // Abstände
-  const insetHeaderRight = 8;   // Burger NOCH näher an den rechten Rand
-  const insetPanel = 12;        // Abstand für das X im Panel (oben + rechts)
+  const insetPanel = 12; // Abstand oben/rechts für das X im Panel
 
   return (
     <>
@@ -44,19 +42,15 @@ export default function MobileNav() {
           zIndex: 5000,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'center', // Logo mittig
           minHeight: 56,
           background: '#fff',
           borderBottom: 'none',
-          paddingRight: insetHeaderRight, // <— näher zum Rand
         }}
       >
         <div
           className="mobile-logo"
           style={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
             fontSize: 28,
             fontWeight: 700,
             lineHeight: 1,
@@ -66,7 +60,7 @@ export default function MobileNav() {
           BARAA
         </div>
 
-        {/* minimalistischer Burger */}
+        {/* Burger – noch näher an den rechten Rand */}
         <button
           className="burger"
           aria-label="Menü öffnen"
@@ -74,6 +68,10 @@ export default function MobileNav() {
           aria-expanded={open}
           onClick={() => setOpen(true)}
           style={{
+            position: 'absolute',
+            right: 4,              // <— näher als der Edge-Rand
+            top: '50%',
+            transform: 'translateY(-50%)',
             width: 30,
             height: 22,
             display: 'inline-flex',
@@ -109,7 +107,7 @@ export default function MobileNav() {
           className="panel"
           style={{ position: 'absolute', inset: 0, background: 'var(--menu-bg, #111)' }}
         >
-          {/* Panel-Header: Logo mittig, X oben rechts (gleicher Abstand oben/rechts) */}
+          {/* Panel-Header: Logo mittig, X oben rechts */}
           <div
             className="mobile-menu-header"
             style={{
@@ -134,7 +132,7 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
               style={{
                 position: 'absolute',
-                top: insetPanel,          // leicht nach unten
+                top: insetPanel,      // gleich großer Abstand oben/rechts
                 right: insetPanel,
                 fontSize: 28,
                 lineHeight: 1,

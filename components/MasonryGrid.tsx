@@ -32,7 +32,6 @@ const ROW_SPECS: RowSpec[] = [
   { cols: 2, aspect: "square" },
   { cols: 4, aspect: "portrait", videoAtIndex: 2 },
 ];
-
 const DEFAULT_SPEC: RowSpec = { cols: 3, aspect: "portrait" };
 
 function sliceRows(data: Item[], rowsToTake?: number) {
@@ -43,7 +42,7 @@ function sliceRows(data: Item[], rowsToTake?: number) {
     const spec = r < ROW_SPECS.length ? ROW_SPECS[r] : DEFAULT_SPEC;
     const take = spec.cols;
     const chunk = data.slice(cursor, cursor + take);
-    if (chunk.length === 0) break;
+    if (!chunk.length) break;
     buckets.push({ spec, items: chunk });
     cursor += chunk.length;
     r++;
@@ -55,7 +54,6 @@ function sliceRows(data: Item[], rowsToTake?: number) {
 function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
   for (const b of buckets) {
     const { spec, items } = b;
-
     if (spec.centerVideo && items.length === 3) {
       const vIdx = items.findIndex(x => x.kind === "video");
       if (vIdx !== -1 && vIdx !== 1) {
@@ -63,7 +61,6 @@ function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
         items.splice(1, 0, vid);
       }
     }
-
     if (typeof spec.videoAtIndex === "number" &&
         spec.videoAtIndex >= 0 &&
         spec.videoAtIndex < items.length) {
@@ -87,7 +84,7 @@ export default function MasonryGrid({
   const data = (items ?? (itemsDefault as Item[])).slice();
   const buckets = arrangeVideoPositions(sliceRows(data, maxRows));
 
-  // Reveal-Animation (Tiles)
+  // Reveal-Animation
   useEffect(() => {
     const tiles = Array.from(document.querySelectorAll<HTMLElement>(".tile"));
     if (!tiles.length) return;
@@ -108,42 +105,47 @@ export default function MasonryGrid({
     return () => io.disconnect();
   }, [data.length]);
 
-  // Autoplay für Videos (aktiv anstoßen, pausieren außerhalb des Viewports)
+  // Autoplay/Loop – robust auf iOS/Safari
   useEffect(() => {
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".tile video"));
     if (!videos.length) return;
 
-    // Sicherstellen, dass Safari alle Flags gesetzt bekommt
     const prep = (v: HTMLVideoElement) => {
+      // Setze Props/Attribute DOPPELT (Property + HTML-Attribut) für iOS
       v.muted = true;
-      // HTML-Attribute zusätzlich setzen (Safari/iOS)
+      v.defaultMuted = true;
       v.setAttribute("muted", "");
       v.playsInline = true;
       v.setAttribute("playsinline", "");
       v.autoplay = true;
       v.loop = true;
       v.controls = false;
+      v.preload = "metadata";
     };
 
-    videos.forEach(prep);
+    videos.forEach((v) => {
+      prep(v);
+      // Fallbacks für Loop/Start
+      v.addEventListener("ended", () => { v.currentTime = 0; v.play().catch(() => {}); });
+    });
 
     const vio = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const v = entry.target as HTMLVideoElement;
           if (entry.isIntersecting) {
-            // Play aktiv anstoßen
+            prep(v);
+            // direktes Play triggert Autoplay
             v.play().catch(() => {
-              // als Fallback nochmal muten/inline setzen und erneut versuchen
-              prep(v);
-              v.play().catch(() => {});
+              // zweiter Versuch
+              setTimeout(() => { prep(v); v.play().catch(() => {}); }, 50);
             });
           } else {
             v.pause();
           }
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.15 }
     );
 
     videos.forEach((v) => vio.observe(v));
@@ -176,6 +178,16 @@ export default function MasonryGrid({
                     loop
                     controls={false}
                     preload="metadata"
+                    // zusätzliche Trigger direkt am Element:
+                    onLoadedMetadata={(e) => {
+                      const v = e.currentTarget;
+                      v.muted = true; v.defaultMuted = true; v.playsInline = true;
+                      v.play().catch(() => {});
+                    }}
+                    onCanPlay={(e) => {
+                      const v = e.currentTarget;
+                      if (v.paused) v.play().catch(() => {});
+                    }}
                   />
                 ) : (
                   <img src={it.src} alt={it.title || it.id} />
