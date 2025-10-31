@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import itemsDefault from "../content/items.json";
 
 type Item = {
@@ -32,7 +32,6 @@ const ROW_SPECS: RowSpec[] = [
   { cols: 2, aspect: "square" },
   { cols: 4, aspect: "portrait", videoAtIndex: 2 },
 ];
-
 const DEFAULT_SPEC: RowSpec = { cols: 3, aspect: "portrait" };
 
 function sliceRows(data: Item[], rowsToTake?: number) {
@@ -85,10 +84,6 @@ export default function MasonryGrid({
   const data = (items ?? (itemsDefault as Item[])).slice();
   const buckets = arrangeVideoPositions(sliceRows(data, maxRows));
 
-  // zeigt das Tap-Overlay, wenn Autoplay blockiert war
-  const [needsUserTap, setNeedsUserTap] = useState(false);
-  const bootstrapped = useRef(false);
-
   // Reveal-Animation
   useEffect(() => {
     const tiles = Array.from(document.querySelectorAll<HTMLElement>(".tile"));
@@ -110,142 +105,116 @@ export default function MasonryGrid({
     return () => io.disconnect();
   }, [data.length]);
 
-  // Hilfsfunktionen für Videos
-  const prep = (v: HTMLVideoElement) => {
-    v.muted = true;
-    v.defaultMuted = true;
-    v.setAttribute("muted", "");
-    v.playsInline = true;
-    v.setAttribute("playsinline", "");
-    (v as any).webkitPlaysinline = true;
-    v.autoplay = true;
-    v.setAttribute("autoplay", "");
-    v.loop = true;
-    v.controls = false;
-    v.preload = "metadata";
-  };
+  // ===== Autoplay / Loop (inkl. iOS Low Power Mode mit unsichtbarem Bootstrap) =====
+  const bootstrappedRef = useRef(false);
 
-  const tryPlay = async (v: HTMLVideoElement) => {
-    prep(v);
-    try {
-      await v.play();
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
-  // Autoplay / Pause je nach Sichtbarkeit
   useEffect(() => {
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".tile video"));
     if (!videos.length) return;
 
+    const prep = (v: HTMLVideoElement) => {
+      v.muted = true; v.defaultMuted = true; v.setAttribute("muted", "");
+      v.playsInline = true; v.setAttribute("playsinline", ""); (v as any).webkitPlaysinline = true;
+      v.autoplay = true; v.setAttribute("autoplay", "");
+      v.loop = true; v.controls = false; v.preload = "metadata";
+    };
+
+    const tryPlay = async (v: HTMLVideoElement) => {
+      prep(v);
+      try { await v.play(); return true; } catch { return false; }
+    };
+
     videos.forEach((v) => {
       prep(v);
       v.addEventListener("ended", () => { v.currentTime = 0; v.play().catch(() => {}); });
-      v.addEventListener("loadedmetadata", () => { if (!v.autoplay) v.autoplay = true; });
+      v.addEventListener("loadedmetadata", () => { if (v.paused) v.play().catch(() => {}); });
       v.addEventListener("canplay", () => { if (v.paused) v.play().catch(() => {}); });
     });
 
+    // Sichtbarkeits-Observer: Play/Pause je nach Viewport
     const vio = new IntersectionObserver(
-      async (entries) => {
-        for (const entry of entries) {
+      (entries) => {
+        entries.forEach(async (entry) => {
           const v = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting) {
-            const ok = await tryPlay(v);
-            if (!ok && !bootstrapped.current) {
-              // Autoplay blockiert -> Overlay zeigen
-              setNeedsUserTap(true);
-            }
-          } else {
-            v.pause();
-          }
-        }
+          if (entry.isIntersecting) { await tryPlay(v); } else { v.pause(); }
+        });
       },
       { threshold: 0.15 }
     );
-
     videos.forEach((v) => vio.observe(v));
 
-    // Wenn Tab/App wieder aktiv wird: erneut versuchen
+    // Unsichtbarer „User Activation“-Bootstrap: erster Tap irgendwo -> Play für sichtbare Videos
+    const bootstrap = () => {
+      if (bootstrappedRef.current) return;
+      bootstrappedRef.current = true;
+      videos.forEach((v) => { tryPlay(v); });
+      window.removeEventListener("pointerdown", bootstrap, { capture: true } as any);
+      window.removeEventListener("touchstart", bootstrap, { capture: true } as any);
+      window.removeEventListener("click", bootstrap, { capture: true } as any);
+    };
+    window.addEventListener("pointerdown", bootstrap, { capture: true, passive: true });
+    window.addEventListener("touchstart", bootstrap, { capture: true, passive: true });
+    window.addEventListener("click", bootstrap, { capture: true });
+
+    // Bei Rückkehr in den Tab nochmal versuchen
     const onVis = () => {
       if (document.visibilityState === "visible") {
-        videos.forEach((v) => v.play().catch(() => {}));
+        videos.forEach((v) => { if (v.paused) v.play().catch(() => {}); });
       }
     };
     document.addEventListener("visibilitychange", onVis);
 
     return () => {
       vio.disconnect();
+      window.removeEventListener("pointerdown", bootstrap, { capture: true } as any);
+      window.removeEventListener("touchstart", bootstrap, { capture: true } as any);
+      window.removeEventListener("click", bootstrap, { capture: true } as any);
       document.removeEventListener("visibilitychange", onVis);
     };
   }, [data.length]);
 
-  // User-Activation: einmal tippen -> alle sichtbaren Videos starten
-  const handleEnableMotion = async () => {
-    bootstrapped.current = true;
-    setNeedsUserTap(false);
-    const vids = Array.from(document.querySelectorAll<HTMLVideoElement>(".tile video"));
-    for (const v of vids) {
-      await tryPlay(v);
-    }
-  };
-
   return (
-    <>
-      {/* Nur auf Mobile sichtbar, wenn benötigt */}
-      {needsUserTap && (
-        <button
-          className="motion-unlock only-mobile"
-          onClick={handleEnableMotion}
-          aria-label="Enable motion"
-        >
-          Tap to enable motion
-        </button>
-      )}
+    <section className="rows">
+      {buckets.map((b, i) => (
+        <div key={`row-${i}`} className="row" data-cols={b.spec.cols}>
+          {b.items.map((it, j) => {
+            const href = `/project/${it.id}`;
+            const aspectClass = b.spec.aspect === "portrait" ? "portrait" : "square";
+            const delayMs = j * 40;
 
-      <section className="rows">
-        {buckets.map((b, i) => (
-          <div key={`row-${i}`} className="row" data-cols={b.spec.cols}>
-            {b.items.map((it, j) => {
-              const href = `/project/${it.id}`;
-              const aspectClass = b.spec.aspect === "portrait" ? "portrait" : "square";
-              const delayMs = j * 40;
+            return (
+              <a
+                key={it.id}
+                href={href}
+                className={`tile ${aspectClass}`}
+                aria-label={it.title || it.id}
+                style={{ transitionDelay: `${delayMs}ms` }}
+              >
+                {it.kind === "video" ? (
+                  <video
+                    src={it.src}
+                    muted
+                    playsInline
+                    autoPlay
+                    loop
+                    controls={false}
+                    preload="metadata"
+                  />
+                ) : (
+                  <img src={it.src} alt={it.title || it.id} />
+                )}
 
-              return (
-                <a
-                  key={it.id}
-                  href={href}
-                  className={`tile ${aspectClass}`}
-                  aria-label={it.title || it.id}
-                  style={{ transitionDelay: `${delayMs}ms` }}
-                >
-                  {it.kind === "video" ? (
-                    <video
-                      src={it.src}
-                      muted
-                      playsInline
-                      autoPlay
-                      loop
-                      controls={false}
-                      preload="metadata"
-                    />
-                  ) : (
-                    <img src={it.src} alt={it.title || it.id} />
-                  )}
-
-                  {(it.title || it.client) && (
-                    <div className="label">
-                      {it.client && <div className="label-client">{it.client}</div>}
-                      {it.title && <div className="label-title">{it.title}</div>}
-                    </div>
-                  )}
-                </a>
-              );
-            })}
-          </div>
-        ))}
-      </section>
-    </>
+                {(it.title || it.client) && (
+                  <div className="label">
+                    {it.client && <div className="label-client">{it.client}</div>}
+                    {it.title && <div className="label-title">{it.title}</div>}
+                  </div>
+                )}
+              </a>
+            );
+          })}
+        </div>
+      ))}
+    </section>
   );
 }
