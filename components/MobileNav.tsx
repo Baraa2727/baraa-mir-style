@@ -15,7 +15,7 @@ export default function MobileNav() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Body Scroll-Lock + nur vertikales Scrollen erlauben
+  // Body Scroll-Lock + horizontales Scrollen unterbinden
   useEffect(() => {
     if (open) {
       document.body.classList.add('no-scroll');
@@ -30,22 +30,31 @@ export default function MobileNav() {
     };
   }, [open]);
 
+  // UI Abstände (einheitlich)
+  const inset = 12; // rechter Rand für Burger + X und oberer Rand für X
+
   return (
     <>
-      {/* MOBILE HEADER: Logo mittig, Burger rechts, keine Unterlinie */}
+      {/* MOBILE HEADER: fixed, Logo mittig, Burger rechts */}
       <div
         className="mobile-header"
         role="banner"
         style={{
-          position: 'relative',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 5000,                  // bleibt über dem Content (aber unter dem Panel)
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-end',
           minHeight: 56,
+          background: '#fff',
           borderBottom: 'none',
-          marginBottom: 8, // reduziert Abstand zum Content
+          paddingRight: inset,           // steuert den Abstand der 3 Striche zum Rand
         }}
       >
+        {/* zentriertes Logo */}
         <div
           className="mobile-logo"
           style={{
@@ -53,6 +62,7 @@ export default function MobileNav() {
             left: '50%',
             transform: 'translateX(-50%)',
             fontSize: 28,
+            fontWeight: 700,
             lineHeight: 1,
             textDecoration: 'none',
           }}
@@ -60,7 +70,7 @@ export default function MobileNav() {
           BARAA
         </div>
 
-        {/* minimalistischer Burger (dünne, enge Linien) */}
+        {/* minimalistischer Burger (dünn + enger Abstand) */}
         <button
           className="burger"
           aria-label="Menü öffnen"
@@ -73,11 +83,10 @@ export default function MobileNav() {
             display: 'inline-flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            gap: 3,                 // enger
+            gap: 3,
             border: 'none',
             background: 'transparent',
             padding: 0,
-            marginRight: 6,
           }}
         >
           <span style={{ display: 'block', width: 22, height: 1, backgroundColor: '#101010' }} />
@@ -86,48 +95,30 @@ export default function MobileNav() {
         </button>
       </div>
 
-      {/* OFF-CANVAS: fixed, deckend, über ALLEM (inkl. Header), von rechts */}
+      {/* OFF-CANVAS: fixed, deckend, über allem */}
       <aside
         id="mobile-menu"
         className={`mobile-menu${open ? ' open' : ''}`}
         aria-hidden={!open}
         style={{
           position: 'fixed',
-          inset: 0,               // top/right/bottom/left = 0
+          inset: 0,
           width: '100vw',
           height: '100dvh',
-          zIndex: 9999,           // über Header/Burger
+          zIndex: 9999,
           transform: open ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
-        {/* Scrim hinter Panel (schließt bei Klick) */}
-        {open && (
-          <button
-            className="mobile-scrim"
-            aria-hidden
-            onClick={() => setOpen(false)}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'rgba(0,0,0,0)', // deckendes Panel selbst ist rechts, scrim bleibt transparent
-              border: 'none',
-            }}
-          />
-        )}
-
-        {/* Panel-Container rechts */}
+        {/* Panel-Fläche (voll deckend) */}
         <div
           className="panel"
           style={{
             position: 'absolute',
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
+            inset: 0,
             background: 'var(--menu-bg, #111)',
           }}
         >
-          {/* Panel-Header: Logo mittig, KEINE Linie; X absolut oben rechts */}
+          {/* Panel-Header: Logo mittig, X oben rechts mit gleichem Abstand wie Burger */}
           <div
             className="mobile-menu-header"
             style={{
@@ -141,7 +132,7 @@ export default function MobileNav() {
           >
             <div
               className="mobile-logo"
-              style={{ fontSize: 28, lineHeight: 1, textDecoration: 'none', color: '#fff' }}
+              style={{ fontSize: 28, fontWeight: 700, lineHeight: 1, color: '#fff' }}
             >
               BARAA
             </div>
@@ -152,13 +143,13 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
               style={{
                 position: 'absolute',
-                top: 8,
-                right: 8,
+                top: inset,              // Punkt 1: leicht nach unten – gleich wie rechter Abstand
+                right: inset,
                 fontSize: 28,
                 lineHeight: 1,
                 background: 'transparent',
                 border: 'none',
-                padding: 8,
+                padding: 0,
                 color: '#fff',
               }}
             >
