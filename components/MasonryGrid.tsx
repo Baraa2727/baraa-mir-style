@@ -136,7 +136,15 @@ export default function MasonryGrid({
                 style={{ transitionDelay: `${delayMs}ms` }}
               >
                 {it.kind === "video" ? (
-                  <video src={it.src} autoPlay loop muted playsInline />
+                  <video
+                    src={it.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls={false}
+                    preload="metadata"
+                  />
                 ) : (
                   <img src={it.src} alt={it.title || it.id} />
                 )}
