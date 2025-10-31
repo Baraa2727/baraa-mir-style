@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import itemsDefault from "../content/items.json";
 
 type Item = {
@@ -84,7 +84,7 @@ export default function MasonryGrid({
   const data = (items ?? (itemsDefault as Item[])).slice();
   const buckets = arrangeVideoPositions(sliceRows(data, maxRows));
 
-  // Reveal-Animation
+  // === Reveal-Animation ===
   useEffect(() => {
     const tiles = Array.from(document.querySelectorAll<HTMLElement>(".tile"));
     if (!tiles.length) return;
@@ -105,19 +105,32 @@ export default function MasonryGrid({
     return () => io.disconnect();
   }, [data.length]);
 
-  // Autoplay/Loop – robust auf iOS/Safari
+  // === Autoplay/Loop (Safari/iOS) ===
+  // 1) setzt alle nötigen Flags doppelt (Property + Attribut)
+  // 2) stößt play() an, wenn sichtbar
+  // 3) "User Activation Bootstrap": erster Tap irgendwo => play() aller sichtbaren Videos (Low Power Mode)
+  const bootstrappedRef = useRef(false);
+
   useEffect(() => {
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".tile video"));
     if (!videos.length) return;
 
+    const inViewport = (el: Element) => {
+      const r = el.getBoundingClientRect();
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      const w = window.innerWidth || document.documentElement.clientWidth;
+      return r.bottom >= 0 && r.right >= 0 && r.top <= h && r.left <= w;
+    };
+
     const prep = (v: HTMLVideoElement) => {
-      // Setze Props/Attribute DOPPELT (Property + HTML-Attribut) für iOS
       v.muted = true;
       v.defaultMuted = true;
       v.setAttribute("muted", "");
       v.playsInline = true;
       v.setAttribute("playsinline", "");
+      (v as any).webkitPlaysinline = true; // ältere iOS
       v.autoplay = true;
+      v.setAttribute("autoplay", "");
       v.loop = true;
       v.controls = false;
       v.preload = "metadata";
@@ -125,21 +138,21 @@ export default function MasonryGrid({
 
     videos.forEach((v) => {
       prep(v);
-      // Fallbacks für Loop/Start
+      // sichere Loops
       v.addEventListener("ended", () => { v.currentTime = 0; v.play().catch(() => {}); });
+      // wenn das Video ready ist, einmal play() versuchen
+      v.addEventListener("loadedmetadata", () => { if (inViewport(v)) v.play().catch(() => {}); });
+      v.addEventListener("canplay", () => { if (inViewport(v) && v.paused) v.play().catch(() => {}); });
     });
 
+    // Sichtbarkeits-Observer: Play/Pause je nach Viewport
     const vio = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const v = entry.target as HTMLVideoElement;
           if (entry.isIntersecting) {
             prep(v);
-            // direktes Play triggert Autoplay
-            v.play().catch(() => {
-              // zweiter Versuch
-              setTimeout(() => { prep(v); v.play().catch(() => {}); }, 50);
-            });
+            v.play().catch(() => {});
           } else {
             v.pause();
           }
@@ -147,9 +160,47 @@ export default function MasonryGrid({
       },
       { threshold: 0.15 }
     );
-
     videos.forEach((v) => vio.observe(v));
-    return () => vio.disconnect();
+
+    // *** User Activation Bootstrap ***
+    const bootstrap = () => {
+      if (bootstrappedRef.current) return;
+      bootstrappedRef.current = true;
+
+      // spiele alle gerade sichtbaren Videos an
+      videos.forEach((v) => {
+        if (inViewport(v)) {
+          prep(v);
+          v.play().catch(() => {});
+        }
+      });
+
+      // Listener wieder entfernen
+      window.removeEventListener("pointerdown", bootstrap, { capture: true } as any);
+      window.removeEventListener("touchstart", bootstrap, { capture: true } as any);
+      window.removeEventListener("click", bootstrap, { capture: true } as any);
+    };
+
+    // beim ERSTEN Tap irgendwo auf der Seite triggern
+    window.addEventListener("pointerdown", bootstrap, { capture: true, passive: true });
+    window.addEventListener("touchstart", bootstrap, { capture: true, passive: true });
+    window.addEventListener("click", bootstrap, { capture: true });
+
+    // Wenn die Seite wieder sichtbar wird, erneut versuchen (App-Switch)
+    const onVis = () => {
+      if (document.visibilityState === "visible") {
+        videos.forEach((v) => { if (inViewport(v)) v.play().catch(() => {}); });
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    return () => {
+      vio.disconnect();
+      window.removeEventListener("pointerdown", bootstrap, { capture: true } as any);
+      window.removeEventListener("touchstart", bootstrap, { capture: true } as any);
+      window.removeEventListener("click", bootstrap, { capture: true } as any);
+      document.removeEventListener("visibilitychange", onVis);
+    };
   }, [data.length]);
 
   return (
@@ -178,16 +229,6 @@ export default function MasonryGrid({
                     loop
                     controls={false}
                     preload="metadata"
-                    // zusätzliche Trigger direkt am Element:
-                    onLoadedMetadata={(e) => {
-                      const v = e.currentTarget;
-                      v.muted = true; v.defaultMuted = true; v.playsInline = true;
-                      v.play().catch(() => {});
-                    }}
-                    onCanPlay={(e) => {
-                      const v = e.currentTarget;
-                      if (v.paused) v.play().catch(() => {});
-                    }}
                   />
                 ) : (
                   <img src={it.src} alt={it.title || it.id} />
