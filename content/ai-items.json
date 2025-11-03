@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ai-01",
+    "kind": "image",
+    "src": "/media/ai-01.jpg",
+    "title": "AI FORM",
+    "client": "Neural Studio"
+  },
+  {
+    "id": "ai-02",
+    "kind": "video",
+    "src": "/media/ai-02.mp4",
+    "title": "MOTION SEED",
+    "client": "Generated Vision"
+  },
+  {
+    "id": "ai-03",
+    "kind": "image",
+    "src": "/media/ai-03.jpg",
+    "title": "SYNTHETIC LIGHT",
+    "client": "Virtual Structure"
+  }
+]

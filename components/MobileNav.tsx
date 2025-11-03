@@ -42,8 +42,8 @@ export default function MobileNav() {
           minHeight: 56, background: '#fff', borderBottom: 'none',
         }}
       >
-        {/* Logo größer (128px) */}
-        <Logo color="blue" width={128} onClick={scrollTop} />
+        {/* Logo */}
+        <Logo color="blue" width={140} onClick={scrollTop} />
 
         {/* Burger */}
         <button
@@ -79,8 +79,8 @@ export default function MobileNav() {
             className="mobile-menu-header"
             style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 56, borderBottom: 'none' }}
           >
-            {/* Logo im Panel (weiß) – ebenfalls 128px */}
-            <Logo color="white" width={128} onClick={() => { scrollTop(); setOpen(false); }} />
+            {/* Logo im Panel (weiß) */}
+            <Logo color="white" width={140} onClick={() => { scrollTop(); setOpen(false); }} />
 
             <button
               className="close-x"
@@ -93,9 +93,16 @@ export default function MobileNav() {
           </div>
 
           <div className="mobile-menu-body" style={{ height: 'calc(100dvh - 56px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <nav className="mobile-menu-nav" role="navigation" aria-label="Hauptmenü" style={{ display: 'flex', flexDirection: 'column', gap: 24, textAlign: 'center' }}>
+            <nav
+              className="mobile-menu-nav"
+              role="navigation"
+              aria-label="Hauptmenü"
+              style={{ display: 'flex', flexDirection: 'column', gap: 24, textAlign: 'center' }}
+            >
               <Link href="/" onClick={() => { setOpen(false); scrollTop(); }}>Images</Link>
               <Link href="/print" onClick={() => setOpen(false)}>3D Print</Link>
+              {/* 🆕 AI-Seite */}
+              <Link href="/ai" onClick={() => setOpen(false)}>AI</Link>
               <Link href="/about" onClick={() => setOpen(false)}>About</Link>
             </nav>
           </div>

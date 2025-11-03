@@ -31,11 +31,11 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   position: fixed;
   top: 24px;
   left: 24px;
-  width: 112px;
+  width: 144px;
   background: #fff;   /* kein Transparent */
   border-radius: 0;   /* keine Rundungen */
   box-shadow: none;   /* kein Schatten */
-  padding: 16px 14px;
+  padding: 24px 14px 48px;
   z-index: 50;
   transition: transform .35s ease, opacity .35s ease;
 }
