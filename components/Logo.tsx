@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import React from 'react';
 
 type Props = {
   color?: 'blue' | 'white' | 'black';
@@ -10,6 +11,8 @@ type Props = {
   height?: number;
   onClick?: () => void;
   className?: string;
+  /** 🔹 neu: erlaubt Inline-Styles (z. B. marginTop etc.) */
+  style?: React.CSSProperties;
 };
 
 const COLOR = {
@@ -27,6 +30,7 @@ export default function Logo({
   height,
   onClick,
   className = '',
+  style = {},
 }: Props) {
   const fill = COLOR[color];
   let w = typeof width === 'number' ? width : 132;
@@ -50,6 +54,7 @@ export default function Logo({
           maskSize: 'contain',
           WebkitMaskPosition: 'center',
           maskPosition: 'center',
+          ...style, // ✅ erlaubt jetzt zusätzliche Inline-Styles wie marginTop
         }}
       />
     </Link>
