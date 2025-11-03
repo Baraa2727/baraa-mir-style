@@ -6,7 +6,7 @@ import SideDock from "../components/SideDock";
 import MobileNav from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: "BARAA",
+  title: "BARAA — Architectural Images",
   description: "Architectural Images, 3D Print & Models",
 };
 

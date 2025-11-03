@@ -22,7 +22,7 @@ export default function SideDock() {
   }, []);
 
   const linkStyle: React.CSSProperties = {
-    fontSize: '15px', // größer
+    fontSize: '15px',
     fontWeight: 400,
     color: '#000',
     textDecoration: 'none',
@@ -35,62 +35,55 @@ export default function SideDock() {
 
   return (
     <aside className={`side-dock ${hidden ? 'hidden' : ''}`}>
-      {/* Logo etwas größer */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: '2px', // kleinerer Abstand
-        }}
-      >
+      {/* Logo (Box bleibt unangetastet) */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
         <Logo color="blue" width={118} />
       </div>
 
-      {/* Navigation */}
+      {/* Navigation: global gap = 0, Abstände je Link feinjustiert */}
       <nav
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '1px', // dichter zusammen
-          marginTop: '2px',
+          gap: 0,            // kein globaler Abstand
+          marginTop: 2,
         }}
       >
+        {/* Images etwas NÄHER an 3D Print */}
         <Link
           href="/"
-          style={linkStyle}
+          style={{ ...linkStyle, marginBottom: 2 }}
           onMouseEnter={(e) => ((e.target as HTMLElement).style.color = hoverColor)}
           onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#000')}
         >
           Images
         </Link>
 
+        {/* 3D Print bleibt als Referenzpunkt */}
         <Link
           href="/print"
-          style={linkStyle}
+          style={{ ...linkStyle, margin: 0 }}
           onMouseEnter={(e) => ((e.target as HTMLElement).style.color = hoverColor)}
           onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#000')}
         >
           3D Print
         </Link>
 
+        {/* AI ebenfalls NÄHER an 3D Print */}
         <Link
           href="/ai"
-          style={linkStyle}
+          style={{ ...linkStyle, marginTop: 2 }}
           onMouseEnter={(e) => ((e.target as HTMLElement).style.color = hoverColor)}
           onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#000')}
         >
           AI
         </Link>
 
-        {/* 🔽 About leicht nach unten, mit optischem Randabstand */}
+        {/* About bleibt etwas weiter unten mit kleinem Rand unten */}
         <Link
           href="/about"
-          style={{
-            ...linkStyle,
-            marginTop: '14px', // leicht nach unten, aber noch mit Luft
-            marginBottom: '12px', // Abstand zum unteren Rand (optisch angenehm)
-          }}
+          style={{ ...linkStyle, marginTop: 14, marginBottom: 10 }}
           onMouseEnter={(e) => ((e.target as HTMLElement).style.color = hoverColor)}
           onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#000')}
         >

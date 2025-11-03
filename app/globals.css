@@ -36,6 +36,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   border-radius: 0;   /* keine Rundungen */
   box-shadow: none;   /* kein Schatten */
   padding: 24px 14px 10px;
+  margin-left: 10px;
   z-index: 50;
   transition: transform .35s ease, opacity .35s ease;
 }
