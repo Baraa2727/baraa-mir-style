@@ -1,5 +1,5 @@
-import MasonryGrid from "@/components/MasonryGrid";
-import aiItems from "@/content/ai-items.json";
+import MasonryGrid from "../../components/MasonryGrid";
+import aiItems from "../../content/ai-items.json";
 
 export const metadata = {
   title: "AI — BARAA",
