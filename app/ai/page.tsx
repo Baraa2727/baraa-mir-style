@@ -11,7 +11,6 @@ export default function AIPage() {
       <header className="header">
         <h1>AI</h1>
       </header>
-
       <MasonryGrid items={aiItems as any} />
     </main>
   );
