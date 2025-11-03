@@ -67,7 +67,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   padding-bottom: 24px;
 }
 .header h1 {
-  font-size: clamp(28px, 5vw, 56px);
+  font-size: clamp(20px, 2.6vw, 32px);
   margin: 0 0 8px;
 }
 

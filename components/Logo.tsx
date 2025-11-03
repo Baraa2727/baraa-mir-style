@@ -4,7 +4,10 @@ import Link from 'next/link';
 
 type Props = {
   color?: 'blue' | 'white' | 'black';
-  size?: 'mobile' | 'desktop';
+  /** feste Zielbreite in px (Höhe wird via Seitenverhältnis berechnet, wenn nicht gesetzt) */
+  width?: number;
+  /** feste Zielhöhe in px (überschreibt die aus width berechnete Höhe) */
+  height?: number;
   onClick?: () => void;
   className?: string;
 };
@@ -15,16 +18,19 @@ const COLOR = {
   black: '#101010',
 } as const;
 
+// Seitenverhältnis deines Logos (ungefähr): 132 : 40
+const AR = 132 / 40;
+
 export default function Logo({
   color = 'blue',
-  size = 'desktop',
+  width,
+  height,
   onClick,
   className = '',
 }: Props) {
   const fill = COLOR[color];
-  const dims = size === 'desktop'
-    ? { width: 132, height: 40 }   // Desktop-Größe
-    : { width: 108, height: 34 };  // Mobile-Größe
+  let w = typeof width === 'number' ? width : 132;
+  let h = typeof height === 'number' ? height : Math.round(w / AR);
 
   return (
     <Link href="/" onClick={onClick} aria-label="Home">
@@ -32,8 +38,8 @@ export default function Logo({
         className={className}
         style={{
           display: 'inline-block',
-          width: dims.width,
-          height: dims.height,
+          width: w,
+          height: h,
           color: fill,
           backgroundColor: 'currentColor',
           WebkitMaskImage: "url('/logo-baraa.png')",

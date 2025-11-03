@@ -22,9 +22,9 @@ export default function SideDock() {
 
   return (
     <aside className={`side-dock ${hidden ? 'hidden' : ''}`}>
-      {/* Logo (blau) – gleiche Abmessungen wie vorher */}
-      <div className="logo" style={{ marginBottom: '10px' }}>
-        <Logo color="blue" size="desktop" />
+      {/* Logo zentriert, maximal groß innerhalb des Docks */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+        <Logo color="blue" width={80} />
       </div>
 
       <nav>

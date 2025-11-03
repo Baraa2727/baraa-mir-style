@@ -42,8 +42,8 @@ export default function MobileNav() {
           minHeight: 56, background: '#fff', borderBottom: 'none',
         }}
       >
-        {/* Logo (blau) */}
-        <Logo color="blue" size="mobile" onClick={scrollTop} />
+        {/* Logo größer (128px) */}
+        <Logo color="blue" width={128} onClick={scrollTop} />
 
         {/* Burger */}
         <button
@@ -79,8 +79,8 @@ export default function MobileNav() {
             className="mobile-menu-header"
             style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 56, borderBottom: 'none' }}
           >
-            {/* Logo im Panel = weiß */}
-            <Logo color="white" size="mobile" onClick={() => { scrollTop(); setOpen(false); }} />
+            {/* Logo im Panel (weiß) – ebenfalls 128px */}
+            <Logo color="white" width={128} onClick={() => { scrollTop(); setOpen(false); }} />
 
             <button
               className="close-x"
