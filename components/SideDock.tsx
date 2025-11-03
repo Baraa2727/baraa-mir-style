@@ -22,8 +22,8 @@ export default function SideDock() {
   }, []);
 
   const linkStyle: React.CSSProperties = {
-    fontSize: '14px',
-    fontWeight: 500,
+    fontSize: '15px', // größer
+    fontWeight: 400,
     color: '#000',
     textDecoration: 'none',
     opacity: 0.9,
@@ -35,23 +35,25 @@ export default function SideDock() {
 
   return (
     <aside className={`side-dock ${hidden ? 'hidden' : ''}`}>
+      {/* Logo etwas größer */}
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
-          marginBottom: '8px',
+          marginBottom: '2px', // kleinerer Abstand
         }}
       >
-        <Logo color="blue" width={120} />
+        <Logo color="blue" width={118} />
       </div>
 
+      {/* Navigation */}
       <nav
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '2px',
-          marginTop: '4px',
+          gap: '1px', // dichter zusammen
+          marginTop: '2px',
         }}
       >
         <Link
@@ -72,7 +74,6 @@ export default function SideDock() {
           3D Print
         </Link>
 
-        {/* 🆕 AI-Seite */}
         <Link
           href="/ai"
           style={linkStyle}
@@ -82,9 +83,14 @@ export default function SideDock() {
           AI
         </Link>
 
+        {/* 🔽 About leicht nach unten, mit optischem Randabstand */}
         <Link
           href="/about"
-          style={linkStyle}
+          style={{
+            ...linkStyle,
+            marginTop: '14px', // leicht nach unten, aber noch mit Luft
+            marginBottom: '12px', // Abstand zum unteren Rand (optisch angenehm)
+          }}
           onMouseEnter={(e) => ((e.target as HTMLElement).style.color = hoverColor)}
           onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#000')}
         >

@@ -35,7 +35,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   background: #fff;   /* kein Transparent */
   border-radius: 0;   /* keine Rundungen */
   box-shadow: none;   /* kein Schatten */
-  padding: 24px 14px 48px;
+  padding: 24px 14px 10px;
   z-index: 50;
   transition: transform .35s ease, opacity .35s ease;
 }
@@ -68,7 +68,8 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 }
 .header h1 {
   font-size: clamp(20px, 2.6vw, 32px);
-  margin: 0 0 8px;
+  margin-top: -12px;
+  margin-bottom: 20px;
 }
 
 /* ===================== Grid / Rows ===================== */
