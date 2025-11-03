@@ -30,6 +30,10 @@ export default function MobileNav() {
 
   const insetPanel = 12; // Abstand oben/rechts für das X im Panel
 
+  const scrollTop = () => {
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
+  };
+
   return (
     <>
       {/* MOBILE HEADER: fixed, Logo mittig, Burger rechts */}
@@ -42,25 +46,30 @@ export default function MobileNav() {
           zIndex: 5000,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center', // Logo mittig
+          justifyContent: 'center',
           minHeight: 56,
           background: '#fff',
           borderBottom: 'none',
         }}
       >
-        <div
+        {/* Logo klickbar -> Home & nach oben */}
+        <Link
+          href="/"
+          onClick={scrollTop}
           className="mobile-logo"
           style={{
             fontSize: 28,
             fontWeight: 700,
             lineHeight: 1,
             textDecoration: 'none',
+            color: 'inherit',
+            cursor: 'pointer',
           }}
         >
           BARAA
-        </div>
+        </Link>
 
-        {/* Burger – noch näher an den rechten Rand */}
+        {/* Burger – nah am rechten Rand */}
         <button
           className="burger"
           aria-label="Menü öffnen"
@@ -69,7 +78,7 @@ export default function MobileNav() {
           onClick={() => setOpen(true)}
           style={{
             position: 'absolute',
-            right: 4,              // <— näher als der Edge-Rand
+            right: 4,
             top: '50%',
             transform: 'translateY(-50%)',
             width: 30,
@@ -105,7 +114,8 @@ export default function MobileNav() {
       >
         <div
           className="panel"
-          style={{ position: 'absolute', inset: 0, background: 'var(--menu-bg, #111)' }}
+          // Blau über CSS-Variable; falls nicht gesetzt, fallback #1756ff
+          style={{ position: 'absolute', inset: 0, background: 'var(--menu-bg, #1756ff)' }}
         >
           {/* Panel-Header: Logo mittig, X oben rechts */}
           <div
@@ -119,12 +129,15 @@ export default function MobileNav() {
               borderBottom: 'none',
             }}
           >
-            <div
+            {/* Logo klickbar -> Home & nach oben, schließt Panel */}
+            <Link
+              href="/"
+              onClick={() => { scrollTop(); setOpen(false); }}
               className="mobile-logo"
-              style={{ fontSize: 28, fontWeight: 700, lineHeight: 1, color: '#fff' }}
+              style={{ fontSize: 28, fontWeight: 700, lineHeight: 1, color: '#fff', textDecoration: 'none', cursor: 'pointer' }}
             >
               BARAA
-            </div>
+            </Link>
 
             <button
               className="close-x"
@@ -132,7 +145,7 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
               style={{
                 position: 'absolute',
-                top: insetPanel,      // gleich großer Abstand oben/rechts
+                top: insetPanel,
                 right: insetPanel,
                 fontSize: 28,
                 lineHeight: 1,
@@ -162,7 +175,7 @@ export default function MobileNav() {
               aria-label="Hauptmenü"
               style={{ display: 'flex', flexDirection: 'column', gap: 24, textAlign: 'center' }}
             >
-              <Link href="/" onClick={() => setOpen(false)}>Images</Link>
+              <Link href="/" onClick={() => { setOpen(false); scrollTop(); }}>Images</Link>
               <Link href="/print" onClick={() => setOpen(false)}>3D Print</Link>
               <Link href="/about" onClick={() => setOpen(false)}>About</Link>
             </nav>
