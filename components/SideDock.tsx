@@ -1,9 +1,9 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import Logo from './Logo'
 
 export default function SideDock() {
-  // Sichtbarkeit per Scroll steuern (unverändert)
   const [hidden, setHidden] = useState(false)
   const lastY = useRef(0)
 
@@ -22,9 +22,9 @@ export default function SideDock() {
 
   return (
     <aside className={`side-dock ${hidden ? 'hidden' : ''}`}>
-      {/* Logo größer */}
-      <div className="logo" style={{ fontSize: '22px', letterSpacing: '0.04em' }}>
-        <Link href="/">BARAA</Link>
+      {/* Logo (blau) – gleiche Abmessungen wie vorher */}
+      <div className="logo" style={{ marginBottom: '10px' }}>
+        <Logo color="blue" size="desktop" />
       </div>
 
       <nav>
