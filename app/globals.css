@@ -10,7 +10,7 @@
   --maxw: 1520px;
 
   /* Mobile-Menü-Farbe (vollflächig) */
-  --menu-bg: #111;
+  --menu-bg: #00AEEF;
 }
 
 * { box-sizing: border-box; }
