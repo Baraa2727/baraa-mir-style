@@ -32,9 +32,9 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   top: 24px;
   left: 24px;
   width: 144px;
-  background: #fff;   /* kein Transparent */
-  border-radius: 0;   /* keine Rundungen */
-  box-shadow: none;   /* kein Schatten */
+  background: #fff;
+  border-radius: 0;
+  box-shadow: none;
   padding: 24px 14px 10px;
   margin-left: 10px;
   z-index: 50;
@@ -82,8 +82,6 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   width: 100%;
   display: grid;
   gap: var(--gap);
-
-  /* Gleicher Rand wie der Kachelabstand */
   padding: 0 var(--edge) var(--gap);
 }
 .row[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
@@ -96,8 +94,6 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   width: 100%;
   overflow: hidden;
   background: #f2f2f2;
-
-  /* sanftes Scroll-Reveal */
   opacity: 0;
   transform: translateY(12px);
   transition: opacity .55s ease-out, transform .55s ease-out;
@@ -155,18 +151,13 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* ===================== Mobile Layout ===================== */
 @media (max-width: 780px) {
-  :root {
-    --gap: 12px;
-    --edge: 12px;
-  }
+  :root { --gap: 12px; --edge: 12px; }
 
   .only-desktop { display: none; }
   .only-mobile  { display: block; }
 
-  /* Side-Dock ausblenden auf Mobile */
   .side-dock { display: none; }
 
-  /* Einspaltiges Layout + gleichmäßige Seitenabstände */
   .row {
     grid-template-columns: 1fr !important;
     padding-left: var(--edge);
@@ -175,32 +166,28 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .label-title { font-size: clamp(16px, 4.4vw, 22px); }
 
-  /* ====== Mobile Header (fixiert), Logo zentriert, Burger rechts ====== */
   .mobile-header {
-    position: fixed;        /* fixiert, bleibt beim Scrollen */
+    position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 60;
     height: 56px;
     display: flex;
     align-items: center;
-    justify-content: center;     /* Logo zentriert */
+    justify-content: center;
     padding: 0 var(--edge);
     background: var(--bg);
-    border-bottom: none;         /* keine Linie unter Logo */
+    border-bottom: none;
   }
-  .mobile-logo {
-    font-weight: 800;
-    letter-spacing: .04em;
-  }
+  .mobile-logo { font-weight: 800; letter-spacing: .04em; }
   .burger {
     position: absolute;
-    right: var(--edge);          /* exakt wie Kachelrand */
+    right: var(--edge);
     width: 32px;
     height: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3px;                    /* eng beieinander */
+    gap: 3px;
     background: transparent;
     border: none;
     padding: 0;
@@ -208,19 +195,18 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   }
   .burger span {
     display: block;
-    height: 1px;                 /* dünn / minimalistisch */
+    height: 1px;
     width: 22px;
     background: var(--fg);
     border-radius: 1px;
     transition: transform .25s ease, opacity .25s ease;
   }
 
-  /* ====== Vollflächiges, von rechts einschiebendes Menü ====== */
   .mobile-menu {
     position: fixed;
     inset: 0;
-    z-index: 9999;               /* über Header/Burger */
-    background: var(--menu-bg);  /* deckend */
+    z-index: 9999;
+    background: var(--menu-bg);
     color: #fff;
     transform: translateX(100%);
     transition: transform .35s ease;
@@ -233,17 +219,17 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;     /* Logo zentriert */
+    justify-content: center;
     height: 56px;
     padding: 0 var(--edge);
-    border-bottom: none;         /* keine Linie unter Logo im Panel */
+    border-bottom: none;
   }
   .mobile-menu-header .mobile-logo { color: #fff; font-weight: 800; }
 
   .close-x {
     position: absolute;
     right: var(--edge);
-    top: var(--edge);            /* gleicher Abstand oben + rechts */
+    top: var(--edge);
     background: transparent;
     border: none;
     color: #fff;
@@ -258,7 +244,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
     flex-direction: column;
     gap: 22px;
     padding: 28px 24px;
-    align-items: center;         /* Mittig ausrichten */
+    align-items: center;
   }
   .mobile-menu-nav a {
     font-size: 22px;
@@ -267,19 +253,14 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   }
   .mobile-menu-nav a:hover { text-decoration: underline; }
 
-  /* Body beim offenen Menü fixieren / horizontales Schieben verhindern */
   html.no-x-scroll, body.no-scroll {
     overflow-x: hidden !important;
     touch-action: pan-y !important;
   }
 
-  /* Platz unter fixem Header, damit Content direkt unter Logo startet */
   .site { padding-top: 56px !important; }
-
-  /* Mobile-Header-Texte nicht so weit nach unten */
   .header { padding-top: 16px; }
 
-  /* === Motion Unlock Overlay (wenn Autoplay blockiert) === */
   .motion-unlock {
     position: fixed;
     inset: 0;
@@ -297,7 +278,6 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
     backdrop-filter: blur(2px);
   }
 
-  /* === NEU: Claim im Mobile etwas kleiner === */
   .header h1 {
     font-size: clamp(18px, 4.2vw, 22px);
     line-height: 1.25;
@@ -313,3 +293,42 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* ===================== Content-Wrapper ===================== */
 .site { padding: 0; }
+
+/* ===================== AI Page ===================== */
+.ai-section {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 40px;
+  padding: 0 40px;
+}
+.ai-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+.ai-title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+.ai-slider { width: 100%; }
+
+/* ===================== Nur auf der AI-Seite: blauer SideDock ===================== */
+body.ai-page .side-dock {
+  background: #00AEEF; /* Blau */
+}
+body.ai-page .side-dock .logo img {
+  filter: brightness(0) invert(1); /* Logo weiß */
+}
+body.ai-page .side-dock nav a {
+  color: #fff; /* Standardfarbe weiß */
+}
+body.ai-page .side-dock nav a:hover {
+  color: #fff; /* auch beim Hover weiß */
+}
+/* ===================== AI-Seite: Hover-Farbe im SideDock ===================== */
+body.ai-page .side-dock nav a:hover {
+  color: #000 !important; /* Schwarz beim Hover nur auf AI-Seite */
+}

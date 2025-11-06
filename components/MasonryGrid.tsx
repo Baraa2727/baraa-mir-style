@@ -7,7 +7,7 @@ type Item = {
   id: string;
   kind: "image" | "video";
   src: string;
-  size?: "Small" | "Medium" | "Large" | "Full";
+  size?: "Small" | "Medium" | "Large" | "Full"; // optional, wird aktuell nicht verwendet
   title?: string;
   client?: string;
 };
@@ -19,7 +19,8 @@ type RowSpec = {
   videoAtIndex?: number;
 };
 
-const ROW_SPECS: RowSpec[] = [
+// ===== Standard (Hauptseite) – bleibt als Default erhalten =====
+const ROW_SPECS_DEFAULT: RowSpec[] = [
   { cols: 2, aspect: "square" },
   { cols: 3, aspect: "square", centerVideo: true },
   { cols: 2, aspect: "square" },
@@ -32,14 +33,20 @@ const ROW_SPECS: RowSpec[] = [
   { cols: 2, aspect: "square" },
   { cols: 4, aspect: "portrait", videoAtIndex: 2 },
 ];
-const DEFAULT_SPEC: RowSpec = { cols: 3, aspect: "portrait" };
+const DEFAULT_SPEC_DEFAULT: RowSpec = { cols: 3, aspect: "portrait" };
 
-function sliceRows(data: Item[], rowsToTake?: number) {
+// Mit übergebenen Specs arbeiten (falls gesetzt), sonst auf Default zurückfallen
+function sliceRows(
+  data: Item[],
+  rowsToTake: number | undefined,
+  rowSpecs: RowSpec[],
+  defaultSpec: RowSpec
+) {
   const buckets: { spec: RowSpec; items: Item[] }[] = [];
   let cursor = 0;
   let r = 0;
   while (cursor < data.length) {
-    const spec = r < ROW_SPECS.length ? ROW_SPECS[r] : DEFAULT_SPEC;
+    const spec = r < rowSpecs.length ? rowSpecs[r] : defaultSpec;
     const take = spec.cols;
     const chunk = data.slice(cursor, cursor + take);
     if (!chunk.length) break;
@@ -61,9 +68,11 @@ function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
         items.splice(1, 0, vid);
       }
     }
-    if (typeof spec.videoAtIndex === "number" &&
-        spec.videoAtIndex >= 0 &&
-        spec.videoAtIndex < items.length) {
+    if (
+      typeof spec.videoAtIndex === "number" &&
+      spec.videoAtIndex >= 0 &&
+      spec.videoAtIndex < items.length
+    ) {
       const vIdx = items.findIndex(x => x.kind === "video");
       if (vIdx !== -1 && vIdx !== spec.videoAtIndex) {
         const [vid] = items.splice(vIdx, 1);
@@ -76,13 +85,24 @@ function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
 
 export default function MasonryGrid({
   items,
-  maxRows
+  maxRows,
+  clickable = true,                 // 🔹 NEU: klickbar ja/nein
+  rowSpecs,                          // 🔹 NEU: Reihen-Layout überschreiben
+  defaultSpec,                       // 🔹 NEU: Standard-Reihe überschreiben
 }: {
   items?: Item[];
   maxRows?: number;
+  clickable?: boolean;
+  rowSpecs?: RowSpec[];
+  defaultSpec?: RowSpec;
 }) {
   const data = (items ?? (itemsDefault as Item[])).slice();
-  const buckets = arrangeVideoPositions(sliceRows(data, maxRows));
+
+  // Fallbacks auf die bisherigen Defaults (damit Hauptseite unverändert bleibt)
+  const RS = rowSpecs ?? ROW_SPECS_DEFAULT;
+  const DEF = defaultSpec ?? DEFAULT_SPEC_DEFAULT;
+
+  const buckets = arrangeVideoPositions(sliceRows(data, maxRows, RS, DEF));
 
   // Reveal-Animation
   useEffect(() => {
@@ -105,7 +125,7 @@ export default function MasonryGrid({
     return () => io.disconnect();
   }, [data.length]);
 
-  // ===== Autoplay / Loop (inkl. iOS Low Power Mode mit unsichtbarem Bootstrap) =====
+  // Autoplay / Loop inkl. iOS Low Power Mode
   const bootstrappedRef = useRef(false);
 
   useEffect(() => {
@@ -131,7 +151,6 @@ export default function MasonryGrid({
       v.addEventListener("canplay", () => { if (v.paused) v.play().catch(() => {}); });
     });
 
-    // Sichtbarkeits-Observer: Play/Pause je nach Viewport
     const vio = new IntersectionObserver(
       (entries) => {
         entries.forEach(async (entry) => {
@@ -143,7 +162,6 @@ export default function MasonryGrid({
     );
     videos.forEach((v) => vio.observe(v));
 
-    // Unsichtbarer „User Activation“-Bootstrap: erster Tap irgendwo -> Play für sichtbare Videos
     const bootstrap = () => {
       if (bootstrappedRef.current) return;
       bootstrappedRef.current = true;
@@ -156,7 +174,6 @@ export default function MasonryGrid({
     window.addEventListener("touchstart", bootstrap, { capture: true, passive: true });
     window.addEventListener("click", bootstrap, { capture: true });
 
-    // Bei Rückkehr in den Tab nochmal versuchen
     const onVis = () => {
       if (document.visibilityState === "visible") {
         videos.forEach((v) => { if (v.paused) v.play().catch(() => {}); });
@@ -182,10 +199,43 @@ export default function MasonryGrid({
             const aspectClass = b.spec.aspect === "portrait" ? "portrait" : "square";
             const delayMs = j * 40;
 
+            if (clickable) {
+              return (
+                <a
+                  key={it.id}
+                  href={href}
+                  className={`tile ${aspectClass}`}
+                  aria-label={it.title || it.id}
+                  style={{ transitionDelay: `${delayMs}ms` }}
+                >
+                  {it.kind === "video" ? (
+                    <video
+                      src={it.src}
+                      muted
+                      playsInline
+                      autoPlay
+                      loop
+                      controls={false}
+                      preload="metadata"
+                    />
+                  ) : (
+                    <img src={it.src} alt={it.title || it.id} />
+                  )}
+
+                  {(it.title || it.client) && (
+                    <div className="label">
+                      {it.client && <div className="label-client">{it.client}</div>}
+                      {it.title && <div className="label-title">{it.title}</div>}
+                    </div>
+                  )}
+                </a>
+              );
+            }
+
+            // Nicht klickbare Variante
             return (
-              <a
+              <div
                 key={it.id}
-                href={href}
                 className={`tile ${aspectClass}`}
                 aria-label={it.title || it.id}
                 style={{ transitionDelay: `${delayMs}ms` }}
@@ -210,7 +260,7 @@ export default function MasonryGrid({
                     {it.title && <div className="label-title">{it.title}</div>}
                   </div>
                 )}
-              </a>
+              </div>
             );
           })}
         </div>

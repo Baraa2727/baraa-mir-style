@@ -3,12 +3,17 @@ import printItems from "../../content/print-items.json";
 
 export default function PrintPage() {
   return (
-    <main>
+    <main className="site">
       <header className="header">
-        <h1>3D Print.</h1>
         <h1>We prototype and build.</h1>
       </header>
-      <MasonryGrid items={printItems as any} maxRows={11} />
+
+      <MasonryGrid
+        items={printItems as any}
+        clickable={false}                       // 🔹 nicht anklickbar
+        rowSpecs={[{ cols: 2, aspect: "square" }]} // 🔹 erste Reihe: 2 quadratisch
+        defaultSpec={{ cols: 3, aspect: "portrait" }} // 🔹 ab Reihe 2: 3 hochformat
+      />
     </main>
   );
 }
