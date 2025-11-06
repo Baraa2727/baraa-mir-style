@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  aspect-ratio: 1 / 1;             /* quadratisch */
+  aspect-ratio: 1 / 1;      /* quadratisch */
   cursor: ew-resize;
   user-select: none;
   touch-action: none;
@@ -14,22 +14,20 @@
 .compare-layer {
   position: absolute;
   inset: 0;
-  contain: paint;                  /* isoliert Repaints */
+  /* keine contain / will-change hier → vermeidet Decoder-Reset in Chrome/Edge */
 }
 
 .compare-base { z-index: 1; }
 .compare-overlay { z-index: 2; }
 
-/* Clip-Child: nur hier ändert sich die Breite – Videos bleiben unberührt */
+/* Clip-Child: nur hier ändert sich die Breite – Medien bleiben unberührt */
 .compare-overlay-clip {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  width: 50%;                      /* Start bei 50% */
-  will-change: width;
+  width: 50%; /* Start */
+  /* kein will-change hier */
 }
-
-/* Stabiler innerer Canvas – verhindert jede Größen-/Layoutänderung fürs Video */
 .compare-overlay-inner {
   position: absolute;
   inset: 0;
@@ -43,10 +41,14 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  pointer-events: none;            /* frisst keine Pointer-Events */
+  pointer-events: none;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+/* Verankerung gegen „Mitschieben“ */
+.base-media    { object-position: right center; } /* AI rechts */
+.overlay-media { object-position: left  center; } /* Original links */
 
 /* ===================== Handle & Linie ===================== */
 .compare-handle {
@@ -57,7 +59,6 @@
   transform: translateX(-50%);
   z-index: 3;
 }
-
 .handle-line {
   position: absolute;
   top: 0;
@@ -85,10 +86,8 @@
   pointer-events: none;
   text-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
-
 .arrow { position: relative; }
 
-/* Puls (bis erster Drag) */
 .handle-arrows.pulse .arrow::before,
 .handle-arrows.pulse .arrow::after {
   content: '';
@@ -103,7 +102,6 @@
   opacity: 0;
   pointer-events: none;
 }
-
 .handle-arrows.pulse .arrow::before { animation: pulseRipple 1.2s ease-out 0s infinite; }
 .handle-arrows.pulse .arrow::after  { animation: pulseRipple 1.2s ease-out 0.6s infinite; }
 

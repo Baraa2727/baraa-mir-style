@@ -56,7 +56,7 @@
   {
     "id": "ai10",
     "title": "Mood changer",
-    "before": "/media/ai/ai10-generated.jpg",
-    "after": "/media/ai/ai10-original.jpg"
+    "before": "/media/ai/ai10-generated.mp4",
+    "after": "/media/ai/ai10-original.mp4"
   }
 ]
