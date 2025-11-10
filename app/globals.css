@@ -294,7 +294,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 /* ===================== Content-Wrapper ===================== */
 .site { padding: 0; }
 
-/* ===================== AI Page ===================== */
+/* ===================== AI Page – Desktop ===================== */
 .ai-section {
   display: flex;
   flex-direction: column;
@@ -304,7 +304,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 }
 .ai-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* links Text, rechts Compare */
   align-items: center;
   gap: 40px;
 }
@@ -313,7 +313,9 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   font-weight: 600;
   text-align: center;
 }
-.ai-slider { width: 100%; }
+.ai-slider {
+  width: 100%;
+}
 
 /* ===================== Nur auf der AI-Seite: blauer SideDock ===================== */
 body.ai-page .side-dock {
@@ -331,4 +333,35 @@ body.ai-page .side-dock nav a:hover {
 /* ===================== AI-Seite: Hover-Farbe im SideDock ===================== */
 body.ai-page .side-dock nav a:hover {
   color: #000 !important; /* Schwarz beim Hover nur auf AI-Seite */
+}
+
+/* ===================== AI Page – Mobile Layout ===================== */
+@media (max-width: 780px) {
+  .ai-section {
+    margin-top: 32px;
+    margin-bottom: 80px;
+    padding: 0 12px;
+    gap: 40px;           /* Abstand zwischen den Blöcken */
+  }
+
+  .ai-row {
+    grid-template-columns: 1fr; /* alles untereinander */
+    row-gap: 8px;
+  }
+
+  /* Reihenfolge: 1. Slider, 2. kleine Überschrift darunter */
+  .ai-slider {
+    order: 1;
+    width: 100%;
+  }
+
+  .ai-title {
+    order: 2;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 500;
+    text-align: left;
+    padding: 0 2px;
+    margin-top: 4px;
+  }
 }
