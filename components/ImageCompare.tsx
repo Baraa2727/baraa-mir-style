@@ -1,82 +1,121 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+
+import React, { useRef, useEffect } from 'react';
 import '../app/ImageCompare.css';
 
-type Props = {
-  before: string; // AI generated (rechts, Basis)
-  after: string;  // Original (links, Overlay)
+type ImageCompareProps = {
+  before: string; // rechtes Bild (AI Generated)
+  after: string;  // linkes Bild (Original)
 };
 
-export default function ImageCompare({ before, after }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function ImageCompare({ before, after }: ImageCompareProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const draggingRef = useRef(false);
-  const [pos, setPos] = useState(50); // 0..100 (% von links)
+  const posRef = useRef(50); // 0..100
+  const frameRequestedRef = useRef(false);
+  const lastClientXRef = useRef<number | null>(null);
 
-  // Puls-Hinweis bis zum ersten Drag
-  const [shouldPulse, setShouldPulse] = useState(false);
-  const hasPulsedRef = useRef(false);
+  const handleArrowsRef = useRef<HTMLDivElement | null>(null);
   const hasDraggedRef = useRef(false);
 
-  const isVideo = (src: string) => {
+  const aiLabelRef = useRef<HTMLDivElement | null>(null);
+  const originalLabelRef = useRef<HTMLDivElement | null>(null);
+
+  const isVideo = (src: string | undefined | null) => {
+    if (!src) return false;
     const s = src.toLowerCase();
     return s.endsWith('.mp4') || s.endsWith('.webm') || s.endsWith('.mov');
   };
 
-  // Puls starten, wenn sichtbar
-  useEffect(() => {
+  const clamp = (n: number, min = 0, max = 100) =>
+    Math.min(max, Math.max(min, n));
+
+  const applyPos = (value: number) => {
+    const clamped = clamp(value);
+    posRef.current = clamped;
     const el = containerRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const e = entries[0];
-        if (e.isIntersecting && !hasPulsedRef.current) {
-          hasPulsedRef.current = true;
-          setShouldPulse(true);
-        }
-      },
-      { threshold: 0.4 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    if (el) {
+      el.style.setProperty('--compare-pos', `${clamped}%`);
+    }
+  };
+
+  useEffect(() => {
+    applyPos(50);
   }, []);
 
-  const clamp = (n: number, min = 0, max = 100) => Math.min(max, Math.max(min, n));
+  const updateLabels = (value: number) => {
+    const ai = aiLabelRef.current;
+    const orig = originalLabelRef.current;
+    if (!ai || !orig) return;
+
+    // weit nach links → fast nur rechtes (AI) sichtbar
+    const showAI = value < 20;
+    // weit nach rechts → fast nur linkes (Original) sichtbar
+    const showOriginal = value > 80;
+
+    ai.classList.toggle('visible', showAI);
+    orig.classList.toggle('visible', showOriginal);
+  };
+
   const updateFromClientX = (clientX: number) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     const pct = ((clientX - rect.left) / rect.width) * 100;
-    setPos(clamp(pct));
+    const clamped = clamp(pct);
+    applyPos(clamped);
+    updateLabels(clamped);
   };
 
-  const onPointerDown: React.PointerEventHandler<HTMLDivElement> = (e) => {
+  const handlePointerDown: React.PointerEventHandler<HTMLDivElement> = (e) => {
     if (!containerRef.current) return;
     e.preventDefault();
-    if (!hasDraggedRef.current) { hasDraggedRef.current = true; setShouldPulse(false); }
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     draggingRef.current = true;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    lastClientXRef.current = e.clientX;
     updateFromClientX(e.clientX);
+
+    // Puls-Animation beim ersten Anfassen stoppen
+    if (!hasDraggedRef.current) {
+      hasDraggedRef.current = true;
+      const arrows = handleArrowsRef.current;
+      if (arrows) {
+        arrows.classList.remove('pulse');
+      }
+    }
   };
-  const onPointerMove: React.PointerEventHandler<HTMLDivElement> = (e) => {
+
+  const handlePointerMove: React.PointerEventHandler<HTMLDivElement> = (e) => {
     if (!draggingRef.current) return;
     e.preventDefault();
-    updateFromClientX(e.clientX);
+    lastClientXRef.current = e.clientX;
+
+    if (!frameRequestedRef.current) {
+      frameRequestedRef.current = true;
+      requestAnimationFrame(() => {
+        frameRequestedRef.current = false;
+        if (lastClientXRef.current != null) {
+          updateFromClientX(lastClientXRef.current);
+        }
+      });
+    }
   };
-  const onPointerUp: React.PointerEventHandler<HTMLDivElement> = (e) => {
+
+  const handlePointerUp: React.PointerEventHandler<HTMLDivElement> = (e) => {
     if (!draggingRef.current) return;
     e.preventDefault();
     draggingRef.current = false;
-    try { (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId); } catch {}
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {
+      /* ignore */
+    }
   };
 
-  const isLeft = pos < 25;
-  const isRight = pos > 75;
-
-  // Einheitliches Media-Element (Bild oder Video)
-  const Media = ({ src, className }: { src: string; className?: string }) =>
+  const Media = ({ src }: { src: string }) =>
     isVideo(src) ? (
       <video
         src={src}
-        className={className ?? 'compare-media'}
+        className="compare-media"
         autoPlay
         muted
         loop
@@ -87,46 +126,48 @@ export default function ImageCompare({ before, after }: Props) {
         webkit-playsinline="true"
       />
     ) : (
-      <img src={src} alt="" className={className ?? 'compare-media'} />
+      <img src={src} alt="" className="compare-media" />
     );
 
   return (
     <div
       ref={containerRef}
       className="compare-container"
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      role="region"
-      aria-label="Media comparison slider"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
     >
-      {/* Basis: AI (rechts) – rechts verankert */}
-      <div className="compare-layer compare-base">
-        <Media src={before} className="compare-media base-media" />
+      {/* Linkes Bild – Original */}
+      <div className="compare-layer compare-left">
+        <Media src={after} />
       </div>
 
-      {/* Overlay: Original (links) – volle Größe, Sicht nur über Clip-Child */}
-      <div className="compare-layer compare-overlay">
-        <div className="compare-overlay-clip" style={{ width: `${pos}%` }}>
-          <div className="compare-overlay-inner">
-            <Media src={after} className="compare-media overlay-media" />
-          </div>
-        </div>
+      {/* Rechtes Bild – AI */}
+      <div className="compare-layer compare-right">
+        <Media src={before} />
       </div>
 
-      {/* Handle + Pfeile */}
-      <div className="compare-handle" style={{ left: `${pos}%` }}>
+      {/* Slider-Linie + Pfeile */}
+      <div className="compare-handle">
         <div className="handle-line" />
-        <div className={`handle-arrows ${shouldPulse ? 'pulse' : ''}`} aria-hidden>
+        <div
+          ref={handleArrowsRef}
+          className="handle-arrows pulse"
+          aria-hidden
+        >
           <span className="arrow left">‹</span>
           <span className="arrow right">›</span>
         </div>
       </div>
 
-      {/* Labels */}
-      {isLeft && <div className="compare-label right">AI Generated</div>}
-      {isRight && <div className="compare-label left">Original</div>}
+      {/* Labels unten */}
+      <div ref={originalLabelRef} className="compare-label left">
+        Original
+      </div>
+      <div ref={aiLabelRef} className="compare-label right">
+        AI Generated
+      </div>
     </div>
   );
 }

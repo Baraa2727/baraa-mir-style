@@ -2,127 +2,173 @@
 .compare-container {
   position: relative;
   width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  aspect-ratio: 1 / 1;      /* quadratisch */
   cursor: ew-resize;
   user-select: none;
   touch-action: none;
   -webkit-user-select: none;
+
+  /* Slider-Position in % (0–100), wird von JS gesetzt */
+  --compare-pos: 50%;
 }
 
-/* ===================== Layer (statisch) ===================== */
+/* ===================== Layer / Bilder ===================== */
+
+/* Beide Bilder liegen exakt übereinander */
 .compare-layer {
   position: absolute;
   inset: 0;
-  /* keine contain / will-change hier → vermeidet Decoder-Reset in Chrome/Edge */
 }
 
-.compare-base { z-index: 1; }
-.compare-overlay { z-index: 2; }
-
-/* Clip-Child: nur hier ändert sich die Breite – Medien bleiben unberührt */
-.compare-overlay-clip {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  width: 50%; /* Start */
-  /* kein will-change hier */
-}
-.compare-overlay-inner {
-  position: absolute;
-  inset: 0;
-}
-
-/* ===================== Medien (Bild/Video) ===================== */
+/* Medien – füllen immer die komplette Box, bewegen sich NIE */
 .compare-media {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
   pointer-events: none;
-  backface-visibility: hidden;
-  transform: translateZ(0);
 }
 
-/* Verankerung gegen „Mitschieben“ */
-.base-media    { object-position: right center; } /* AI rechts */
-.overlay-media { object-position: left  center; } /* Original links */
+/* Linkes Bild – links sichtbar bis Slider-Position */
+.compare-left {
+  z-index: 1;
+  clip-path: polygon(
+    0 0,
+    var(--compare-pos) 0,
+    var(--compare-pos) 100%,
+    0 100%
+  );
+}
 
-/* ===================== Handle & Linie ===================== */
+/* Rechtes Bild – rechts sichtbar ab Slider-Position */
+.compare-right {
+  z-index: 2;
+  clip-path: polygon(
+    var(--compare-pos) 0,
+    100% 0,
+    100% 100%,
+    var(--compare-pos) 100%
+  );
+}
+
+/* ===================== Slider-Linie ===================== */
+
 .compare-handle {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 44px;
+  left: var(--compare-pos);
   transform: translateX(-50%);
   z-index: 3;
+  pointer-events: none;
 }
+
 .handle-line {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 3px;
-  transform: translateX(-50%);
+  width: 2px;
+  margin-left: 21px; /* Mitte der 44px */
   background: #ffffff;
-  box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
-/* ===================== Pfeile + Puls ===================== */
+/* ===================== Pfeile + Kreis-Impulse ===================== */
+
+/* Container nur für Positionierung der beiden Pfeile */
 .handle-arrows {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 96px;
+  top: 50%;           /* hier kannst du die Pfeile vertikal verschieben */
+  left: 50%;          /* hier kannst du horizontal feinjustieren */
   transform: translate(-50%, -50%);
+  width: 80px;        /* Abstand der Pfeile voneinander */
+  height: 40px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  color: #ffffff;
-  font-size: 32px;
-  font-weight: 700;
+  justify-content: space-between; /* ein Pfeil links, einer rechts */
   pointer-events: none;
-  text-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
-.arrow { position: relative; }
 
+/* Pfeile: fein, klar, weiß */
+.arrow {
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+/* Puls-Animation: kleine, exakt zentrierte Kreise um die Pfeile */
 .handle-arrows.pulse .arrow::before,
 .handle-arrows.pulse .arrow::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: 52%;
-  left: 50%;
-  width: 28px;
-  height: 28px;
-  border-radius: 9999px;
-  border: 2px solid rgba(255,255,255,0.9);
-  transform: translate(-50%, -50%) scale(0.6);
-  opacity: 0;
-  pointer-events: none;
-}
-.handle-arrows.pulse .arrow::before { animation: pulseRipple 1.2s ease-out 0s infinite; }
-.handle-arrows.pulse .arrow::after  { animation: pulseRipple 1.2s ease-out 0.6s infinite; }
+  left: 30%;
+  top: 55%;
 
-@keyframes pulseRipple {
-  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.7; }
-  60%  { opacity: 0.15; }
-  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+  /* kleiner, wirklich runder Kreis */
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;  /* Mittelpunkt exakt auf dem Pfeil */
+  margin-top: -10px;
+
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: transparent;
+  animation: arrowPulse 1.3s ease-out infinite;
 }
 
-/* ===================== Labels ===================== */
+.handle-arrows.pulse .arrow::after {
+  animation-delay: 0.3s;
+}
+
+/* Keyframes: Kreis wird größer und verblasst */
+@keyframes arrowPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* ===================== Labels unten ===================== */
+
 .compare-label {
   position: absolute;
   bottom: 12px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.9);
   padding: 6px 12px;
   border-radius: 6px;
-  font-weight: 700;
-  font-size: 14px;
-  color: #00AEEF;
-  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+  font-weight: 600;
+  font-size: 12px;
+  color: #111111;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition:
+    opacity 0.18s ease-out,
+    transform 0.18s ease-out;
 }
-.compare-label.right { right: 12px; }
-.compare-label.left  { left: 12px; }
+
+.compare-label.left {
+  left: 12px;
+}
+
+.compare-label.right {
+  right: 12px;
+}
+
+.compare-label.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
