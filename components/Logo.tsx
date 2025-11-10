@@ -5,58 +5,62 @@ import React from 'react';
 
 type Props = {
   color?: 'blue' | 'white' | 'black';
-  /** feste Zielbreite in px (Höhe wird via Seitenverhältnis berechnet, wenn nicht gesetzt) */
+  /** feste Zielbreite in px (optional) */
   width?: number;
-  /** feste Zielhöhe in px (überschreibt die aus width berechnete Höhe) */
+  /** feste Zielhöhe in px (optional) */
   height?: number;
   onClick?: () => void;
   className?: string;
-  /** 🔹 neu: erlaubt Inline-Styles (z. B. marginTop etc.) */
   style?: React.CSSProperties;
 };
-
-const COLOR = {
-  blue: '#00AEEF',
-  white: '#ffffff',
-  black: '#101010',
-} as const;
-
-// Seitenverhältnis deines Logos (ungefähr): 132 : 40
-const AR = 132 / 40;
 
 export default function Logo({
   color = 'blue',
   width,
   height,
   onClick,
-  className = '',
-  style = {},
+  className,
+  style,
 }: Props) {
-  const fill = COLOR[color];
-  let w = typeof width === 'number' ? width : 132;
-  let h = typeof height === 'number' ? height : Math.round(w / AR);
+  // Grundhöhe des Logos
+  const logoHeight = height ?? 28;
+
+  const textColor =
+    color === 'white'
+      ? '#ffffff'
+      : color === 'black'
+      ? '#222222'
+      : '#00AEEF'; // blue
 
   return (
-    <Link href="/" onClick={onClick} aria-label="Home">
+    <Link
+      href="/"
+      onClick={onClick}
+      className={className}
+      style={{ textDecoration: 'none' }}
+    >
       <span
-        className={className}
         style={{
-          display: 'inline-block',
-          width: w,
-          height: h,
-          color: fill,
-          backgroundColor: 'currentColor',
-          WebkitMaskImage: "url('/logo-baraa.png')",
-          maskImage: "url('/logo-baraa.png')",
-          WebkitMaskRepeat: 'no-repeat',
-          maskRepeat: 'no-repeat',
-          WebkitMaskSize: 'contain',
-          maskSize: 'contain',
-          WebkitMaskPosition: 'center',
-          maskPosition: 'center',
-          ...style, // ✅ erlaubt jetzt zusätzliche Inline-Styles wie marginTop
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: logoHeight,
+          minWidth: width,
+          padding: '0 4px',
+          // Century Gothic + Fallbacks
+          fontFamily:
+            '"Century Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
+          fontSize: logoHeight * 0.7,
+          fontWeight: 700,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          lineHeight: 1,
+          color: textColor,
+          ...style,
         }}
-      />
+      >
+        BARAA
+      </span>
     </Link>
   );
 }
