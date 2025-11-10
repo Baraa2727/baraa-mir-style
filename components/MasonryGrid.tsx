@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import itemsDefault from "../content/items.json";
 
 type Item = {
   id: string;
   kind: "image" | "video";
   src: string;
-  size?: "Small" | "Medium" | "Large" | "Full"; // optional, wird aktuell nicht verwendet
+  size?: "Small" | "Medium" | "Large" | "Full";
   title?: string;
   client?: string;
 };
@@ -86,9 +87,9 @@ function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
 export default function MasonryGrid({
   items,
   maxRows,
-  clickable = true,                 // 🔹 NEU: klickbar ja/nein
-  rowSpecs,                          // 🔹 NEU: Reihen-Layout überschreiben
-  defaultSpec,                       // 🔹 NEU: Standard-Reihe überschreiben
+  clickable = true,
+  rowSpecs,
+  defaultSpec,
 }: {
   items?: Item[];
   maxRows?: number;
@@ -98,7 +99,6 @@ export default function MasonryGrid({
 }) {
   const data = (items ?? (itemsDefault as Item[])).slice();
 
-  // Fallbacks auf die bisherigen Defaults (damit Hauptseite unverändert bleibt)
   const RS = rowSpecs ?? ROW_SPECS_DEFAULT;
   const DEF = defaultSpec ?? DEFAULT_SPEC_DEFAULT;
 
@@ -199,6 +199,9 @@ export default function MasonryGrid({
             const aspectClass = b.spec.aspect === "portrait" ? "portrait" : "square";
             const delayMs = j * 40;
 
+            const isFirstRow = i === 0;
+            const isFirstFew = j < 3;
+
             if (clickable) {
               return (
                 <a
@@ -219,7 +222,15 @@ export default function MasonryGrid({
                       preload="metadata"
                     />
                   ) : (
-                    <img src={it.src} alt={it.title || it.id} />
+                    <Image
+                      src={it.src}
+                      alt={it.title || it.id}
+                      fill
+                      sizes="(max-width: 780px) 100vw,
+                             (max-width: 1200px) 50vw,
+                             33vw"
+                      priority={isFirstRow && isFirstFew}
+                    />
                   )}
 
                   {(it.title || it.client) && (
@@ -251,7 +262,15 @@ export default function MasonryGrid({
                     preload="metadata"
                   />
                 ) : (
-                  <img src={it.src} alt={it.title || it.id} />
+                  <Image
+                    src={it.src}
+                    alt={it.title || it.id}
+                    fill
+                    sizes="(max-width: 780px) 100vw,
+                           (max-width: 1200px) 50vw,
+                           33vw"
+                    loading="lazy"
+                  />
                 )}
 
                 {(it.title || it.client) && (
