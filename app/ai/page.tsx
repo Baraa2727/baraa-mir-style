@@ -14,8 +14,7 @@ export default function AIPage() {
   return (
     <main>
       <header className="header">
-        <h1>AI.</h1>
-        <h1>We train, generate, and compare.</h1>
+        <h1>Working hand in hand with AI.</h1>
       </header>
 
       <section className="ai-section">
