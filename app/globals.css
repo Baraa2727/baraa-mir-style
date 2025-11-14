@@ -21,8 +21,8 @@ html, body {
   background: var(--bg);
   color: var(--fg);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  overflow-y: auto;   /* normale Scrollbar, kein erzwungener Rand rechts */
 }
-
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
@@ -364,4 +364,308 @@ body.ai-page .side-dock nav a:hover {
     padding: 0 2px;
     margin-top: 4px;
   }
+}
+
+/* =============== Project Detail Page =============== */
+
+.project-page {
+  max-width: none;
+  margin: 0;
+  padding: 0 0 40px; 
+}
+
+/* Hero ist fast so hoch wie der Screen */
+.project-hero {
+  position: relative;
+  margin: 16px var(--edge) 0;  /* Abstand zum Fenster-Rand */
+}
+
+.project-hero-media {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 32px);
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.project-img {
+  object-fit: cover;
+}
+
+/* Pfeile für Hero-Slider */
+.project-hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.project-hero-arrow-left {
+  left: 32px;
+}
+
+.project-hero-arrow-right {
+  right: 32px;
+}
+
+.project-hero-arrow:hover {
+  background: #ffffff;
+}
+
+/* Weiße Infobox unten links auf dem Bild */
+.project-info-card {
+  position: absolute;
+  left: var(--edge);   /* gleicher Abstand wie Bild -> Screen links */
+  bottom: var(--edge); /* gleicher Abstand wie Bild -> Screen unten */
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 18px 20px 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  font-size: 13px;
+  z-index: 3;          /* immer über den Pfeilen */
+}
+
+.project-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.project-client {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.project-intro {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Website-Link in der Box */
+.project-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: inherit;                    /* wie normaler Text */
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-link:hover {
+  color: #00AEEF;                    /* dein Blau */
+  border-bottom-color: #00AEEF;
+}
+
+/* Galerie */
+.project-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 24px;  /* Abstand unter dem Hero */
+}
+
+.project-row {
+  width: 100%;
+}
+
+.project-row-single {
+  display: block;
+}
+
+.project-row-double {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Bilder in den Rows behalten ihr Originalformat
+   und passen komplett auf einen Screen */
+.project-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 160px); /* immer voll sichtbar */
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Mobile-Anpassungen für Projektseiten */
+@media (max-width: 780px) {
+  .project-page {
+    padding: 24px 12px 60px;
+  }
+
+  .project-hero {
+    margin-bottom: 24px;
+  }
+
+  .project-hero-media {
+    height: calc(100vh - 100px);
+    min-height: 360px;
+  }
+
+  .project-info-card {
+    position: static;
+    max-width: none;
+    margin-top: 12px;
+    box-shadow: none;
+    padding: 14px 12px 12px;
+  }
+
+  .project-gallery {
+    gap: 28px;
+  }
+
+  .project-row-double {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-image img {
+    max-height: calc(100vh - 140px);
+  }
+
+  .project-hero-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .project-hero-arrow-left {
+    left: 16px;
+  }
+
+  .project-hero-arrow-right {
+    right: 16px;
+  }
+}
+
+/* ===== THE WID – Haus-Tabs ===== */
+
+.wid-houses {
+  padding: 0 var(--edge);
+  margin-top: 64px;        /* mehr Luft zwischen Projekt-Hero und Haus-Bereich */
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Tabs über die ganze Breite verteilt */
+.wid-houses-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+/* normaler Tab */
+.wid-house-tab {
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 400;
+}
+
+/* aktiver Tab: blau + fett, kein Strich */
+.wid-house-tab-active {
+  color: #00AEEF;
+  font-weight: 700;
+}
+
+.wid-house-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  animation: widFadeIn .35s ease-out;
+}
+
+/* Extra-Abstände für die Reihen im THE-WID Haus-Bereich */
+.wid-house-detail .project-gallery {
+  margin-top: 12px;   /* Abstand zwischen Haus-Hero und erster Row */
+  gap: 120px;         /* Abstand zwischen den einzelnen Rows */
+}
+
+/* Haus-Hero-Container:
+   – kein fixes height
+   – Bild wird zentriert
+   – max. Höhe = fast ein Screen */
+.wid-house-hero-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  background: #fff;
+}
+
+/* Haus-Hero-Bild:
+   – Originalformat
+   – so groß wie möglich
+   – keine schwarzen Balken */
+.wid-house-hero-media .project-img {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+  background: transparent;
+}
+
+@media (max-width: 780px) {
+  .wid-houses {
+    padding: 0 12px;
+    gap: 24px;
+  }
+
+  .wid-houses-tabs {
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .wid-house-tab {
+    font-size: 13px;
+  }
+
+  .wid-house-hero-media {
+    max-height: calc(100vh - 140px);
+  }
+
+  .wid-house-hero-media .project-img {
+    max-height: calc(100vh - 140px);
+  }
+}
+
+/* Fade-In Animation für Haus-Wechsel – nur Opacity */
+@keyframes widFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

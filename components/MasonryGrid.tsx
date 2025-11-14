@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
@@ -18,6 +18,31 @@ type RowSpec = {
   aspect: "square" | "portrait";
   centerVideo?: boolean;
   videoAtIndex?: number;
+};
+
+// IDs, die auf der Images-Seite sichtbar sind,
+// aber NICHT klickbar sein sollen
+const NON_CLICKABLE_IDS = [
+  "ext-06",
+  "ext-13",
+  "ext-14",
+  "ext-15",
+  "ext-18",
+  "ext-33",
+  "ext-36",
+  "ext-37",
+  "ext-38",
+];
+
+// THE WID: bestimmte Tiles sollen alle auf /project/thewid zeigen
+// und gleichzeitig das passende Haus aktivieren
+const THEWID_HOUSE_MAP: Record<string, string> = {
+  "ext-01": "1", // Haus 1
+  "ext-02": "2", // Haus 2
+  "ext-09": "3", // Haus 3
+  "ext-07": "4", // Haus 4
+  "ext-11": "5", // Haus 5
+  "ext-31": "6", // Haus 6
 };
 
 // ===== Standard (Hauptseite) – bleibt als Default erhalten =====
@@ -63,7 +88,7 @@ function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
   for (const b of buckets) {
     const { spec, items } = b;
     if (spec.centerVideo && items.length === 3) {
-      const vIdx = items.findIndex(x => x.kind === "video");
+      const vIdx = items.findIndex((x) => x.kind === "video");
       if (vIdx !== -1 && vIdx !== 1) {
         const [vid] = items.splice(vIdx, 1);
         items.splice(1, 0, vid);
@@ -74,7 +99,7 @@ function arrangeVideoPositions(buckets: { spec: RowSpec; items: Item[] }[]) {
       spec.videoAtIndex >= 0 &&
       spec.videoAtIndex < items.length
     ) {
-      const vIdx = items.findIndex(x => x.kind === "video");
+      const vIdx = items.findIndex((x) => x.kind === "video");
       if (vIdx !== -1 && vIdx !== spec.videoAtIndex) {
         const [vid] = items.splice(vIdx, 1);
         items.splice(spec.videoAtIndex, 0, vid);
@@ -118,7 +143,7 @@ export default function MasonryGrid({
           }
         });
       },
-      { root: null, rootMargin: "0px 0px 15% 0px", threshold: 0.10 }
+      { root: null, rootMargin: "0px 0px 15% 0px", threshold: 0.1 }
     );
 
     tiles.forEach((el) => io.observe(el));
@@ -129,33 +154,58 @@ export default function MasonryGrid({
   const bootstrappedRef = useRef(false);
 
   useEffect(() => {
-    const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".tile video"));
+    const videos = Array.from(
+      document.querySelectorAll<HTMLVideoElement>(".tile video")
+    );
     if (!videos.length) return;
 
     const prep = (v: HTMLVideoElement) => {
-      v.muted = true; v.defaultMuted = true; v.setAttribute("muted", "");
-      v.playsInline = true; v.setAttribute("playsinline", ""); (v as any).webkitPlaysinline = true;
-      v.autoplay = true; v.setAttribute("autoplay", "");
-      v.loop = true; v.controls = false; v.preload = "metadata";
+      v.muted = true;
+      v.defaultMuted = true;
+      v.setAttribute("muted", "");
+      v.playsInline = true;
+      v.setAttribute("playsinline", "");
+      (v as any).webkitPlaysinline = true;
+      v.autoplay = true;
+      v.setAttribute("autoplay", "");
+      v.loop = true;
+      v.controls = false;
+      v.preload = "metadata";
     };
 
     const tryPlay = async (v: HTMLVideoElement) => {
       prep(v);
-      try { await v.play(); return true; } catch { return false; }
+      try {
+        await v.play();
+        return true;
+      } catch {
+        return false;
+      }
     };
 
     videos.forEach((v) => {
       prep(v);
-      v.addEventListener("ended", () => { v.currentTime = 0; v.play().catch(() => {}); });
-      v.addEventListener("loadedmetadata", () => { if (v.paused) v.play().catch(() => {}); });
-      v.addEventListener("canplay", () => { if (v.paused) v.play().catch(() => {}); });
+      v.addEventListener("ended", () => {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      });
+      v.addEventListener("loadedmetadata", () => {
+        if (v.paused) v.play().catch(() => {});
+      });
+      v.addEventListener("canplay", () => {
+        if (v.paused) v.play().catch(() => {});
+      });
     });
 
     const vio = new IntersectionObserver(
       (entries) => {
         entries.forEach(async (entry) => {
           const v = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting) { await tryPlay(v); } else { v.pause(); }
+          if (entry.isIntersecting) {
+            await tryPlay(v);
+          } else {
+            v.pause();
+          }
         });
       },
       { threshold: 0.15 }
@@ -165,27 +215,49 @@ export default function MasonryGrid({
     const bootstrap = () => {
       if (bootstrappedRef.current) return;
       bootstrappedRef.current = true;
-      videos.forEach((v) => { tryPlay(v); });
-      window.removeEventListener("pointerdown", bootstrap, { capture: true } as any);
-      window.removeEventListener("touchstart", bootstrap, { capture: true } as any);
-      window.removeEventListener("click", bootstrap, { capture: true } as any);
+      videos.forEach((v) => {
+        tryPlay(v);
+      });
+      window.removeEventListener("pointerdown", bootstrap, {
+        capture: true,
+      } as any);
+      window.removeEventListener("touchstart", bootstrap, {
+        capture: true,
+      } as any);
+      window.removeEventListener("click", bootstrap, {
+        capture: true,
+      } as any);
     };
-    window.addEventListener("pointerdown", bootstrap, { capture: true, passive: true });
-    window.addEventListener("touchstart", bootstrap, { capture: true, passive: true });
+    window.addEventListener("pointerdown", bootstrap, {
+      capture: true,
+      passive: true,
+    });
+    window.addEventListener("touchstart", bootstrap, {
+      capture: true,
+      passive: true,
+    });
     window.addEventListener("click", bootstrap, { capture: true });
 
     const onVis = () => {
       if (document.visibilityState === "visible") {
-        videos.forEach((v) => { if (v.paused) v.play().catch(() => {}); });
+        videos.forEach((v) => {
+          if (v.paused) v.play().catch(() => {});
+        });
       }
     };
     document.addEventListener("visibilitychange", onVis);
 
     return () => {
       vio.disconnect();
-      window.removeEventListener("pointerdown", bootstrap, { capture: true } as any);
-      window.removeEventListener("touchstart", bootstrap, { capture: true } as any);
-      window.removeEventListener("click", bootstrap, { capture: true } as any);
+      window.removeEventListener("pointerdown", bootstrap, {
+        capture: true,
+      } as any);
+      window.removeEventListener("touchstart", bootstrap, {
+        capture: true,
+      } as any);
+      window.removeEventListener("click", bootstrap, {
+        capture: true,
+      } as any);
       document.removeEventListener("visibilitychange", onVis);
     };
   }, [data.length]);
@@ -195,14 +267,24 @@ export default function MasonryGrid({
       {buckets.map((b, i) => (
         <div key={`row-${i}`} className="row" data-cols={b.spec.cols}>
           {b.items.map((it, j) => {
-            const href = `/project/${it.id}`;
-            const aspectClass = b.spec.aspect === "portrait" ? "portrait" : "square";
+            // ggf. auf THE WID Spezialseite umbiegen
+            const houseId = THEWID_HOUSE_MAP[it.id];
+            const href = houseId
+              ? `/project/thewid?house=${houseId}`
+              : `/project/${it.id}`;
+
+            const aspectClass =
+              b.spec.aspect === "portrait" ? "portrait" : "square";
             const delayMs = j * 40;
 
             const isFirstRow = i === 0;
             const isFirstFew = j < 3;
 
-            if (clickable) {
+            const isUnclickableId = NON_CLICKABLE_IDS.includes(it.id);
+            const isClickableTile = clickable && !isUnclickableId;
+
+            // Klickbare Variante (außer bei verbotenen IDs)
+            if (isClickableTile) {
               return (
                 <a
                   key={it.id}
@@ -235,8 +317,12 @@ export default function MasonryGrid({
 
                   {(it.title || it.client) && (
                     <div className="label">
-                      {it.client && <div className="label-client">{it.client}</div>}
-                      {it.title && <div className="label-title">{it.title}</div>}
+                      {it.client && (
+                        <div className="label-client">{it.client}</div>
+                      )}
+                      {it.title && (
+                        <div className="label-title">{it.title}</div>
+                      )}
                     </div>
                   )}
                 </a>
@@ -275,8 +361,12 @@ export default function MasonryGrid({
 
                 {(it.title || it.client) && (
                   <div className="label">
-                    {it.client && <div className="label-client">{it.client}</div>}
-                    {it.title && <div className="label-title">{it.title}</div>}
+                    {it.client && (
+                      <div className="label-client">{it.client}</div>
+                    )}
+                    {it.title && (
+                      <div className="label-title">{it.title}</div>
+                    )}
                   </div>
                 )}
               </div>

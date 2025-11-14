@@ -1,0 +1,441 @@
+[
+  {
+    "id": "ext-01",
+    "title": "THE WID",
+    "client": "Alfons & Alfreda",
+    "hero": "/media/i01-hero.jpg",
+    "heroImages": [ "/media/ext-01-hero1.jpg", "/media/ext-01-hero2.jpg" ],
+    "intro": "Planned to open in 2026, located in Senja, Norway. The area is known for its striking landscapes.",
+    "website": "https://www.alfons-alfreda.com",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/i01-img-01.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/i01-img-02.jpg", "/media/i01-img-03.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/i01-img-04.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-02",
+    "title": "Haus 2",
+    "client": "Phase 5",
+    "hero": "/media/ext-02.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-02.jpg", "/media/ext-02.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/ext-02.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-03",
+    "title": "Portal Berlin",
+    "client": "terraneo",
+    "hero": "/media/ext-03.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-03.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/ext-03.jpg", "/media/ext-03.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-04",
+    "title": "Hinwil",
+    "client": "Backes Zarali Architekten",
+    "hero": "/media/ext-04-hero.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-04-hero.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-05",
+    "title": "Mainau Insel",
+    "client": "Königs Architekten",
+    "hero": "/media/ext-05.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-05.jpg", "/media/ext-05.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-07",
+    "title": "Haus 6",
+    "client": "Phase 5",
+    "hero": "/media/ext-07.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-07.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/ext-07.jpg", "/media/ext-07.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-08",
+    "title": "Stadtallendorf",
+    "client": "Isabell Battenfeld Architekts",
+    "hero": "/media/ext-08.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-08.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-09",
+    "title": "Haus 3",
+    "client": "Urban Agency",
+    "hero": "/media/ext-09.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-09.jpg", "/media/ext-09.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-10",
+    "title": "Farmsen",
+    "client": "Phase 5",
+    "hero": "/media/ext-10.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-10.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/ext-10.jpg", "/media/ext-10.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-11",
+    "title": "THE WID",
+    "client": "Alfons & Alfreda",
+    "hero": "/media/ext-11.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-11.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-12",
+    "title": "Campus Kartause Köln",
+    "client": "Königs Architekten",
+    "hero": "/media/ext-12.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-12.jpg", "/media/ext-12.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-16",
+    "title": "Königstraße 3",
+    "client": "Phase 5",
+    "hero": "/media/ext-16-hero.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-16-hero.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-17",
+    "title": "Köln Ehrenfeld",
+    "client": "Isabell Battenfeld Architekts",
+    "hero": "/media/ext-17.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-17.jpg", "/media/ext-17.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-19",
+    "title": "Marburg",
+    "client": "Isabell Battenfeld Architekts",
+    "hero": "/media/ext-19.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-19.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-20",
+    "title": "Schlägelstraße",
+    "client": "Phase 5",
+    "hero": "/media/ext-20.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-20.jpg", "/media/ext-20.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-21",
+    "title": "Burgfelderstrasse",
+    "client": "Backes Zarali Architekten",
+    "hero": "/media/ext-21.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-21.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-22",
+    "title": "Potsdam",
+    "client": "Phase 5",
+    "hero": "/media/ext-22.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-22.jpg", "/media/ext-22.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-23",
+    "title": "Wohnen im Dach",
+    "client": "adbarchitektur",
+    "hero": "/media/ext-23.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-23.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/ext-23.jpg", "/media/ext-23.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-24",
+    "title": "Boutanique",
+    "client": "Isabell Battenfeld Architekts",
+    "hero": "/media/ext-24.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-24.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-25",
+    "title": "Nürnberger",
+    "client": "Isabell Battenfeld Architekts",
+    "hero": "/media/ext-25.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-25.jpg", "/media/ext-25.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-26",
+    "title": "Terra Calma",
+    "client": "Sevencollection Portugal",
+    "hero": "/media/ext-26-hero.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-26-hero.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-27",
+    "title": "Hillside",
+    "client": "Phase 5",
+    "hero": "/media/ext-27.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-27.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/ext-27.jpg", "/media/ext-27.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-28",
+    "title": "Königstraße",
+    "client": "Phase 5",
+    "hero": "/media/ext-28.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-28.jpg", "/media/ext-28.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-29",
+    "title": "Office",
+    "client": "Golden Section Office",
+    "hero": "/media/ext-29.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-29.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-30",
+    "title": "Kloster Eberbach",
+    "client": "Backes Zarali Architekten",
+    "hero": "/media/ext-30.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-30.jpg", "/media/ext-30.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-31",
+    "title": "Haus 10",
+    "client": "Phase 5",
+    "hero": "/media/ext-31-hero.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-31-hero.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-32",
+    "title": "european street",
+    "client": "",
+    "hero": "/media/ext-32.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-32.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-34",
+    "title": "Sarnen",
+    "client": "Backes Zarali Architekten",
+    "hero": "/media/ext-34.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/ext-34.jpg", "/media/ext-34.jpg"]
+      }
+    ]
+  },
+
+  {
+    "id": "ext-35",
+    "title": "Columbarium church in Emden",
+    "client": "Königs Architekten",
+    "hero": "/media/ext-35.jpg",
+    "intro": "",
+    "rows": [
+      {
+        "layout": "single",
+        "images": ["/media/ext-35.jpg"]
+      }
+    ]
+  }
+]
