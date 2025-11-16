@@ -146,7 +146,7 @@ const THEWID_PROJECT: {
           ],
         },
         {
-          layout: "singe",
+          layout: "single",
           images: ["/media/thewid/haus5/building5-3.jpg"],
         },
       ],
