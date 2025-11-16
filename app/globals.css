@@ -21,8 +21,9 @@ html, body {
   background: var(--bg);
   color: var(--fg);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  overflow-y: auto;   /* normale Scrollbar, kein erzwungener Rand rechts */
+  overflow-y: auto;
 }
+
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
@@ -179,6 +180,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
     border-bottom: none;
   }
   .mobile-logo { font-weight: 800; letter-spacing: .04em; }
+
   .burger {
     position: absolute;
     right: var(--edge);
@@ -304,7 +306,7 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 }
 .ai-row {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* links Text, rechts Compare */
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 40px;
 }
@@ -319,20 +321,16 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* ===================== Nur auf der AI-Seite: blauer SideDock ===================== */
 body.ai-page .side-dock {
-  background: #00AEEF; /* Blau */
+  background: #00AEEF;
 }
 body.ai-page .side-dock .logo img {
-  filter: brightness(0) invert(1); /* Logo weiß */
+  filter: brightness(0) invert(1);
 }
 body.ai-page .side-dock nav a {
-  color: #fff; /* Standardfarbe weiß */
+  color: #fff;
 }
 body.ai-page .side-dock nav a:hover {
-  color: #fff; /* auch beim Hover weiß */
-}
-/* ===================== AI-Seite: Hover-Farbe im SideDock ===================== */
-body.ai-page .side-dock nav a:hover {
-  color: #000 !important; /* Schwarz beim Hover nur auf AI-Seite */
+  color: #000 !important;
 }
 
 /* ===================== AI Page – Mobile Layout ===================== */
@@ -341,15 +339,14 @@ body.ai-page .side-dock nav a:hover {
     margin-top: 32px;
     margin-bottom: 80px;
     padding: 0 12px;
-    gap: 40px;           /* Abstand zwischen den Blöcken */
+    gap: 40px;
   }
 
   .ai-row {
-    grid-template-columns: 1fr; /* alles untereinander */
+    grid-template-columns: 1fr;
     row-gap: 8px;
   }
 
-  /* Reihenfolge: 1. Slider, 2. kleine Überschrift darunter */
   .ai-slider {
     order: 1;
     width: 100%;
@@ -371,13 +368,13 @@ body.ai-page .side-dock nav a:hover {
 .project-page {
   max-width: none;
   margin: 0;
-  padding: 0 0 40px; 
+  padding: 0 0 40px;
 }
 
 /* Hero ist fast so hoch wie der Screen */
 .project-hero {
   position: relative;
-  margin: 16px var(--edge) 0;  /* Abstand zum Fenster-Rand */
+  margin: 16px var(--edge) 0;
 }
 
 .project-hero-media {
@@ -389,28 +386,27 @@ body.ai-page .side-dock nav a:hover {
   border-radius: 0;
 }
 
+/* Hero-Bild */
 .project-img {
   object-fit: cover;
 }
 
-/* Pfeile für Hero-Slider */
+/* Pfeile für Hero-Slider – schlicht, weiß, ohne Kreis */
 .project-hero-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
   border: none;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  background: transparent;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 34px;
+  color: #ffffff;
   cursor: pointer;
-  padding: 0;
+  padding: 0 10px;
 }
 
 .project-hero-arrow-left {
@@ -422,20 +418,20 @@ body.ai-page .side-dock nav a:hover {
 }
 
 .project-hero-arrow:hover {
-  background: #ffffff;
+  transform: translateY(-50%) scale(1.5);
 }
 
 /* Weiße Infobox unten links auf dem Bild */
 .project-info-card {
   position: absolute;
-  left: var(--edge);   /* gleicher Abstand wie Bild -> Screen links */
-  bottom: var(--edge); /* gleicher Abstand wie Bild -> Screen unten */
+  left: var(--edge);
+  bottom: var(--edge);
   max-width: 360px;
   background: rgba(255, 255, 255, 0.96);
   padding: 18px 20px 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
   font-size: 13px;
-  z-index: 3;          /* immer über den Pfeilen */
+  z-index: 3;
 }
 
 .project-title {
@@ -459,14 +455,14 @@ body.ai-page .side-dock nav a:hover {
   display: inline-block;
   margin-top: 10px;
   font-size: 12px;
-  color: inherit;                    /* wie normaler Text */
+  color: inherit;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .project-link:hover {
-  color: #00AEEF;                    /* dein Blau */
+  color: #00AEEF;
   border-bottom-color: #00AEEF;
 }
 
@@ -475,7 +471,7 @@ body.ai-page .side-dock nav a:hover {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin-top: 24px;  /* Abstand unter dem Hero */
+  margin-top: 24px;
 }
 
 .project-row {
@@ -492,19 +488,27 @@ body.ai-page .side-dock nav a:hover {
   gap: 24px;
 }
 
-/* Bilder in den Rows behalten ihr Originalformat
-   und passen komplett auf einen Screen */
+/* Bilder in den Rows – Scroll-Fade wie Startseite */
 .project-image {
   position: relative;
   width: 100%;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+  will-change: opacity, transform;
+}
+
+.project-image.inview {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-image img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: calc(100vh - 160px); /* immer voll sichtbar */
+  max-height: calc(100vh - 160px);
   object-fit: contain;
   margin: 0 auto;
 }
@@ -564,7 +568,7 @@ body.ai-page .side-dock nav a:hover {
 
 .wid-houses {
   padding: 0 var(--edge);
-  margin-top: 64px;        /* mehr Luft zwischen Projekt-Hero und Haus-Bereich */
+  margin-top: 64px;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -592,7 +596,7 @@ body.ai-page .side-dock nav a:hover {
   font-weight: 400;
 }
 
-/* aktiver Tab: blau + fett, kein Strich */
+/* aktiver Tab */
 .wid-house-tab-active {
   color: #00AEEF;
   font-weight: 700;
@@ -607,14 +611,11 @@ body.ai-page .side-dock nav a:hover {
 
 /* Extra-Abstände für die Reihen im THE-WID Haus-Bereich */
 .wid-house-detail .project-gallery {
-  margin-top: 12px;   /* Abstand zwischen Haus-Hero und erster Row */
-  gap: 120px;         /* Abstand zwischen den einzelnen Rows */
+  margin-top: 12px;
+  gap: 120px;
 }
 
-/* Haus-Hero-Container:
-   – kein fixes height
-   – Bild wird zentriert
-   – max. Höhe = fast ein Screen */
+/* Hero-Bereich pro Haus */
 .wid-house-hero-media {
   display: flex;
   justify-content: center;
@@ -626,10 +627,6 @@ body.ai-page .side-dock nav a:hover {
   background: #fff;
 }
 
-/* Haus-Hero-Bild:
-   – Originalformat
-   – so groß wie möglich
-   – keine schwarzen Balken */
 .wid-house-hero-media .project-img {
   position: static !important;
   width: auto !important;
@@ -668,4 +665,155 @@ body.ai-page .side-dock nav a:hover {
 @keyframes widFadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* ===== THE WID – Hero-Slider mit zwei Layern (Slide + Fade) ===== */
+
+.wid-hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wid-hero-slide-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.wid-hero-slide-layer .project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Zustand: sichtbares aktuelles Bild ohne Animation */
+.wid-hero-layer-current {
+  transform: translateX(0);
+}
+
+/* erstes Bild: einmaliger Fade-In */
+.wid-hero-layer-initial {
+  animation: widHeroInitialFade 0.5s ease-out;
+}
+
+@keyframes widHeroInitialFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* aktuelles Bild fährt raus */
+.wid-hero-layer-slide-out-left {
+  animation: widHeroSlideOutLeft 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.wid-hero-layer-slide-out-right {
+  animation: widHeroSlideOutRight 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+/* nächstes Bild fährt rein */
+.wid-hero-layer-slide-in-from-right {
+  animation: widHeroSlideInFromRight 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.wid-hero-layer-slide-in-from-left {
+  animation: widHeroSlideInFromLeft 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+/* dezent: bisschen Slide + Fade, kein 100%-Wegrutschen */
+@keyframes widHeroSlideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-8%);
+    opacity: 0;
+  }
+}
+
+@keyframes widHeroSlideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(8%);
+    opacity: 0;
+  }
+}
+
+@keyframes widHeroSlideInFromRight {
+  from {
+    transform: translateX(8%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes widHeroSlideInFromLeft {
+  from {
+    transform: translateX(-8%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===================== Bottom navigation link (next project / next house) ===================== */
+
+.project-next-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px auto 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.project-next-link:hover .project-next-label {
+  text-decoration: underline;
+}
+
+/* Pfeil selbst: Standardzustand ohne Animation */
+.project-next-arrow {
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid #00AEEF;
+}
+
+/* Animation nur, wenn der Link im Viewport ist */
+.project-next-link-inview .project-next-arrow {
+  animation-name: projectNextArrowAnim;
+  animation-duration: 1.1s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 3;
+  animation-fill-mode: forwards;
+}
+
+/* 3x animieren, dann leicht nach rechts stehen bleiben */
+@keyframes projectNextArrowAnim {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(6px);
+  }
 }

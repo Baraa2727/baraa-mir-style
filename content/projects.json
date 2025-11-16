@@ -4,7 +4,7 @@
     "title": "THE WID",
     "client": "Alfons & Alfreda",
     "hero": "/media/i01-hero.jpg",
-    "heroImages": [ "/media/ext-01-hero1.jpg", "/media/ext-01-hero2.jpg" ],
+    "heroImages": [ "/media/thewid/hero/hero.jpg", "/media/thewid/hero/hero1.jpg", "/media/thewid/hero/hero2.jpg", "/media/thewid/hero/hero3.jpg", "/media/thewid/hero/hero4.jpg", "/media/thewid/hero/hero5.jpg", "/media/thewid/hero/hero6.jpg", "/media/thewid/hero/hero7.jpg", "/media/thewid/hero/hero8.jpg",   "/media/thewid/hero/hero9.jpg", "/media/thewid/hero/hero10.jpg" ],
     "intro": "Planned to open in 2026, located in Senja, Norway. The area is known for its striking landscapes.",
     "website": "https://www.alfons-alfreda.com",
     "rows": [

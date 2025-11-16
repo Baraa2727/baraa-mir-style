@@ -40,9 +40,9 @@ const THEWID_HOUSE_MAP: Record<string, string> = {
   "ext-01": "1", // Haus 1
   "ext-02": "2", // Haus 2
   "ext-09": "3", // Haus 3
-  "ext-07": "4", // Haus 4
-  "ext-11": "5", // Haus 5
-  "ext-31": "6", // Haus 6
+  "ext-07": "6", // soll bei Haus 6 landen
+  "ext-11": "1", // soll bei Haus 1 landen
+  "ext-31": "9", // soll bei Haus 9 (9+10) landen
 };
 
 // ===== Standard (Hauptseite) – bleibt als Default erhalten =====
