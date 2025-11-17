@@ -430,22 +430,30 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
 
       {/* Galerie unten */}
       <section className="project-gallery">
-        {project.rows.map((row, idx) => (
-          <div
-            key={`${project.id}-row-${idx}`}
-            className={
-              row.layout === "double"
-                ? "project-row project-row-double"
-                : "project-row project-row-single"
-            }
-          >
-            {row.images.map((src, i) => (
-              <div key={src + i} className="project-image">
-                <img src={src} alt={project.title} />
-              </div>
-            ))}
-          </div>
-        ))}
+       {project.rows.map((row, idx) => (
+  <div
+    key={`${project.id}-row-${idx}`}
+    className={
+      row.layout === "double"
+        ? "project-row project-row-double"
+        : "project-row project-row-single"
+    }
+  >
+    {row.images.map((src, i) => (
+      <div key={src + i} className="project-image">
+        <Image
+          src={src}
+          alt={project.title}
+          width={2400}
+          height={1600}
+          sizes="(max-width: 780px) 100vw, (max-width: 1200px) 90vw, 80vw"
+          className="project-row-img"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+))}
       </section>
 
       {/* Weiter zum nächsten Projekt */}
@@ -667,22 +675,30 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
           </div>
 
           <section className="project-gallery">
-            {activeHouse.rows.map((row, idx) => (
-              <div
-                key={`house-${activeHouse.id}-row-${idx}`}
-                className={
-                  row.layout === "double"
-                    ? "project-row project-row-double"
-                    : "project-row project-row-single"
-                }
-              >
-                {row.images.map((src, i) => (
-                  <div key={src + i} className="project-image">
-                    <img src={src} alt={activeHouse.label} />
-                  </div>
-                ))}
-              </div>
-            ))}
+          {activeHouse.rows.map((row, idx) => (
+  <div
+    key={`house-${activeHouse.id}-row-${idx}`}
+    className={
+      row.layout === "double"
+        ? "project-row project-row-double"
+        : "project-row project-row-single"
+    }
+  >
+    {row.images.map((src, i) => (
+      <div key={src + i} className="project-image">
+        <Image
+          src={src}
+          alt={activeHouse.label}
+          width={2400}
+          height={1600}
+          sizes="(max-width: 780px) 100vw, (max-width: 1200px) 90vw, 80vw"
+          className="project-row-img"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+))}
           </section>
 
           {/* Weiter zum nächsten Haus / Projekt */}
