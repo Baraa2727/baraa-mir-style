@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "optimize-images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "next": "14.2.5",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@types/node": "24.9.1",
     "@types/react": "19.2.2",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "sharp": "^0.33.0"
   }
 }
