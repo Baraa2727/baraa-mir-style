@@ -615,7 +615,12 @@ body.ai-page .side-dock nav a:hover {
   gap: 120px;
 }
 
-/* Hero-Bereich pro Haus */
+/* Haus-Hero-Container: Box innen unten links */
+.wid-house-hero {
+  position: relative;
+}
+
+/* Haus-Hero-Bild – zentriert, max. Screenhöhe */
 .wid-house-hero-media {
   display: flex;
   justify-content: center;
@@ -635,6 +640,55 @@ body.ai-page .side-dock nav a:hover {
   max-height: calc(100vh - 160px);
   object-fit: contain;
   background: transparent;
+}
+
+/* Info-Box im Haus-Bild: ohne Schatten, leicht eingerückt */
+.wid-house-info-card {
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.96);
+  left: 440px;
+  bottom: 20px;
+}
+
+/* Haus 1 – etwas höher */
+.wid-house-info-card-1 {
+  bottom: 18px;
+}
+
+/* Haus 2 – etwas höher & weiter rechts */
+.wid-house-info-card-2 {
+  left: 485px;
+  bottom: 17px;
+}
+
+/* Haus 3 – weiter rechts */
+.wid-house-info-card-3 {
+  left: 487px;
+  bottom: 17px;
+}
+/* Haus 4 – weiter rechts */
+.wid-house-info-card-4 {
+  left: 487px;
+  bottom: 17px;
+}
+/* Haus 5 – weiter rechts */
+.wid-house-info-card-5 {
+  left: 438px;
+  bottom: 17px;
+}
+/* Haus 8 – weiter rechts */
+.wid-house-info-card-8 {
+  bottom: 19px;
+}
+/* Haus 6 – weiter rechts */
+.wid-house-info-card-6 {
+  bottom: 19px;
+}
+
+/* Haus 9 – etwas höher & weiter rechts */
+.wid-house-info-card-9 {
+  left: 438px;
+  bottom: 17px;
 }
 
 @media (max-width: 780px) {

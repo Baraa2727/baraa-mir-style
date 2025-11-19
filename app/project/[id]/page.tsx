@@ -34,6 +34,10 @@ type House = {
   label: string; // "Haus 1" ...
   hero: string;
   rows: HouseRow[];
+  title?: string;
+  client?: string;
+  intro?: string;
+  website?: string;
 };
 
 const THEWID_PROJECT: {
@@ -64,12 +68,18 @@ const THEWID_PROJECT: {
     "/media/thewid/hero/hero10.jpg",
   ],
   intro:
-    "Planned to open in 2026, located in Senja, Norway. The area is known for its striking landscapes.",
-  website: "https://www.alfons-alfreda.de",
+    `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+  website: "https://www.thewid.cologne",
   houses: [
     {
       id: "1",
       label: "Haus 1",
+      title: "Haus 1",
+      client: "Alfons & Alfreda",
+      intro:
+        `Inspired by the historic 1908 gasworks, this building combines a distinctive setting with modern design. Its intimate location suits single-tenant use, with flexible floor layouts ideal for offices or alternative functions.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus1/building1.jpg",
       rows: [
         { layout: "single", images: ["/media/thewid/haus1/entrance1.jpg"] },
@@ -82,6 +92,11 @@ const THEWID_PROJECT: {
     {
       id: "2",
       label: "Haus 2",
+      title: "Haus 2",
+      client: "Alfons & Alfreda",
+      intro:
+        `A pair of buildings designed to enhance both architecture and urban life. A distinctive tower marks the western gateway, while the space between the structures forms a lively plaza with dining, public uses, and room for social interaction.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus2/building2.jpg",
       rows: [
         {
@@ -100,6 +115,11 @@ const THEWID_PROJECT: {
     {
       id: "3",
       label: "Haus 3",
+      title: "Haus 3",
+      client: "Phase5 + Urban Agency",
+      intro:
+        `A distinctive tower shapes the building’s identity, blending subtle brick heritage with modern character. Crafted details add quality, while the green rear facade creates a contemporary contrast.`,
+      website: "https://www.phase5.de",
       hero: "/media/thewid/haus3/building3.jpg",
       rows: [
         {
@@ -118,6 +138,11 @@ const THEWID_PROJECT: {
     {
       id: "4",
       label: "Haus 4",
+      title: "Haus 4",
+      client: "Alfons & Alfreda",
+      intro:
+        `A brick base roots the design in the district’s history, while modern office floors rise above. One building features Cologne-toned brick and a bold pattern, the other contrasts with a grey base and shimmering steel panels.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus4/building4.jpg",
       rows: [
         {
@@ -136,6 +161,11 @@ const THEWID_PROJECT: {
     {
       id: "5",
       label: "Haus 5",
+      title: "Haus 5",
+      client: "Alfons & Alfreda",
+      intro:
+        `A surrounding trapezoid arch structures the base, framing windows, doors, and the garage entrance. Above it sits a ceramic curtain façade, creating a functional and visually striking building that marks the gateway to the THE WID district.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus5/building5.jpg",
       rows: [
         {
@@ -154,6 +184,11 @@ const THEWID_PROJECT: {
     {
       id: "6",
       label: "Haus 6",
+      title: "Haus 6",
+      client: "Urban Agency",
+      intro:
+        `Arches define the character of THE WID. One building reinterprets the arcade with a memorable façade, while the second offers a calmer counterpart with clear structure and generous windows. A third extends the motif toward Widdersdorfer Straße, giving the ensemble presence and cohesion.`,
+      website: "https://www.urban-agency.com",
       hero: "/media/thewid/haus6/building6.jpg",
       rows: [
         {
@@ -180,6 +215,11 @@ const THEWID_PROJECT: {
     {
       id: "7",
       label: "Haus 7",
+      title: "Haus 7",
+      client: "Alfons & Alfreda",
+      intro:
+        `Clear structure and strong identity define this building at the western square. Its brick façade plays with light and shadow, while a green roof adds softness to the urban scene. A confident yet harmonious addition to the district.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus7/building7.jpg",
       rows: [
         {
@@ -195,6 +235,11 @@ const THEWID_PROJECT: {
     {
       id: "8",
       label: "Haus 8",
+      title: "Haus 8",
+      client: "Alfons & Alfreda",
+      intro:
+        `Marking the gateway to the district, this building bridges past and present. Evolved from existing structures and expanded with a new hotel, it combines bold arcades, vertical greenery, and clear brick surfaces to create a strong entry on the campus’s west side.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus8/building8.jpg",
       rows: [
         {
@@ -210,6 +255,11 @@ const THEWID_PROJECT: {
     {
       id: "9",
       label: "Haus 9+10",
+      title: "Haus 9+10",
+      client: "Alfons & Alfreda",
+      intro:
+        `Two buildings shape the heart of the district: one forms a strong ensemble with varied façades, arcades, and terraces that connect past and present, while the other preserves the historic gasworks as a listed structure, soon revived as an event venue with its own gastronomy.`,
+      website: "https://www.alfons-alfreda.de",
       hero: "/media/thewid/haus9/building9.jpg",
       rows: [
         {
@@ -415,45 +465,55 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
 
           {project.intro && <p className="project-intro">{project.intro}</p>}
 
-          {project.website && websiteLabel && (
-            <a
-              href={project.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {websiteLabel}
-            </a>
-          )}
+{Array.isArray(project.website) ? (
+  project.website.map((url) => {
+    const clean = url.replace(/^https?:\/\//, "").replace(/^www\./, "");
+    return (
+      <a
+        key={url}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-link"
+        style={{ marginRight: "12px", display: "inline-block" }}
+      >
+        {clean}
+      </a>
+    );
+  })
+) : project.website ? (
+  <a
+    href={project.website}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="project-link"
+  >
+    {project.website
+      .replace(/^https?:\/\//, "")
+      .replace(/^www\./, "")}
+  </a>
+) : null}
         </div>
       </section>
 
       {/* Galerie unten */}
       <section className="project-gallery">
-       {project.rows.map((row, idx) => (
-  <div
-    key={`${project.id}-row-${idx}`}
-    className={
-      row.layout === "double"
-        ? "project-row project-row-double"
-        : "project-row project-row-single"
-    }
-  >
-    {row.images.map((src, i) => (
-      <div key={src + i} className="project-image">
-        <Image
-          src={src}
-          alt={project.title}
-          width={2400}
-          height={1600}
-          sizes="(max-width: 780px) 100vw, (max-width: 1200px) 90vw, 80vw"
-          className="project-row-img"
-          loading="lazy"
-        />
-      </div>
-    ))}
-  </div>
-))}
+        {project.rows.map((row, idx) => (
+          <div
+            key={`${project.id}-row-${idx}`}
+            className={
+              row.layout === "double"
+                ? "project-row project-row-double"
+                : "project-row project-row-single"
+            }
+          >
+            {row.images.map((src, i) => (
+              <div key={src + i} className="project-image">
+                <img src={src} alt={project.title} />
+              </div>
+            ))}
+          </div>
+        ))}
       </section>
 
       {/* Weiter zum nächsten Projekt */}
@@ -498,7 +558,17 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
   const activeHouse =
     houses.find((h) => h.id === activeHouseId) ?? fallbackHouse;
 
+  // Text-Box pro Haus (mit Fallback aufs Hauptprojekt)
+  const activeHouseTitle = activeHouse.title ?? activeHouse.label;
+  const activeHouseClient = activeHouse.client ?? THEWID_PROJECT.client;
+  const activeHouseIntro = activeHouse.intro ?? THEWID_PROJECT.intro;
+  const activeHouseWebsite = activeHouse.website ?? THEWID_PROJECT.website;
+
   const websiteLabel = THEWID_PROJECT.website
+    ?.replace(/^https?:\/\//, "")
+    .replace(/^www\./, "");
+
+  const activeHouseWebsiteLabel = activeHouseWebsite
     ?.replace(/^https?:\/\//, "")
     .replace(/^www\./, "");
 
@@ -561,7 +631,6 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
 
               if (isCurrent && !isAnimating) {
                 layerClass += " wid-hero-layer-current";
-                // erstes Bild: einmalig Fade-In beim Laden
                 if (currentHeroIndex === 0) {
                   layerClass += " wid-hero-layer-initial";
                 }
@@ -672,33 +741,69 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
                 priority
               />
             </div>
+
+            {/* Info-Box IM Hausbild, unten links, ohne Schatten */}
+           <div
+              className={`project-info-card wid-house-info-card wid-house-info-card-${activeHouse.id}`}
+           >
+              <h1 className="project-title">{activeHouseTitle}</h1>
+
+              {activeHouseClient && (
+                <div className="project-client">{activeHouseClient}</div>
+              )}
+
+              {activeHouseIntro && (
+                <p className="project-intro">{activeHouseIntro}</p>
+              )}
+
+              {Array.isArray(activeHouseWebsite) ? (
+  activeHouseWebsite.map((url) => {
+    const clean = url.replace(/^https?:\/\//, "").replace(/^www\./, "");
+    return (
+      <a
+        key={url}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-link"
+        style={{ marginRight: "12px", display: "inline-block" }}
+      >
+        {clean}
+      </a>
+    );
+  })
+) : activeHouseWebsite ? (
+  <a
+    href={activeHouseWebsite}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="project-link"
+  >
+    {activeHouseWebsite
+      .replace(/^https?:\/\//, "")
+      .replace(/^www\./, "")}
+  </a>
+) : null}
+            </div>
           </div>
 
           <section className="project-gallery">
-          {activeHouse.rows.map((row, idx) => (
-  <div
-    key={`house-${activeHouse.id}-row-${idx}`}
-    className={
-      row.layout === "double"
-        ? "project-row project-row-double"
-        : "project-row project-row-single"
-    }
-  >
-    {row.images.map((src, i) => (
-      <div key={src + i} className="project-image">
-        <Image
-          src={src}
-          alt={activeHouse.label}
-          width={2400}
-          height={1600}
-          sizes="(max-width: 780px) 100vw, (max-width: 1200px) 90vw, 80vw"
-          className="project-row-img"
-          loading="lazy"
-        />
-      </div>
-    ))}
-  </div>
-))}
+            {activeHouse.rows.map((row, idx) => (
+              <div
+                key={`house-${activeHouse.id}-row-${idx}`}
+                className={
+                  row.layout === "double"
+                    ? "project-row project-row-double"
+                    : "project-row project-row-single"
+                }
+              >
+                {row.images.map((src, i) => (
+                  <div key={src + i} className="project-image">
+                    <img src={src} alt={activeHouse.label} />
+                  </div>
+                ))}
+              </div>
+            ))}
           </section>
 
           {/* Weiter zum nächsten Haus / Projekt */}
