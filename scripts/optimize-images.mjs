@@ -4,37 +4,55 @@ import sharp from "sharp";
 
 const ROOT = process.cwd();
 const INPUT_DIR = path.join(ROOT, "public", "media");
-const MAX_WIDTH = 2500;
+
+// Standard-Breite für normale Bilder
+const DEFAULT_MAX_WIDTH = 2200;
+// Spezielle Breiten für THE WID
+const THEWID_HERO_MAX_WIDTH = 1800;
+const THEWID_OTHER_MAX_WIDTH = 1600;
+
 const QUALITY = 80;
 
 async function optimizeImage(filePath) {
   const ext = path.extname(filePath).toLowerCase();
   if (![".jpg", ".jpeg", ".png"].includes(ext)) return;
 
-  const rel = path.relative(ROOT, filePath);
-  console.log("Optimizing:", rel);
+  // relative Pfad innerhalb /public/media, mit `/` auch unter Windows
+  const relFromMedia = path
+    .relative(INPUT_DIR, filePath)
+    .replace(/\\/g, "/");
+
+  // Je nach Ordner andere maximale Breite
+  let maxWidth = DEFAULT_MAX_WIDTH;
+
+  if (relFromMedia.startsWith("thewid/hero/")) {
+    maxWidth = THEWID_HERO_MAX_WIDTH;
+  } else if (relFromMedia.startsWith("thewid/")) {
+    maxWidth = THEWID_OTHER_MAX_WIDTH;
+  }
+
+  console.log(`Optimizing: ${relFromMedia} → max ${maxWidth}px`);
 
   const img = sharp(filePath);
   const meta = await img.metadata();
 
-  // Schon klein genug -> nichts tun
-  if (meta.width && meta.width <= MAX_WIDTH && !meta.density) {
+  // Wenn das Bild eh schon kleiner oder gleich ist, nichts tun
+  if (meta.width && meta.width <= maxWidth) {
+    console.log("  skip (already small enough)");
     return;
   }
 
   let pipeline = img.resize({
-    width: MAX_WIDTH,
+    width: maxWidth,
     withoutEnlargement: true,
   });
 
-  if (ext === ".png") {
-    pipeline = pipeline.jpeg({ quality: QUALITY });
-  } else {
-    pipeline = pipeline.jpeg({ quality: QUALITY });
-  }
+  // immer als JPEG mit QUALITY ausgeben (kannst du anpassen)
+  pipeline = pipeline.jpeg({ quality: QUALITY });
 
-  await pipeline.toFile(filePath + ".tmp");
-  await fs.rename(filePath + ".tmp", filePath);
+  const tmpPath = filePath + ".tmp";
+  await pipeline.toFile(tmpPath);
+  await fs.rename(tmpPath, filePath);
 }
 
 async function walk(dir) {
@@ -51,7 +69,7 @@ async function walk(dir) {
 
 walk(INPUT_DIR)
   .then(() => {
-    console.log("Done optimizing images in public/media");
+    console.log("✅ Done optimizing images in public/media");
   })
   .catch((err) => {
     console.error(err);
