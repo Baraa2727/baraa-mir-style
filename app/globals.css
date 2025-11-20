@@ -346,6 +346,7 @@ a:hover {
   }
 
   .site {
+    /* Abstand zwischen mobile Header und Inhalt (kannst du hier anpassen) */
     padding-top: 56px !important;
   }
 
@@ -584,6 +585,7 @@ body.ai-page .side-dock nav a:hover {
   margin-top: 24px;
 }
 
+/* Desktop-Rows */
 .project-row {
   width: 100%;
 }
@@ -627,7 +629,8 @@ body.ai-page .side-dock nav a:hover {
 
 @media (max-width: 780px) {
   .project-page {
-    padding: 16px 12px 60px;
+    /* wie nah kommt der Inhalt unter das Logo → hier anpassen */
+    padding: 4px 0 60px;
   }
 
   .project-hero {
@@ -649,8 +652,10 @@ body.ai-page .side-dock nav a:hover {
   }
 
   .project-gallery {
+    /* einheitlicher Abstand zwischen Rows und zum Rand */
     gap: 12px;
     margin-top: 16px;
+    padding: 0 var(--edge);
   }
 
   .project-row-double {
@@ -729,7 +734,7 @@ body.ai-page .side-dock nav a:hover {
   gap: 120px;
 }
 
-/* Haus-Hero-Container: Box innen unten links */
+/* Haus-Hero-Container */
 .wid-house-hero {
   position: relative;
 }
@@ -756,7 +761,7 @@ body.ai-page .side-dock nav a:hover {
   background: transparent;
 }
 
-/* Info-Box im Haus-Bild: ohne Schatten, leicht eingerückt */
+/* Info-Box im Haus-Bild (Desktop): ohne Schatten, leicht eingerückt */
 .wid-house-info-card {
   box-shadow: none;
   background: rgba(255, 255, 255, 0.96);
@@ -764,58 +769,25 @@ body.ai-page .side-dock nav a:hover {
   bottom: 20px;
 }
 
-/* Haus 1 – etwas höher */
-.wid-house-info-card-1 {
-  bottom: 18px;
-}
-
-/* Haus 2 – etwas höher & weiter rechts */
-.wid-house-info-card-2 {
-  left: 485px;
-  bottom: 17px;
-}
-
-/* Haus 3 – weiter rechts */
-.wid-house-info-card-3 {
-  left: 487px;
-  bottom: 17px;
-}
-
-/* Haus 4 – weiter rechts */
-.wid-house-info-card-4 {
-  left: 487px;
-  bottom: 17px;
-}
-
-/* Haus 5 – weiter rechts */
-.wid-house-info-card-5 {
-  left: 438px;
-  bottom: 17px;
-}
-
-/* Haus 8 – weiter rechts */
-.wid-house-info-card-8 {
-  bottom: 19px;
-}
-
-/* Haus 6 – weiter rechts */
-.wid-house-info-card-6 {
-  bottom: 19px;
-}
-
-/* Haus 9 – etwas höher & weiter rechts */
-.wid-house-info-card-9 {
-  left: 438px;
-  bottom: 17px;
-}
+/* Haus-spezifische Feintuning-Klassen (Desktop) */
+.wid-house-info-card-1 { bottom: 18px; }
+.wid-house-info-card-2 { left: 485px; bottom: 17px; }
+.wid-house-info-card-3 { left: 487px; bottom: 17px; }
+.wid-house-info-card-4 { left: 487px; bottom: 17px; }
+.wid-house-info-card-5 { left: 438px; bottom: 17px; }
+.wid-house-info-card-6 { bottom: 19px; }
+.wid-house-info-card-8 { bottom: 19px; }
+.wid-house-info-card-9 { left: 438px; bottom: 17px; }
 
 /* Mobile THE WID – Haus-Tabs & Detail */
 
 @media (max-width: 780px) {
   .wid-houses {
     padding: 0 12px;
+    /* Abstand zwischen THE-WID-Textbox und Häuser-Zeile → hier anpassen */
     margin-top: 16px;
-    gap: 18px;
+    /* Abstand zwischen Tabs und Haus-Hero → hier anpassen */
+    gap: 12px;
   }
 
   /* 3 Häuser pro Zeile, 3x3-Raster, mittig */
@@ -831,6 +803,11 @@ body.ai-page .side-dock nav a:hover {
     padding-bottom: 0;
   }
 
+  /* Haus-Hero auf gleiche Breite wie Rest bringen */
+  .wid-house-hero {
+    margin: 0 var(--edge);
+  }
+
   .wid-house-hero-media {
     max-height: calc(100vh - 140px);
   }
@@ -844,19 +821,20 @@ body.ai-page .side-dock nav a:hover {
     gap: 24px;
   }
 
-  /* Row-Bilder untereinander, mit einheitlichen Abständen */
+  /* Row-Bilder untereinander, mit einheitlichen Abständen und Rand */
   .wid-house-detail .project-gallery {
     margin-top: 12px;
     gap: 12px;
+    padding: 0;
   }
 
-  /* Textbox im Haus-Hero: direkt unter dem Bild, ohne absolutes Positionieren */
+  /* Textbox vom Haus-Hero: direkt unter dem Bild (Abstand → margin-top) */
   .wid-house-info-card {
     position: static;
     left: auto;
     bottom: auto;
     max-width: none;
-    margin-top: 6px;
+    margin-top: 4px; /* kleiner = dichter unter dem Hero */
     padding: 10px 12px 10px;
   }
 }
@@ -1012,8 +990,9 @@ body.ai-page .side-dock nav a:hover {
     justify-content: center;
     align-items: center;
     gap: 6px;
-    margin-top: 8px;
-    margin-bottom: 6px;
+    /* Abstand zwischen Bild und Punkten → hier anpassen */
+    margin-top: 4px;
+    margin-bottom: 2px;
   }
 
   .wid-hero-dot {

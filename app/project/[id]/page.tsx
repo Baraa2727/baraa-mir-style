@@ -591,9 +591,9 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
 
-        // etwas Luft lassen: Tabs sollen nicht am oberen Rand kleben
         const isMobile = window.innerWidth <= 780;
-        const offset = isMobile ? 72 : 120;
+        // << HIER kannst du den Abstand zum oberen Rand manuell anpassen >>
+        const offset = isMobile ? 72 : 110;
 
         window.scrollTo({
           top: scrollTop + rect.top - offset,
@@ -649,6 +649,10 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
     setHeroDirection(null);
     setIsAnimating(false);
   };
+
+  // Dots sollen schon während der Animation auf den neuen Index springen
+  const dotIndex =
+    isAnimating && nextHeroIndex !== null ? nextHeroIndex : currentHeroIndex;
 
   return (
     <main className="project-page">
@@ -740,7 +744,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
                 key={idx}
                 className={
                   "wid-hero-dot" +
-                  (idx === currentHeroIndex ? " wid-hero-dot-active" : "")
+                  (idx === dotIndex ? " wid-hero-dot-active" : "")
                 }
               />
             ))}
@@ -806,6 +810,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
 
       {/* Haus-Tabs + Haus-Content */}
       <section className="wid-houses">
+        {/* Anker direkt auf der Häuserzeile */}
         <div id="wid-houses-anchor" className="wid-houses-tabs">
           {houses.map((house) => (
             <button
@@ -836,7 +841,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
               />
             </div>
 
-            {/* Textbox im Haus-Bild / Mobile darunter */}
+            {/* Textbox im Haus-Hero / Mobile darunter */}
             <div
               className={`project-info-card wid-house-info-card wid-house-info-card-${activeHouse.id}`}
             >
