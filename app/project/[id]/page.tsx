@@ -598,7 +598,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
 
-        const offset = 80; // Abstand nach oben
+        const offset = 0; // direkt an der Häuserzeile landen
 
         window.scrollTo({
           top: scrollTop + rect.top - offset,
@@ -736,6 +736,21 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
             })}
           </div>
         </div>
+
+        {/* Swipe-Indikator-Punkte */}
+        {heroImages.length > 1 && (
+          <div className="wid-hero-dots">
+            {heroImages.map((_, idx) => (
+              <span
+                key={idx}
+                className={
+                  "wid-hero-dot" +
+                  (idx === currentHeroIndex ? " wid-hero-dot-active" : "")
+                }
+              />
+            ))}
+          </div>
+        )}
 
         {showHeroArrows && (
           <>
@@ -927,3 +942,4 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
     </main>
   );
 }
+:contentReference[oaicite:0]{index=0}
