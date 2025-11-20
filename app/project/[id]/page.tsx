@@ -41,6 +41,9 @@ type House = {
   website?: string | string[];
 };
 
+const THEWID_INTRO = `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`;
+
 const THEWID_PROJECT: {
   id: string;
   title: string;
@@ -68,8 +71,7 @@ const THEWID_PROJECT: {
     "/media/thewid/hero/hero9.jpg",
     "/media/thewid/hero/hero10.jpg",
   ],
-  intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+  intro: THEWID_INTRO,
   website: ["https://www.alfons-alfreda.com", "https://www.thewid.cologne"],
   houses: [
     {
@@ -77,8 +79,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 1",
       title: "Haus 1",
       client: "Phase 5",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus1/building1.jpg",
       rows: [
@@ -91,8 +92,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 2",
       title: "Haus 2",
       client: "Phase 5",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus2/building2.jpg",
       rows: [
@@ -114,8 +114,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 3",
       title: "Haus 3",
       client: "Phase 5 + Urban Agency",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de", "https://www.urban-agency.com"],
       hero: "/media/thewid/haus3/building3.jpg",
       rows: [
@@ -137,8 +136,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 4",
       title: "Haus 4",
       client: "Phase 5 + Urbanlust",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de", "https://www.urbanlust.de"],
       hero: "/media/thewid/haus4/building4.jpg",
       rows: [
@@ -160,8 +158,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 5",
       title: "Haus 5",
       client: "Damrau Kusserow",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.damrau-kusserow.de"],
       hero: "/media/thewid/haus5/building5.jpg",
       rows: [
@@ -183,8 +180,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 6",
       title: "Haus 6",
       client: "Phase 5 + Urban Agency",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de", "https://www.urban-agency.com"],
       hero: "/media/thewid/haus6/building6.jpg",
       rows: [
@@ -214,8 +210,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 7",
       title: "Haus 7",
       client: "urbanlust",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.urbanlust.de"],
       hero: "/media/thewid/haus7/building7.jpg",
       rows: [
@@ -234,8 +229,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 8",
       title: "Haus 8",
       client: "Phase 5",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus8/building8.jpg",
       rows: [
@@ -254,8 +248,7 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       label: "Haus 9+10",
       title: "Haus 9+10",
       client: "Phase 5",
-      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
-Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      intro: THEWID_INTRO,
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus9/building9.jpg",
       rows: [
@@ -287,7 +280,7 @@ const NEXT_PROJECT_MAP: Record<string, string> = {
   "ext-05": "ext-10",
   "ext-10": "ext-08",
   "ext-08": "ext-12",
-  "ext-12": "ext-16", // ext-16 & ext-28 = gleiche Seite
+  "ext-12": "ext-16",
   "ext-16": "ext-17",
   "ext-17": "ext-19",
   "ext-19": "ext-20",
@@ -598,10 +591,9 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
 
-        // auf Mobile berücksichtigen wir die fixe Mobile-Header-Höhe,
-        // damit die Häuserzeile exakt unter der Leiste landet
+        // etwas Luft lassen: Tabs sollen nicht am oberen Rand kleben
         const isMobile = window.innerWidth <= 780;
-        const offset = isMobile ? 64 : 0;
+        const offset = isMobile ? 72 : 120;
 
         window.scrollTo({
           top: scrollTop + rect.top - offset,
@@ -740,7 +732,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
           </div>
         </div>
 
-        {/* Swipe-Indikator-Punkte */}
+        {/* Swipe-Indikator-Punkte (nur Mobile sichtbar durch CSS) */}
         {heroImages.length > 1 && (
           <div className="wid-hero-dots">
             {heroImages.map((_, idx) => (
@@ -813,8 +805,8 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
       </section>
 
       {/* Haus-Tabs + Haus-Content */}
-      <section id="wid-houses-anchor" className="wid-houses">
-        <div className="wid-houses-tabs">
+      <section className="wid-houses">
+        <div id="wid-houses-anchor" className="wid-houses-tabs">
           {houses.map((house) => (
             <button
               key={house.id}
@@ -844,7 +836,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
               />
             </div>
 
-            {/* Textbox im Haus-Bild unten links */}
+            {/* Textbox im Haus-Bild / Mobile darunter */}
             <div
               className={`project-info-card wid-house-info-card wid-house-info-card-${activeHouse.id}`}
             >
