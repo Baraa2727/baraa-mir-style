@@ -598,7 +598,10 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
 
-        const offset = 0; // direkt an der Häuserzeile landen
+        // auf Mobile berücksichtigen wir die fixe Mobile-Header-Höhe,
+        // damit die Häuserzeile exakt unter der Leiste landet
+        const isMobile = window.innerWidth <= 780;
+        const offset = isMobile ? 64 : 0;
 
         window.scrollTo({
           top: scrollTop + rect.top - offset,
@@ -841,7 +844,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
               />
             </div>
 
-            {/* Textbox im Hero-Bild unten links */}
+            {/* Textbox im Haus-Bild unten links */}
             <div
               className={`project-info-card wid-house-info-card wid-house-info-card-${activeHouse.id}`}
             >

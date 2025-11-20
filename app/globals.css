@@ -541,7 +541,7 @@ body.ai-page .side-dock nav a:hover {
   }
 
   .project-gallery {
-    gap: 28px;
+    gap: 24px;
   }
 
   .project-row-double {
@@ -699,8 +699,8 @@ body.ai-page .side-dock nav a:hover {
 @media (max-width: 780px) {
   .wid-houses {
     padding: 0 12px;
-    margin-top: 32px;
-    gap: 24px;
+    margin-top: 24px;
+    gap: 20px;
   }
 
   /* 3 Häuser pro Zeile, 3x3-Raster, mittig */
@@ -741,8 +741,8 @@ body.ai-page .side-dock nav a:hover {
     left: auto;
     bottom: auto;
     max-width: none;
-    margin-top: 12px;
-    padding: 14px 12px 12px;
+    margin-top: 6px;
+    padding: 10px 12px 10px;
   }
 }
 /* Fade-In Animation für Haus-Wechsel – nur Opacity */
@@ -752,6 +752,26 @@ body.ai-page .side-dock nav a:hover {
 }
 
 /* ===== THE WID – Hero-Slider mit zwei Layern (Slide + Fade) ===== */
+
+/* Swipe-Indikator-Punkte – standardmäßig ausgeblendet (nur Mobile sichtbar) */
+.wid-hero-dots {
+  display: none;
+}
+
+/* einzelne Punkte */
+.wid-hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  opacity: 0.85;
+}
+
+/* aktiver Punkt */
+.wid-hero-dot-active {
+  background: #00AEEF;
+  opacity: 1;
+}
 
 .wid-hero-slider {
   position: relative;
@@ -850,6 +870,35 @@ body.ai-page .side-dock nav a:hover {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+/* Mobile-Spezial: THE-WID-Hero im Querformat + Punkte sichtbar */
+@media (max-width: 780px) {
+  /* Haupt-Hero-Bilder von THE WID: wie Haus-Heros behandeln */
+  .wid-hero-slide-layer .project-img {
+    object-fit: contain;
+    max-height: calc(100vh - 140px);
+  }
+
+  /* Punkte unter dem Haupt-Hero nur auf Mobile anzeigen */
+  .wid-hero-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 3;
+  }
+
+  .wid-hero-dot {
+    transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .wid-hero-dot-active {
+    transform: scale(1.15);
   }
 }
 
