@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import projectsData from "../../../content/projects.json";
 
 type ProjectRow = {
@@ -16,7 +17,7 @@ type Project = {
   hero: string;
   heroImages?: string[];
   intro?: string;
-  website?: string;
+  website?: string | string[];
   rows: ProjectRow[];
 };
 
@@ -37,7 +38,7 @@ type House = {
   title?: string;
   client?: string;
   intro?: string;
-  website?: string;
+  website?: string | string[];
 };
 
 const THEWID_PROJECT: {
@@ -47,7 +48,7 @@ const THEWID_PROJECT: {
   hero: string;
   heroImages?: string[];
   intro?: string;
-  website?: string;
+  website?: string | string[];
   houses: House[];
 } = {
   id: "thewid",
@@ -67,36 +68,32 @@ const THEWID_PROJECT: {
     "/media/thewid/hero/hero9.jpg",
     "/media/thewid/hero/hero10.jpg",
   ],
-  intro:
-    `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+  intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
 Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
-  website: "https://www.thewid.cologne",
+  website: ["https://www.alfons-alfreda.com", "https://www.thewid.cologne"],
   houses: [
     {
       id: "1",
       label: "Haus 1",
       title: "Haus 1",
-      client: "Alfons & Alfreda",
-      intro:
-        `Inspired by the historic 1908 gasworks, this building combines a distinctive setting with modern design. Its intimate location suits single-tenant use, with flexible floor layouts ideal for offices or alternative functions.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "Phase 5",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus1/building1.jpg",
       rows: [
         { layout: "single", images: ["/media/thewid/haus1/entrance1.jpg"] },
-        {
-          layout: "single",
-          images: ["/media/thewid/haus1/building1-1.jpg"],
-        },
+        { layout: "single", images: ["/media/thewid/haus1/building1-1.jpg"] },
       ],
     },
     {
       id: "2",
       label: "Haus 2",
       title: "Haus 2",
-      client: "Alfons & Alfreda",
-      intro:
-        `A pair of buildings designed to enhance both architecture and urban life. A distinctive tower marks the western gateway, while the space between the structures forms a lively plaza with dining, public uses, and room for social interaction.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "Phase 5",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus2/building2.jpg",
       rows: [
         {
@@ -116,10 +113,10 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "3",
       label: "Haus 3",
       title: "Haus 3",
-      client: "Phase5 + Urban Agency",
-      intro:
-        `A distinctive tower shapes the building’s identity, blending subtle brick heritage with modern character. Crafted details add quality, while the green rear facade creates a contemporary contrast.`,
-      website: "https://www.phase5.de",
+      client: "Phase 5 + Urban Agency",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de", "https://www.urban-agency.com"],
       hero: "/media/thewid/haus3/building3.jpg",
       rows: [
         {
@@ -139,10 +136,10 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "4",
       label: "Haus 4",
       title: "Haus 4",
-      client: "Alfons & Alfreda",
-      intro:
-        `A brick base roots the design in the district’s history, while modern office floors rise above. One building features Cologne-toned brick and a bold pattern, the other contrasts with a grey base and shimmering steel panels.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "Phase 5 + Urbanlust",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de", "https://www.urbanlust.de"],
       hero: "/media/thewid/haus4/building4.jpg",
       rows: [
         {
@@ -162,17 +159,17 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "5",
       label: "Haus 5",
       title: "Haus 5",
-      client: "Alfons & Alfreda",
-      intro:
-        `A surrounding trapezoid arch structures the base, framing windows, doors, and the garage entrance. Above it sits a ceramic curtain façade, creating a functional and visually striking building that marks the gateway to the THE WID district.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "Damrau Kusserow",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.damrau-kusserow.de"],
       hero: "/media/thewid/haus5/building5.jpg",
       rows: [
         {
           layout: "double",
           images: [
             "/media/thewid/haus5/entrance5.jpg",
-            "/media/thewid/haus5/building5-3.jpg",
+            "/media/thewid/haus5/building5-2.jpg",
           ],
         },
         {
@@ -185,10 +182,10 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "6",
       label: "Haus 6",
       title: "Haus 6",
-      client: "Urban Agency",
-      intro:
-        `Arches define the character of THE WID. One building reinterprets the arcade with a memorable façade, while the second offers a calmer counterpart with clear structure and generous windows. A third extends the motif toward Widdersdorfer Straße, giving the ensemble presence and cohesion.`,
-      website: "https://www.urban-agency.com",
+      client: "Phase 5 + Urban Agency",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de", "https://www.urban-agency.com"],
       hero: "/media/thewid/haus6/building6.jpg",
       rows: [
         {
@@ -216,10 +213,10 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "7",
       label: "Haus 7",
       title: "Haus 7",
-      client: "Alfons & Alfreda",
-      intro:
-        `Clear structure and strong identity define this building at the western square. Its brick façade plays with light and shadow, while a green roof adds softness to the urban scene. A confident yet harmonious addition to the district.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "urbanlust",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.urbanlust.de"],
       hero: "/media/thewid/haus7/building7.jpg",
       rows: [
         {
@@ -236,10 +233,10 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "8",
       label: "Haus 8",
       title: "Haus 8",
-      client: "Alfons & Alfreda",
-      intro:
-        `Marking the gateway to the district, this building bridges past and present. Evolved from existing structures and expanded with a new hotel, it combines bold arcades, vertical greenery, and clear brick surfaces to create a strong entry on the campus’s west side.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "Phase 5",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus8/building8.jpg",
       rows: [
         {
@@ -256,10 +253,10 @@ Located in one of Germany’s most dynamic economic hubs, it introduces spacious
       id: "9",
       label: "Haus 9+10",
       title: "Haus 9+10",
-      client: "Alfons & Alfreda",
-      intro:
-        `Two buildings shape the heart of the district: one forms a strong ensemble with varied façades, arcades, and terraces that connect past and present, while the other preserves the historic gasworks as a listed structure, soon revived as an event venue with its own gastronomy.`,
-      website: "https://www.alfons-alfreda.de",
+      client: "Phase 5",
+      intro: `A new vision for Cologne’s Weststadt, featuring ten distinct buildings shaped for an urban future.
+Located in one of Germany’s most dynamic economic hubs, it introduces spacious, smart work environments that highlight what contemporary architecture can achieve.`,
+      website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus9/building9.jpg",
       rows: [
         {
@@ -377,7 +374,7 @@ type PageProps = {
 export default function ProjectPage({ params, searchParams }: PageProps) {
   useProjectImageReveal();
 
-  // Spezialfall: /project/thewid
+  // Spezial: THE WID
   if (params.id === "thewid") {
     const houseParam = searchParams?.house;
     const initialHouseId =
@@ -386,7 +383,7 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
     return <TheWidPage initialHouseId={initialHouseId} />;
   }
 
-  // Normale Projektseite aus projects.json
+  // Normale Projekte
   const project = projects.find((p) => p.id === params.id);
   const [heroIndex, setHeroIndex] = useState(0);
 
@@ -405,9 +402,11 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
 
   const showHeroArrows = heroImages.length > 1;
 
-  const websiteLabel = project.website
-    ?.replace(/^https?:\/\//, "")
-    .replace(/^www\./, "");
+  const projectWebsites = project.website
+    ? Array.isArray(project.website)
+      ? project.website
+      : [project.website]
+    : [];
 
   const nextProjectId = NEXT_PROJECT_MAP[project.id];
   const nextProject = nextProjectId
@@ -424,7 +423,7 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
 
   return (
     <main className="project-page">
-      {/* Hero mit einfachem Slider */}
+      {/* Hero mit Slider */}
       <section className="project-hero">
         <div className="project-hero-media">
           <Image
@@ -465,38 +464,34 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
 
           {project.intro && <p className="project-intro">{project.intro}</p>}
 
-{Array.isArray(project.website) ? (
-  project.website.map((url) => {
-    const clean = url.replace(/^https?:\/\//, "").replace(/^www\./, "");
-    return (
-      <a
-        key={url}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-link"
-        style={{ marginRight: "12px", display: "inline-block" }}
-      >
-        {clean}
-      </a>
-    );
-  })
-) : project.website ? (
-  <a
-    href={project.website}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="project-link"
-  >
-    {project.website
-      .replace(/^https?:\/\//, "")
-      .replace(/^www\./, "")}
-  </a>
-) : null}
+          {projectWebsites.length > 0 && (
+            <>
+              {projectWebsites.map((url) => {
+                const clean = url
+                  .replace(/^https?:\/\//, "")
+                  .replace(/^www\./, "");
+                return (
+                  <a
+                    key={url}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                    style={{
+                      marginRight: "12px",
+                      display: "inline-block",
+                    }}
+                  >
+                    {clean}
+                  </a>
+                );
+              })}
+            </>
+          )}
         </div>
       </section>
 
-      {/* Galerie unten */}
+      {/* Rows / Galerie */}
       <section className="project-gallery">
         {project.rows.map((row, idx) => (
           <div
@@ -529,13 +524,24 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
 
 // ================== THE WID Spezial-Komponente ==================
 
-function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
+type TheWidPageProps = {
+  initialHouseId?: string;
+};
+
+function TheWidPage({ initialHouseId }: TheWidPageProps) {
   useProjectImageReveal();
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   const houses = THEWID_PROJECT.houses;
   const fallbackHouse = houses[0];
 
-  // 2-Layer-Slider nur für THE-WID-Haupt-Hero oben
+  // Swipe-Refs für den THE-WID-Haupt-Hero (nur Touch)
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef<number>(0);
+
+  // Hero-Slider oben (THE WID)
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [nextHeroIndex, setNextHeroIndex] = useState<number | null>(null);
   const [heroDirection, setHeroDirection] = useState<"next" | "prev" | null>(
@@ -558,31 +564,65 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
   const activeHouse =
     houses.find((h) => h.id === activeHouseId) ?? fallbackHouse;
 
-  // Text-Box pro Haus (mit Fallback aufs Hauptprojekt)
   const activeHouseTitle = activeHouse.title ?? activeHouse.label;
   const activeHouseClient = activeHouse.client ?? THEWID_PROJECT.client;
   const activeHouseIntro = activeHouse.intro ?? THEWID_PROJECT.intro;
   const activeHouseWebsite = activeHouse.website ?? THEWID_PROJECT.website;
 
-  const websiteLabel = THEWID_PROJECT.website
-    ?.replace(/^https?:\/\//, "")
-    .replace(/^www\./, "");
+  const activeHouseWebsites = activeHouseWebsite
+    ? Array.isArray(activeHouseWebsite)
+      ? activeHouseWebsite
+      : [activeHouseWebsite]
+    : [];
 
-  const activeHouseWebsiteLabel = activeHouseWebsite
-    ?.replace(/^https?:\/\//, "")
-    .replace(/^www\./, "");
+  const projectWebsites = THEWID_PROJECT.website
+    ? Array.isArray(THEWID_PROJECT.website)
+      ? THEWID_PROJECT.website
+      : [THEWID_PROJECT.website]
+    : [];
+
+  const handleSetHouse = (houseId: string, scrollToTabs: boolean) => {
+    setActiveHouseId(houseId);
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      params.set("house", houseId);
+      const url = `${pathname}?${params.toString()}`;
+      router.replace(url, { scroll: false });
+    }
+
+    if (scrollToTabs) {
+      const el = document.getElementById("wid-houses-anchor");
+      if (el && typeof window !== "undefined") {
+        const rect = el.getBoundingClientRect();
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        const offset = 80; // Abstand nach oben
+
+        window.scrollTo({
+          top: scrollTop + rect.top - offset,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
 
   const nextHouseConfig = NEXT_HOUSE_MAP[activeHouse.id];
   let nextHouseHref: string | null = null;
   let nextHouseLabel: string | null = null;
+  let nextHouseId: string | null = null;
+  let nextIsProject = false;
 
   if (nextHouseConfig?.type === "house") {
     const targetHouse = houses.find((h) => h.id === nextHouseConfig.id);
     if (targetHouse) {
+      nextHouseId = nextHouseConfig.id;
       nextHouseHref = `/project/thewid?house=${nextHouseConfig.id}`;
       nextHouseLabel = nextHouseConfig.label ?? targetHouse.label;
     }
   } else if (nextHouseConfig?.type === "project") {
+    nextIsProject = true;
     const targetProject = projects.find((p) => p.id === nextHouseConfig.id);
     if (targetProject) {
       nextHouseHref = `/project/${nextHouseConfig.id}`;
@@ -617,10 +657,40 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
 
   return (
     <main className="project-page">
-      {/* Globaler THE-WID Hero (mit Slider) */}
+      {/* Globaler THE-WID Hero (Slider) */}
       <section className="project-hero">
         <div className="project-hero-media">
-          <div className="wid-hero-slider">
+          <div
+            className="wid-hero-slider"
+            onTouchStart={(e) => {
+              if (e.touches.length === 1) {
+                touchStartX.current = e.touches[0].clientX;
+                touchDeltaX.current = 0;
+              }
+            }}
+            onTouchMove={(e) => {
+              if (touchStartX.current !== null && e.touches.length === 1) {
+                const currentX = e.touches[0].clientX;
+                touchDeltaX.current = currentX - touchStartX.current;
+              }
+            }}
+            onTouchEnd={() => {
+              if (touchStartX.current !== null) {
+                const delta = touchDeltaX.current;
+                const threshold = 50;
+
+                if (Math.abs(delta) > threshold) {
+                  if (delta < 0) {
+                    startSlide("next");
+                  } else {
+                    startSlide("prev");
+                  }
+                }
+              }
+              touchStartX.current = null;
+              touchDeltaX.current = 0;
+            }}
+          >
             {heroImages.map((src, idx) => {
               const isCurrent = idx === currentHeroIndex;
               const isNext = idx === nextHeroIndex;
@@ -697,27 +767,41 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
             <p className="project-intro">{THEWID_PROJECT.intro}</p>
           )}
 
-          {THEWID_PROJECT.website && websiteLabel && (
-            <a
-              href={THEWID_PROJECT.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              {websiteLabel}
-            </a>
+          {projectWebsites.length > 0 && (
+            <>
+              {projectWebsites.map((url) => {
+                const clean = url
+                  .replace(/^https?:\/\//, "")
+                  .replace(/^www\./, "");
+                return (
+                  <a
+                    key={url}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                    style={{
+                      marginRight: "12px",
+                      display: "inline-block",
+                    }}
+                  >
+                    {clean}
+                  </a>
+                );
+              })}
+            </>
           )}
         </div>
       </section>
 
       {/* Haus-Tabs + Haus-Content */}
-      <section className="wid-houses">
+      <section id="wid-houses-anchor" className="wid-houses">
         <div className="wid-houses-tabs">
           {houses.map((house) => (
             <button
               key={house.id}
               type="button"
-              onClick={() => setActiveHouseId(house.id)}
+              onClick={() => handleSetHouse(house.id, false)}
               className={
                 "wid-house-tab" +
                 (house.id === activeHouse.id ? " wid-house-tab-active" : "")
@@ -728,7 +812,7 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
           ))}
         </div>
 
-        {/* Aktives Haus: eigener Hero + Galerie */}
+        {/* Aktives Haus */}
         <section key={activeHouse.id} className="wid-house-detail">
           <div className="wid-house-hero">
             <div className="project-hero-media wid-house-hero-media">
@@ -742,10 +826,10 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
               />
             </div>
 
-            {/* Info-Box IM Hausbild, unten links, ohne Schatten */}
-           <div
+            {/* Textbox im Hero-Bild unten links */}
+            <div
               className={`project-info-card wid-house-info-card wid-house-info-card-${activeHouse.id}`}
-           >
+            >
               <h1 className="project-title">{activeHouseTitle}</h1>
 
               {activeHouseClient && (
@@ -756,37 +840,34 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
                 <p className="project-intro">{activeHouseIntro}</p>
               )}
 
-              {Array.isArray(activeHouseWebsite) ? (
-  activeHouseWebsite.map((url) => {
-    const clean = url.replace(/^https?:\/\//, "").replace(/^www\./, "");
-    return (
-      <a
-        key={url}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-link"
-        style={{ marginRight: "12px", display: "inline-block" }}
-      >
-        {clean}
-      </a>
-    );
-  })
-) : activeHouseWebsite ? (
-  <a
-    href={activeHouseWebsite}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="project-link"
-  >
-    {activeHouseWebsite
-      .replace(/^https?:\/\//, "")
-      .replace(/^www\./, "")}
-  </a>
-) : null}
+              {activeHouseWebsites.length > 0 && (
+                <>
+                  {activeHouseWebsites.map((url) => {
+                    const clean = url
+                      .replace(/^https?:\/\//, "")
+                      .replace(/^www\./, "");
+                    return (
+                      <a
+                        key={url}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link"
+                        style={{
+                          marginRight: "12px",
+                          display: "inline-block",
+                        }}
+                      >
+                        {clean}
+                      </a>
+                    );
+                  })}
+                </>
+              )}
             </div>
           </div>
 
+          {/* Rows/Bilder unter dem Haus-Hero */}
           <section className="project-gallery">
             {activeHouse.rows.map((row, idx) => (
               <div
@@ -808,10 +889,28 @@ function TheWidPage({ initialHouseId }: { initialHouseId?: string }) {
 
           {/* Weiter zum nächsten Haus / Projekt */}
           {nextHouseHref && nextHouseLabel && (
-            <a href={nextHouseHref} className="project-next-link">
-              <span className="project-next-arrow" aria-hidden="true" />
-              <span className="project-next-label">{nextHouseLabel}</span>
-            </a>
+            nextIsProject ? (
+              // Bei Haus 9: ganz normal zum nächsten Projekt
+              <a href={nextHouseHref} className="project-next-link">
+                <span className="project-next-arrow" aria-hidden="true" />
+                <span className="project-next-label">{nextHouseLabel}</span>
+              </a>
+            ) : (
+              // Bei Haus 1–8: Haus wechseln + zu den Tabs scrollen
+              <a
+                href={nextHouseHref}
+                className="project-next-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (nextHouseId) {
+                    handleSetHouse(nextHouseId, true);
+                  }
+                }}
+              >
+                <span className="project-next-arrow" aria-hidden="true" />
+                <span className="project-next-label">{nextHouseLabel}</span>
+              </a>
+            )
           )}
         </section>
       </section>

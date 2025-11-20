@@ -164,6 +164,10 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
     padding-left: var(--edge);
     padding-right: var(--edge);
   }
+  html,
+  body {
+    overflow-x: hidden;
+  }
 
   .label-title { font-size: clamp(16px, 4.4vw, 22px); }
 
@@ -524,8 +528,8 @@ body.ai-page .side-dock nav a:hover {
   }
 
   .project-hero-media {
-    height: calc(100vh - 100px);
-    min-height: 360px;
+    height: min(60vh, 420px);
+    min-height: 260px;
   }
 
   .project-info-card {
@@ -553,6 +557,7 @@ body.ai-page .side-dock nav a:hover {
     width: 32px;
     height: 32px;
     font-size: 18px;
+    display: none;
   }
 
   .project-hero-arrow-left {
@@ -694,16 +699,21 @@ body.ai-page .side-dock nav a:hover {
 @media (max-width: 780px) {
   .wid-houses {
     padding: 0 12px;
+    margin-top: 32px;
     gap: 24px;
   }
 
+  /* 3 Häuser pro Zeile, 3x3-Raster, mittig */
   .wid-houses-tabs {
-    justify-content: space-between;
-    gap: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 8px;
+    justify-items: center;
   }
 
   .wid-house-tab {
-    font-size: 13px;
+    font-size: 12px;
+    padding-bottom: 0;
   }
 
   .wid-house-hero-media {
@@ -713,8 +723,28 @@ body.ai-page .side-dock nav a:hover {
   .wid-house-hero-media .project-img {
     max-height: calc(100vh - 140px);
   }
-}
 
+  /* Haus-Detail: weniger Abstand oben/unten */
+  .wid-house-detail {
+    gap: 24px;
+  }
+
+  /* Row-Bilder untereinander, mit kleineren Abständen */
+  .wid-house-detail .project-gallery {
+    margin-top: 12px;
+    gap: 24px;
+  }
+
+  /* Textbox im Haus-Hero: direkt unter dem Bild, ohne absolutes Positionieren */
+  .wid-house-info-card {
+    position: static;
+    left: auto;
+    bottom: auto;
+    max-width: none;
+    margin-top: 12px;
+    padding: 14px 12px 12px;
+  }
+}
 /* Fade-In Animation für Haus-Wechsel – nur Opacity */
 @keyframes widFadeIn {
   from { opacity: 0; }
