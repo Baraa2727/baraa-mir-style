@@ -346,7 +346,7 @@ a:hover {
   }
 
   .site {
-    /* Abstand zwischen mobile Header und Inhalt (kannst du hier anpassen) */
+    /* Abstand zwischen mobile Header und Inhalt (Logo) → hier anpassen */
     padding-top: 56px !important;
   }
 
@@ -629,8 +629,8 @@ body.ai-page .side-dock nav a:hover {
 
 @media (max-width: 780px) {
   .project-page {
-    /* wie nah kommt der Inhalt unter das Logo → hier anpassen */
-    padding: 4px 0 60px;
+    /* wie nah kommt der Inhalt unter das Logo → hier kannst du noch spielen */
+    padding: 0 0 60px;
   }
 
   .project-hero {
@@ -683,7 +683,7 @@ body.ai-page .side-dock nav a:hover {
   }
 }
 
-/* ===== THE WID – Haus-Tabs ===== */
+/* ===== THE WID – Haus-Tabs (Desktop) ===== */
 
 .wid-houses {
   padding: 0 var(--edge);
@@ -780,21 +780,20 @@ body.ai-page .side-dock nav a:hover {
 .wid-house-info-card-9 { left: 438px; bottom: 17px; }
 
 /* Mobile THE WID – Haus-Tabs & Detail */
-
 @media (max-width: 780px) {
   .wid-houses {
-    padding: 0 12px;
-    /* Abstand zwischen THE-WID-Textbox und Häuser-Zeile → hier anpassen */
-    margin-top: 16px;
-    /* Abstand zwischen Tabs und Haus-Hero → hier anpassen */
-    gap: 12px;
+    padding: 0 var(--edge);
+    /* Tabs näher an THE-WID-Textbox */
+    margin-top: 12px;
+    /* Tabs näher an Haus-Hero */
+    gap: 8px;
   }
 
-  /* 3 Häuser pro Zeile, 3x3-Raster, mittig */
+  /* 3 Häuser pro Zeile, mittig */
   .wid-houses-tabs {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px 8px;
+    gap: 8px 8px;
     justify-items: center;
   }
 
@@ -803,12 +802,15 @@ body.ai-page .side-dock nav a:hover {
     padding-bottom: 0;
   }
 
-  /* Haus-Hero auf gleiche Breite wie Rest bringen */
+  /* Haus-Hero */
   .wid-house-hero {
-    margin: 0 var(--edge);
+    margin: 0;
+    padding: 0;
   }
 
   .wid-house-hero-media {
+    margin: 0;
+    padding: 0;
     max-height: calc(100vh - 140px);
   }
 
@@ -816,28 +818,52 @@ body.ai-page .side-dock nav a:hover {
     max-height: calc(100vh - 140px);
   }
 
-  /* Haus-Detail: weniger Abstand oben/unten */
+  /* Haus-Detail: Hero + Box + Galerie */
   .wid-house-detail {
-    gap: 24px;
-  }
-
-  /* Row-Bilder untereinander, mit einheitlichen Abständen und Rand */
-  .wid-house-detail .project-gallery {
-    margin-top: 12px;
-    gap: 12px;
+    margin: 0;
     padding: 0;
+    gap: 12px;
   }
 
-  /* Textbox vom Haus-Hero: direkt unter dem Bild (Abstand → margin-top) */
+  /* Textbox direkt unter dem Haus-Hero */
   .wid-house-info-card {
     position: static;
     left: auto;
     bottom: auto;
     max-width: none;
-    margin-top: 4px; /* kleiner = dichter unter dem Hero */
-    padding: 10px 12px 10px;
+    margin-top: 4px;       /* kleiner = näher am Bild */
+    padding: 6px 0 8px;
+  }
+
+  .wid-house-info-card .project-title {
+    margin: 0 0 2px;
+  }
+
+  .wid-house-info-card .project-client {
+    margin: 0 0 4px;
+  }
+
+  .wid-house-info-card .project-intro {
+    margin: 0;
+  }
+
+  /* Galerie unter dem Haus-Hero */
+  .wid-house-detail .project-gallery {
+    margin-top: 8px;
+    padding: 0;
+    gap: 12px;             /* Abstand zwischen den Row-Bildern */
+  }
+
+  .wid-house-detail .project-gallery .project-row {
+    margin: 0;
+    padding: 0;
+  }
+
+  .wid-house-detail .project-gallery .project-image {
+    margin: 0;
   }
 }
+
 
 /* Fade-In Animation für Haus-Wechsel – nur Opacity */
 
@@ -991,7 +1017,7 @@ body.ai-page .side-dock nav a:hover {
     align-items: center;
     gap: 6px;
     /* Abstand zwischen Bild und Punkten → hier anpassen */
-    margin-top: 4px;
+    margin-top: -75px;
     margin-bottom: 2px;
   }
 
@@ -1051,5 +1077,96 @@ body.ai-page .side-dock nav a:hover {
   to {
     opacity: 1;
     transform: translateX(6px);
+  }
+}
+/* === MOBILE OVERRIDES NUR FÜR PROJEKTSEITEN / THE WID === */
+@media (max-width: 780px) {
+  /* Inhalt näher unter das mobile Logo schieben */
+  .site {
+    padding-top: 48px !important; /* war 56 – gern mit 44/40 spielen */
+  }
+
+  /* Globaler Projekt-Hero (ganz oben auf Projektseiten) */
+  .project-page .project-hero {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Info-Box direkt unter dem Hero-Bild, weniger Luft */
+  .project-page .project-info-card {
+    margin-top: 8px !important;
+    padding: 8px 12px 10px !important;
+  }
+}
+/* === MOBILE OVERRIDES NUR FÜR PROJEKTSEITEN / THE WID === */
+@media (max-width: 780px) {
+  .site {
+    padding-top: 48px !important;
+  }
+
+  .project-page .project-hero {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .project-page .project-info-card {
+    margin-top: 8px !important;
+    padding: 8px 12px 10px !important;
+  }
+}
+
+/* === MOBILE OVERRIDES FÜR THE WID HÄUSER-BEREICH === */
+@media (max-width: 780px) {
+  .project-page #wid-houses-anchor {
+    margin-top: 8px !important;
+  }
+
+  .project-page #wid-houses-anchor .wid-houses-tabs {
+    margin: 0 !important;
+    padding: 0 !important;
+    row-gap: 4px !important;
+  }
+
+  .project-page #wid-houses-anchor .wid-house-tab {
+    font-size: 11px !important;
+    line-height: 1.1 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .project-page #wid-houses-anchor .wid-house-hero {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .project-page #wid-houses-anchor .wid-house-hero-media {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .project-page #wid-houses-anchor .wid-house-info-card {
+    position: static !important;
+    margin-top: 4px !important;
+    padding: 4px 0 8px !important;
+  }
+
+  .project-page #wid-houses-anchor .wid-house-info-card .project-title,
+  .project-page #wid-houses-anchor .wid-house-info-card .project-client,
+  .project-page #wid-houses-anchor .wid-house-info-card .project-intro {
+    margin: 0 !important;
+  }
+
+  .project-page #wid-houses-anchor .project-gallery {
+    margin-top: 8px !important;
+    padding: 0 var(--edge) !important;
+    gap: 12px !important;
+  }
+
+  .project-page #wid-houses-anchor .project-gallery .project-row {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .project-page #wid-houses-anchor .project-gallery .project-image {
+    margin: 0 !important;
   }
 }

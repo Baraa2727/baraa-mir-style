@@ -593,7 +593,7 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
 
         const isMobile = window.innerWidth <= 780;
         // << HIER kannst du den Abstand zum oberen Rand manuell anpassen >>
-        const offset = isMobile ? 72 : 110;
+        const offset = isMobile ? 1000 : 60;
 
         window.scrollTo({
           top: scrollTop + rect.top - offset,
