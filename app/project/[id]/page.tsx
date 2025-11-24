@@ -574,35 +574,36 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
       : [THEWID_PROJECT.website]
     : [];
 
-  const handleSetHouse = (houseId: string, scrollToTabs: boolean) => {
-    setActiveHouseId(houseId);
+const handleSetHouse = (houseId: string, scrollToTabs: boolean) => {
+  setActiveHouseId(houseId);
 
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      params.set("house", houseId);
-      const url = `${pathname}?${params.toString()}`;
-      router.replace(url, { scroll: false });
-    }
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search);
+    params.set("house", houseId);
+    const url = `${pathname}?${params.toString()}`;
+    router.replace(url, { scroll: false });
+  }
+if (scrollToTabs && typeof window !== "undefined") {
+  // Zuverlässigere Mobile-Erkennung über User Agent
+  const isMobile =
+    typeof navigator !== "undefined" &&
+    /Mobi|Android/i.test(navigator.userAgent);
 
-    if (scrollToTabs) {
-      const el = document.getElementById("wid-houses-anchor");
-      if (el && typeof window !== "undefined") {
-        const rect = el.getBoundingClientRect();
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-
-        const isMobile = window.innerWidth <= 780;
-        // << HIER kannst du den Abstand zum oberen Rand manuell anpassen >>
-        const offset = isMobile ? 1000 : 60;
-
-        window.scrollTo({
-          top: scrollTop + rect.top - offset,
-          behavior: "smooth",
-        });
-      }
-    }
-  };
-
+  if (isMobile) {
+    // Handy: einfach ganz nach oben
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  } else {
+    // Desktop: wie bisher bei ~1270px
+    window.scrollTo({
+      top: 1270,
+      behavior: "smooth",
+    });
+  }
+}
+};
   const nextHouseConfig = NEXT_HOUSE_MAP[activeHouse.id];
   let nextHouseHref: string | null = null;
   let nextHouseLabel: string | null = null;
