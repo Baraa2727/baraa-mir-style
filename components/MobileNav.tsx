@@ -75,7 +75,7 @@ export default function MobileNav() {
             display: 'inline-flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            gap: 3,
+            gap: 6,
             border: 'none',
             background: 'transparent',
             padding: 0,

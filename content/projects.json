@@ -45,16 +45,27 @@
     "id": "ext-03",
     "title": "Portal Berlin",
     "client": "terraneo",
-    "hero": "/media/ext-03.jpg",
-    "intro": "",
+    "hero": "/media/projekte/portal/ext-03-01.jpg",
+    "intro": "At a place shaped by urban transformation, this building makes a statement with a sense of history. Its entrance does more than open — it welcomes, guiding visitors from the city’s rhythm into a calm and ordered interior.",
+    "website": ["https://www.terraneo.de", "https://www.portal-berlin.com"],
+
+
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-03.jpg"]
+        "images": ["/media/projekte/portal/ext-03-02.jpg"]
       },
       {
         "layout": "double",
-        "images": ["/media/ext-03.jpg", "/media/ext-03.jpg"]
+        "images": ["/media/projekte/portal/ext-03-03.jpg", "/media/projekte/portal/ext-03-04.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/portal/ext-03-05.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/portal/ext-03-06.jpg"]
       }
     ]
   },

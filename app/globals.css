@@ -581,8 +581,10 @@ body.ai-page .side-dock nav a:hover {
 .project-gallery {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-top: 24px;
+  gap: 200px;
+  margin-top: 200px;
+  margin-bottom: 150px;
+  padding: 0 var(--edge);
 }
 
 /* Desktop-Rows */
@@ -597,7 +599,7 @@ body.ai-page .side-dock nav a:hover {
 .project-row-double {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 17px;
 }
 
 /* Bilder in den Rows – Scroll-Fade wie Startseite */
