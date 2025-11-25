@@ -583,26 +583,16 @@ const handleSetHouse = (houseId: string, scrollToTabs: boolean) => {
     const url = `${pathname}?${params.toString()}`;
     router.replace(url, { scroll: false });
   }
-if (scrollToTabs && typeof window !== "undefined") {
-  // Zuverlässigere Mobile-Erkennung über User Agent
-  const isMobile =
-    typeof navigator !== "undefined" &&
-    /Mobi|Android/i.test(navigator.userAgent);
 
-  if (isMobile) {
-    // Handy: einfach ganz nach oben
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  } else {
-    // Desktop: wie bisher bei ~1270px
-    window.scrollTo({
-      top: 1270,
-      behavior: "smooth",
-    });
+  if (scrollToTabs && typeof window !== "undefined") {
+    const el = document.getElementById("wid-houses-anchor");
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start", // bis zum Anfang des Ankers
+      });
+    }
   }
-}
 };
   const nextHouseConfig = NEXT_HOUSE_MAP[activeHouse.id];
   let nextHouseHref: string | null = null;

@@ -655,6 +655,7 @@ body.ai-page .side-dock nav a:hover {
   .project-gallery {
     gap: 12px;
     margin-top: 16px;
+    margin-bottom: 16px;
     padding: 0 var(--edge);
   }
 
@@ -739,29 +740,27 @@ body.ai-page .side-dock nav a:hover {
   position: relative;
 }
 
-/* Haus-Hero-Bild – feste Fläche, damit Textbox-Position stabil bleibt */
+/* Haus-Hero-Bild – zentriert, max. Screenhöhe */
 .wid-house-hero-media {
-  position: relative;
-  width: 100%;
-  height: 58vh;                /* -> hier die sichtbare Höhe einstellen */
-  min-height: 340px;           /* minimale Höhe auf kleineren Screens */
-  max-height: calc(100vh - 160px);
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
   background: #fff;
-  overflow: hidden;            /* Bild darf nicht „raushängen“ */
 }
 
 .wid-house-hero-media .project-img {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;           /* füllt die Fläche wie früher */
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
   background: transparent;
 }
-
 /* Info-Box im Haus-Bild (Desktop): ohne Schatten, leicht eingerückt */
 .wid-house-info-card {
   box-shadow: none;
@@ -771,14 +770,15 @@ body.ai-page .side-dock nav a:hover {
 }
 
 /* Haus-spezifische Feintuning-Klassen (Desktop) */
-.wid-house-info-card-1 { bottom: 18px; }
+.wid-house-info-card-1 { left: 475px; bottom: 40px; }
 .wid-house-info-card-2 { left: 485px; bottom: 17px; }
 .wid-house-info-card-3 { left: 487px; bottom: 17px; }
 .wid-house-info-card-4 { left: 487px; bottom: 17px; }
-.wid-house-info-card-5 { left: 438px; bottom: 17px; }
-.wid-house-info-card-6 { bottom: 19px; }
-.wid-house-info-card-8 { bottom: 19px; }
-.wid-house-info-card-9 { left: 438px; bottom: 17px; }
+.wid-house-info-card-5 { left: 475px; bottom: 39px; }
+.wid-house-info-card-6 { left: 475px; bottom: 39px; }
+.wid-house-info-card-7 { left: 475px; bottom: 39px; }
+.wid-house-info-card-8 { left: 475px; bottom: 39px; }
+.wid-house-info-card-9 { left: 474px; bottom: 38px; }
 
 /* Mobile THE WID – Haus-Tabs & Detail */
 @media (max-width: 780px) {
@@ -1089,5 +1089,15 @@ body.ai-page .side-dock nav a:hover {
   to {
     opacity: 1;
     transform: translateX(6px);
+  }
+}
+/* Scroll-Position für THE WID Haus-Tabs */
+#wid-houses-anchor {
+  scroll-margin-top: 60px; /* Desktop: Abstand nach oben */
+}
+
+@media (max-width: 780px) {
+  #wid-houses-anchor {
+    scroll-margin-top: 80px; /* Handy: etwas Luft über den Tabs */
   }
 }
