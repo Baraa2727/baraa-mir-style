@@ -524,7 +524,6 @@ type TheWidPageProps = {
 function TheWidPage({ initialHouseId }: TheWidPageProps) {
   useProjectImageReveal();
 
-// Beim Aufruf der THE-WID-Seite immer ganz nach oben scrollen
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -653,7 +652,7 @@ const handleSetHouse = (houseId: string, scrollToTabs: boolean) => {
     isAnimating && nextHeroIndex !== null ? nextHeroIndex : currentHeroIndex;
 
   return (
-    <main className="project-page">
+    <main className="project-page project-page--thewid">
       {/* Globaler THE-WID Hero (Slider) */}
       <section className="project-hero">
         <div className="project-hero-media">
