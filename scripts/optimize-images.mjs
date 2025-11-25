@@ -36,6 +36,12 @@ async function optimizeImage(srcPath) {
 
   let maxWidth = DEFAULT_MAX_WIDTH;
 
+// HOME-BILDER IGNORIEREN
+if (relFromOriginals.startsWith("home/")) {
+  console.log(`Skipping HOME image (no optimization): ${relFromOriginals}`);
+  await fs.copyFile(srcPath, outPath);
+  return;
+}
   // Dynamische Optimierung für THE WID
   if (relFromOriginals.startsWith("thewid/hero/")) {
     maxWidth = THEWID_HERO_MAX_WIDTH;
