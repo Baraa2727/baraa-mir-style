@@ -1,0 +1,439 @@
+<?xml version="1.0" standalone="no"?>
+<mlt LC_NUMERIC="C" version="7.30.0" title="Shotcut version 25.01.25" producer="main_bin">
+  <profile description="automatic" width="1440" height="1810" progressive="1" sample_aspect_num="96835" sample_aspect_den="97776" display_aspect_num="535" display_aspect_den="679" frame_rate_num="24" frame_rate_den="1" colorspace="709"/>
+  <chain id="chain0" out="00:00:04.875">
+    <property name="length">00:00:04.917</property>
+    <property name="eof">pause</property>
+    <property name="resource">D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.runVHhQrvJynUA_camera_moving_ve_ae70d1fd-3851-4f0c-9d62-17b4d006f26d_0-vmake.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="meta.media.nb_streams">1</property>
+    <property name="meta.media.0.stream.type">video</property>
+    <property name="meta.media.0.stream.frame_rate">24</property>
+    <property name="meta.media.0.stream.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.width">1440</property>
+    <property name="meta.media.0.codec.height">1810</property>
+    <property name="meta.media.0.codec.rotate">0</property>
+    <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.0.codec.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.colorspace">709</property>
+    <property name="meta.media.0.codec.name">h264</property>
+    <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.0.codec.bit_rate">22442913</property>
+    <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.MTLib.markup">PyPVG-10.0.0.2.23</property>
+    <property name="meta.attr.encoder.markup">Lavf61.7.100</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">2715</property>
+    <property name="meta.media.sample_aspect_den">2716</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="creation_time">2025-10-25T12:33:20</property>
+    <property name="vstream">0</property>
+    <property name="meta.media.frame_rate_num">24</property>
+    <property name="meta.media.frame_rate_den">1</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">1440</property>
+    <property name="meta.media.height">1810</property>
+    <property name="meta.media.aspect_ratio">0.999632</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">11e245e4f578ee1e7030d8e89e69d9ae</property>
+  </chain>
+  <chain id="chain1" out="00:00:04.958">
+    <property name="length">00:00:05.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.rundASdADwKymk_Camera_moving_sl_3b2a9d89-b8be-47d7-96c5-ae889ab2bc7c_0-vmake.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="meta.media.nb_streams">1</property>
+    <property name="meta.media.0.stream.type">video</property>
+    <property name="meta.media.0.stream.frame_rate">24</property>
+    <property name="meta.media.0.stream.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.width">1440</property>
+    <property name="meta.media.0.codec.height">1810</property>
+    <property name="meta.media.0.codec.rotate">0</property>
+    <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.0.codec.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.colorspace">709</property>
+    <property name="meta.media.0.codec.name">h264</property>
+    <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.0.codec.bit_rate">19635102</property>
+    <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.MTLib.markup">PyPVG-10.0.0.2.23</property>
+    <property name="meta.attr.encoder.markup">Lavf61.7.100</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">2715</property>
+    <property name="meta.media.sample_aspect_den">2716</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="creation_time">2025-10-25T12:37:28</property>
+    <property name="vstream">0</property>
+    <property name="meta.media.frame_rate_num">24</property>
+    <property name="meta.media.frame_rate_den">1</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">1440</property>
+    <property name="meta.media.height">1810</property>
+    <property name="meta.media.aspect_ratio">0.999632</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">ca1248b8d668bef7ebaa358d4a755f20</property>
+  </chain>
+  <chain id="chain2" out="00:00:04.875">
+    <property name="length">00:00:04.917</property>
+    <property name="eof">pause</property>
+    <property name="resource">D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.runh94s4ZgupgU_camera_moving_ve_ed68f206-7bf6-4b42-8bff-4bf02c5dafa4_0-vmake.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="meta.media.nb_streams">1</property>
+    <property name="meta.media.0.stream.type">video</property>
+    <property name="meta.media.0.stream.frame_rate">24</property>
+    <property name="meta.media.0.stream.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.width">1440</property>
+    <property name="meta.media.0.codec.height">1810</property>
+    <property name="meta.media.0.codec.rotate">0</property>
+    <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.0.codec.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.colorspace">709</property>
+    <property name="meta.media.0.codec.name">h264</property>
+    <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.0.codec.bit_rate">20688587</property>
+    <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.MTLib.markup">PyPVG-10.0.0.2.23</property>
+    <property name="meta.attr.encoder.markup">Lavf61.7.100</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">2715</property>
+    <property name="meta.media.sample_aspect_den">2716</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="creation_time">2025-10-25T12:37:28</property>
+    <property name="vstream">0</property>
+    <property name="meta.media.frame_rate_num">24</property>
+    <property name="meta.media.frame_rate_den">1</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">1440</property>
+    <property name="meta.media.height">1810</property>
+    <property name="meta.media.aspect_ratio">0.999632</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">139a0c34b86d7d3694f9e7657df50ca8</property>
+  </chain>
+  <playlist id="main_bin">
+    <property name="xml_retain">1</property>
+    <entry producer="chain0" in="00:00:00.000" out="00:00:04.875"/>
+    <entry producer="chain1" in="00:00:00.000" out="00:00:04.958"/>
+    <entry producer="chain2" in="00:00:00.000" out="00:00:04.875"/>
+  </playlist>
+  <producer id="black" in="00:00:00.000" out="00:00:20.708">
+    <property name="length">00:00:20.750</property>
+    <property name="eof">pause</property>
+    <property name="resource">0</property>
+    <property name="aspect_ratio">0.999632</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="set.test_audio">0</property>
+  </producer>
+  <playlist id="background">
+    <entry producer="black" in="00:00:00.000" out="00:00:20.708"/>
+  </playlist>
+  <producer id="producer0" in="00:00:00.000" out="03:59:59.958">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFFFFFFF</property>
+    <property name="aspect_ratio">0.999632</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFFFFFFF</property>
+    <property name="shotcut:detail">#FFFFFFFF</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <filter id="filter0" out="00:00:04.208">
+      <property name="start">1</property>
+      <property name="level">00:00:00.000=0;00:00:00.958=1</property>
+      <property name="mlt_service">brightness</property>
+      <property name="shotcut:filter">fadeInBrightness</property>
+      <property name="alpha">1</property>
+      <property name="shotcut:animIn">00:00:01.000</property>
+    </filter>
+  </producer>
+  <producer id="producer1" in="00:00:00.000" out="00:00:08.292">
+    <property name="length">00:00:08.333</property>
+    <property name="eof">pause</property>
+    <property name="resource">0.6:D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.rundASdADwKymk_Camera_moving_sl_3b2a9d89-b8be-47d7-96c5-ae889ab2bc7c_0-vmake.mp4</property>
+    <property name="aspect_ratio">0.999632</property>
+    <property name="meta.media.nb_streams">1</property>
+    <property name="meta.media.0.stream.type">video</property>
+    <property name="meta.media.0.stream.frame_rate">24</property>
+    <property name="meta.media.0.stream.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.width">1440</property>
+    <property name="meta.media.0.codec.height">1810</property>
+    <property name="meta.media.0.codec.rotate">0</property>
+    <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.0.codec.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.colorspace">709</property>
+    <property name="meta.media.0.codec.name">h264</property>
+    <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.0.codec.bit_rate">19635102</property>
+    <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.MTLib.markup">PyPVG-10.0.0.2.23</property>
+    <property name="meta.attr.encoder.markup">Lavf61.7.100</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">2715</property>
+    <property name="meta.media.sample_aspect_den">2716</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="warp_speed">0.6</property>
+    <property name="warp_resource">D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.rundASdADwKymk_Camera_moving_sl_3b2a9d89-b8be-47d7-96c5-ae889ab2bc7c_0-vmake.mp4</property>
+    <property name="mlt_service">timewarp</property>
+    <property name="shotcut:producer">avformat</property>
+    <property name="video_delay">0</property>
+    <property name="vstream">0</property>
+    <property name="shotcut:hash">ca1248b8d668bef7ebaa358d4a755f20</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="shotcut:caption">social_baraavisualizations_httpss.mj.rundASdADwKymk_Camera_moving_sl_3b2a9d89-b8be-47d7-96c5-ae889ab2bc7c_0-vmake.mp4 (0.6x)</property>
+    <property name="xml">was here</property>
+    <property name="meta.media.frame_rate_num">24</property>
+    <property name="meta.media.frame_rate_den">1</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">1440</property>
+    <property name="meta.media.height">1810</property>
+    <property name="meta.media.aspect_ratio">0.999632</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="meta.media.variable_frame_rate">1</property>
+    <property name="meta.media.top_field_first">0</property>
+    <property name="meta.media.progressive">1</property>
+  </producer>
+  <tractor id="tractor0" in="00:00:00.000" out="00:00:02.792">
+    <property name="shotcut:transition">lumaMix</property>
+    <track producer="producer0" in="00:00:01.417" out="00:00:04.208"/>
+    <track producer="producer1" in="00:00:00.000" out="00:00:02.792"/>
+    <transition id="transition0" out="00:00:02.792">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="factory">loader</property>
+      <property name="mlt_service">luma</property>
+      <property name="alpha_over">1</property>
+      <property name="fix_background_alpha">1</property>
+    </transition>
+    <transition id="transition1" out="00:00:02.792">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="start">-1</property>
+      <property name="accepts_blanks">1</property>
+    </transition>
+  </tractor>
+  <producer id="producer3" in="00:00:00.000" out="00:00:12.250">
+    <property name="length">00:00:12.292</property>
+    <property name="eof">pause</property>
+    <property name="resource">0.4:D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.runVHhQrvJynUA_camera_moving_ve_ae70d1fd-3851-4f0c-9d62-17b4d006f26d_0-vmake.mp4</property>
+    <property name="aspect_ratio">0.999632</property>
+    <property name="meta.media.nb_streams">1</property>
+    <property name="meta.media.0.stream.type">video</property>
+    <property name="meta.media.0.stream.frame_rate">24</property>
+    <property name="meta.media.0.stream.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.width">1440</property>
+    <property name="meta.media.0.codec.height">1810</property>
+    <property name="meta.media.0.codec.rotate">0</property>
+    <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.0.codec.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.colorspace">709</property>
+    <property name="meta.media.0.codec.name">h264</property>
+    <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.0.codec.bit_rate">22442913</property>
+    <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.MTLib.markup">PyPVG-10.0.0.2.23</property>
+    <property name="meta.attr.encoder.markup">Lavf61.7.100</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">2715</property>
+    <property name="meta.media.sample_aspect_den">2716</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="warp_speed">0.4</property>
+    <property name="warp_resource">D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.runVHhQrvJynUA_camera_moving_ve_ae70d1fd-3851-4f0c-9d62-17b4d006f26d_0-vmake.mp4</property>
+    <property name="mlt_service">timewarp</property>
+    <property name="shotcut:producer">avformat</property>
+    <property name="video_delay">0</property>
+    <property name="vstream">0</property>
+    <property name="shotcut:hash">11e245e4f578ee1e7030d8e89e69d9ae</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="shotcut:caption">social_baraavisualizations_httpss.mj.runVHhQrvJynUA_camera_moving_ve_ae70d1fd-3851-4f0c-9d62-17b4d006f26d_0-vmake.mp4 (0.4x)</property>
+    <property name="xml">was here</property>
+    <property name="meta.media.frame_rate_num">24</property>
+    <property name="meta.media.frame_rate_den">1</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">1440</property>
+    <property name="meta.media.height">1810</property>
+    <property name="meta.media.aspect_ratio">0.999632</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="meta.media.variable_frame_rate">1</property>
+    <property name="meta.media.top_field_first">0</property>
+    <property name="meta.media.progressive">1</property>
+  </producer>
+  <tractor id="tractor1" in="00:00:00.000" out="00:00:01.708">
+    <property name="shotcut:transition">lumaMix</property>
+    <track producer="producer1" in="00:00:05.042" out="00:00:06.750"/>
+    <track producer="producer3" in="00:00:00.000" out="00:00:01.708"/>
+    <transition id="transition2" out="00:00:01.708">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="factory">loader</property>
+      <property name="mlt_service">luma</property>
+      <property name="alpha_over">1</property>
+      <property name="fix_background_alpha">1</property>
+    </transition>
+    <transition id="transition3" out="00:00:01.708">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="start">-1</property>
+      <property name="accepts_blanks">1</property>
+      <property name="mlt_service">mix</property>
+    </transition>
+  </tractor>
+  <producer id="producer4" in="00:00:00.000" out="00:00:08.167">
+    <property name="length">00:00:08.208</property>
+    <property name="eof">pause</property>
+    <property name="resource">0.6:D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.runh94s4ZgupgU_camera_moving_ve_ed68f206-7bf6-4b42-8bff-4bf02c5dafa4_0-vmake.mp4</property>
+    <property name="aspect_ratio">0.999632</property>
+    <property name="meta.media.nb_streams">1</property>
+    <property name="meta.media.0.stream.type">video</property>
+    <property name="meta.media.0.stream.frame_rate">24</property>
+    <property name="meta.media.0.stream.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.width">1440</property>
+    <property name="meta.media.0.codec.height">1810</property>
+    <property name="meta.media.0.codec.rotate">0</property>
+    <property name="meta.media.0.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.0.codec.sample_aspect_ratio">0.999632</property>
+    <property name="meta.media.0.codec.colorspace">709</property>
+    <property name="meta.media.0.codec.name">h264</property>
+    <property name="meta.media.0.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.0.codec.bit_rate">20688587</property>
+    <property name="meta.attr.0.stream.handler_name.markup">VideoHandler</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.MTLib.markup">PyPVG-10.0.0.2.23</property>
+    <property name="meta.attr.encoder.markup">Lavf61.7.100</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">2715</property>
+    <property name="meta.media.sample_aspect_den">2716</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="warp_speed">0.6</property>
+    <property name="warp_resource">D:/Users/Baraa Shareet/Downloads/social_baraavisualizations_httpss.mj.runh94s4ZgupgU_camera_moving_ve_ed68f206-7bf6-4b42-8bff-4bf02c5dafa4_0-vmake.mp4</property>
+    <property name="mlt_service">timewarp</property>
+    <property name="shotcut:producer">avformat</property>
+    <property name="video_delay">0</property>
+    <property name="vstream">0</property>
+    <property name="shotcut:hash">139a0c34b86d7d3694f9e7657df50ca8</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="shotcut:caption">social_baraavisualizations_httpss.mj.runh94s4ZgupgU_camera_moving_ve_ed68f206-7bf6-4b42-8bff-4bf02c5dafa4_0-vmake.mp4 (0.6x)</property>
+    <property name="xml">was here</property>
+    <property name="meta.media.frame_rate_num">24</property>
+    <property name="meta.media.frame_rate_den">1</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">1440</property>
+    <property name="meta.media.height">1810</property>
+    <property name="meta.media.aspect_ratio">0.999632</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="meta.media.variable_frame_rate">1</property>
+    <property name="meta.media.top_field_first">0</property>
+    <property name="meta.media.progressive">1</property>
+    <filter id="filter1" out="00:00:08.125">
+      <property name="start">1</property>
+      <property name="level">00:00:07.167=1;00:00:08.125=0</property>
+      <property name="mlt_service">brightness</property>
+      <property name="shotcut:filter">fadeOutBrightness</property>
+      <property name="alpha">1</property>
+      <property name="shotcut:animOut">00:00:01.000</property>
+    </filter>
+  </producer>
+  <tractor id="tractor2" in="00:00:00.000" out="00:00:02.000">
+    <property name="shotcut:transition">lumaMix</property>
+    <track producer="producer3" in="00:00:06.125" out="00:00:08.125"/>
+    <track producer="producer4" in="00:00:00.000" out="00:00:02.000"/>
+    <transition id="transition4" out="00:00:02.000">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="factory">loader</property>
+      <property name="mlt_service">luma</property>
+      <property name="alpha_over">1</property>
+      <property name="fix_background_alpha">1</property>
+    </transition>
+    <transition id="transition5" out="00:00:02.000">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="start">-1</property>
+      <property name="accepts_blanks">1</property>
+    </transition>
+  </tractor>
+  <playlist id="playlist0">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V1</property>
+    <entry producer="producer0" in="00:00:00.000" out="00:00:01.375"/>
+    <entry producer="tractor0" in="00:00:00.000" out="00:00:02.792"/>
+    <entry producer="producer1" in="00:00:02.833" out="00:00:05.000"/>
+    <entry producer="tractor1" in="00:00:00.000" out="00:00:01.708"/>
+    <entry producer="producer3" in="00:00:01.750" out="00:00:06.083"/>
+    <entry producer="tractor2" in="00:00:00.000" out="00:00:02.000"/>
+    <entry producer="producer4" in="00:00:02.042" out="00:00:08.125"/>
+  </playlist>
+  <tractor id="tractor3" title="Shotcut version 25.01.25" in="00:00:00.000" out="00:00:20.708">
+    <property name="shotcut">1</property>
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">0</property>
+    <property name="shotcut:scaleFactor">1.341</property>
+    <property name="shotcut:skipConvert">0</property>
+    <track producer="background"/>
+    <track producer="playlist0"/>
+    <transition id="transition6">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition7">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="threads">0</property>
+      <property name="disable">1</property>
+    </transition>
+  </tractor>
+</mlt>
