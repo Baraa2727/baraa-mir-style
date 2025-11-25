@@ -524,6 +524,13 @@ type TheWidPageProps = {
 function TheWidPage({ initialHouseId }: TheWidPageProps) {
   useProjectImageReveal();
 
+// Beim Aufruf der THE-WID-Seite immer ganz nach oben scrollen
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, []);
+
   const router = useRouter();
   const pathname = usePathname();
 
