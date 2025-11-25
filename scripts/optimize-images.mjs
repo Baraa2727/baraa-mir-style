@@ -4,17 +4,17 @@ import sharp from "sharp";
 
 const ROOT = process.cwd();
 
-// Originale liegen hier:
+// Originale
 const ORIGINALS_DIR = path.join(ROOT, "public", "media_originals");
-// Optimierte Dateien werden hierhin geschrieben:
+// Ausgabe (optimiert)
 const OUTPUT_DIR = path.join(ROOT, "public", "media");
 
 // Maximalbreiten
-const DEFAULT_MAX_WIDTH = 2200;       // normale Projekte
-const THEWID_HERO_MAX_WIDTH = 1800;   // THE WID global / Haus-Hero
-const THEWID_OTHER_MAX_WIDTH = 1600;  // andere THE-WID-Bilder
+const DEFAULT_MAX_WIDTH = 1800;      // normale Projekte
+const THEWID_HERO_MAX_WIDTH = 1600;  // THE WID global / Haus-Heros
+const THEWID_OTHER_MAX_WIDTH = 1400; // andere THE-WID-Bilder
 
-const QUALITY = 85;
+const QUALITY = 80;
 
 async function optimizeImage(srcPath) {
   const ext = path.extname(srcPath).toLowerCase();
@@ -29,7 +29,7 @@ async function optimizeImage(srcPath) {
   const outDir = path.dirname(outPath);
   await fs.mkdir(outDir, { recursive: true });
 
-  // Max-Breite je nach Ordner bestimmen
+  // Max-Breite je nach Ordner
   let maxWidth = DEFAULT_MAX_WIDTH;
   if (relFromOriginals.startsWith("thewid/hero/")) {
     maxWidth = THEWID_HERO_MAX_WIDTH;
@@ -42,13 +42,13 @@ async function optimizeImage(srcPath) {
 
   if (!meta.width) {
     console.log(`Skipping (no width): ${relFromOriginals}`);
+    // Original unverändert kopieren
+    await fs.copyFile(srcPath, outPath);
     return;
   }
 
-  // Nur verkleinern, wenn Bild größer als maxWidth ist
   if (meta.width <= maxWidth) {
-    console.log(`Skipping (already <= maxWidth): ${relFromOriginals}`);
-    // Trotzdem das Original 1:1 nach OUTPUT kopieren (falls noch nicht da)
+    console.log(`Copy only (already <= maxWidth): ${relFromOriginals}`);
     await fs.copyFile(srcPath, outPath);
     return;
   }
@@ -81,7 +81,9 @@ async function walk(dir) {
 }
 
 walk(ORIGINALS_DIR)
-  .then(() => console.log("✅ Image optimization finished (from media_originals → media)"))
+  .then(() => {
+    console.log("✅ Optimization finished: media_originals → media");
+  })
   .catch((err) => {
     console.error(err);
     process.exit(1);
