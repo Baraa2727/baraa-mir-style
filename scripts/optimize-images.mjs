@@ -6,20 +6,21 @@ const ROOT = process.cwd();
 
 // Eingang: große Originalbilder
 const ORIGINALS_DIR = path.join(ROOT, "public", "media_originals");
-// Ausgabe: optimierte Bilder (von der Website benutzt)
+// Ausgabe: optimierte Bilder
 const OUTPUT_DIR = path.join(ROOT, "public", "media");
 
-// Maximalbreiten
-const DEFAULT_MAX_WIDTH = 1800;      // normale Projekte
-const THEWID_HERO_MAX_WIDTH = 1600;  // THE WID global / Haus-Heros
-const THEWID_OTHER_MAX_WIDTH = 1400; // andere THE-WID-Bilder
+// Mildere, hochwertige Maximalbreiten
+const DEFAULT_MAX_WIDTH = 3200;      // normale Projekte
+const THEWID_HERO_MAX_WIDTH = 2800;  // THE WID Haupt-Hero / Haus-Hero
+const THEWID_OTHER_MAX_WIDTH = 2400; // THE WID sonstige Bilder
 
-const QUALITY = 80;
+// Hohe Qualität
+const QUALITY = 90;
 
 async function optimizeImage(srcPath) {
   const ext = path.extname(srcPath).toLowerCase();
 
-  // Nur JPG / JPEG / PNG anfassen – alles andere ignorieren
+  // Nur unterstützte Formate
   if (![".jpg", ".jpeg", ".png"].includes(ext)) {
     console.log(`Skipping (unsupported extension): ${srcPath}`);
     return;
@@ -33,8 +34,9 @@ async function optimizeImage(srcPath) {
   const outDir = path.dirname(outPath);
   await fs.mkdir(outDir, { recursive: true });
 
-  // Maximalbreite je nach Pfad bestimmen
   let maxWidth = DEFAULT_MAX_WIDTH;
+
+  // Dynamische Optimierung für THE WID
   if (relFromOriginals.startsWith("thewid/hero/")) {
     maxWidth = THEWID_HERO_MAX_WIDTH;
   } else if (relFromOriginals.startsWith("thewid/")) {
@@ -46,8 +48,6 @@ async function optimizeImage(srcPath) {
     meta = await sharp(srcPath).metadata();
   } catch (err) {
     console.log(`Skipping (sharp error): ${relFromOriginals}`);
-    console.log("  →", err.message);
-    // Zur Sicherheit das Original einfach nur kopieren
     await fs.copyFile(srcPath, outPath);
     return;
   }
@@ -58,17 +58,16 @@ async function optimizeImage(srcPath) {
     return;
   }
 
-  // Wenn das Bild eh schon kleiner ist als maxWidth → nur kopieren
+  // Wenn Bild klein genug → normal kopieren
   if (meta.width <= maxWidth) {
-    console.log(
-      `Copy only (already <= maxWidth): ${relFromOriginals} (${meta.width}px)`
-    );
+    console.log(`Copy only: ${relFromOriginals} (${meta.width}px <= ${maxWidth}px)`);
     await fs.copyFile(srcPath, outPath);
     return;
   }
 
+  // Verkleinerung (mild)
   console.log(
-    `Optimizing ${relFromOriginals}: ${meta.width}px → max ${maxWidth}px`
+    `Optimizing ${relFromOriginals}: ${meta.width}px → ${maxWidth}px`
   );
 
   await sharp(srcPath)
@@ -95,9 +94,7 @@ async function walk(dir) {
 }
 
 walk(ORIGINALS_DIR)
-  .then(() => {
-    console.log("✅ Optimization finished: media_originals → media");
-  })
+  .then(() => console.log("✅ Mild optimization finished: media_originals → media"))
   .catch((err) => {
     console.error(err);
     process.exit(1);
