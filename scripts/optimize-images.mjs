@@ -9,7 +9,7 @@ const ORIGINALS_DIR = path.join(ROOT, "public", "media_originals");
 // Ausgabe: optimierte Bilder
 const OUTPUT_DIR = path.join(ROOT, "public", "media");
 
-// Mildere, hochwertige Maximalbreiten
+// Milde, hochwertige Maximalbreiten
 const DEFAULT_MAX_WIDTH = 3200;      // normale Projekte
 const THEWID_HERO_MAX_WIDTH = 2800;  // THE WID Haupt-Hero / Haus-Hero
 const THEWID_OTHER_MAX_WIDTH = 2400; // THE WID sonstige Bilder
@@ -20,7 +20,7 @@ const QUALITY = 90;
 async function optimizeImage(srcPath) {
   const ext = path.extname(srcPath).toLowerCase();
 
-  // Nur unterstützte Formate
+  // Nur JPG / PNG anfassen
   if (![".jpg", ".jpeg", ".png"].includes(ext)) {
     console.log(`Skipping (unsupported extension): ${srcPath}`);
     return;
@@ -34,15 +34,23 @@ async function optimizeImage(srcPath) {
   const outDir = path.dirname(outPath);
   await fs.mkdir(outDir, { recursive: true });
 
+  // ----------------------------
+  // 1) HAUPTSEITE (MasonryGrid)
+  //    → ext-01.jpg, ext-02.jpg, ...
+  //    → NIE verkleinern, nur kopieren
+  // ----------------------------
+  const baseName = path.basename(relFromOriginals);
+  if (baseName.startsWith("ext-")) {
+    console.log(`Skipping HOMEPAGE image (no resize): ${relFromOriginals}`);
+    await fs.copyFile(srcPath, outPath);
+    return;
+  }
+
+  // ----------------------------
+  // 2) Maximalbreite je nach Pfad (THE WID vs. rest)
+  // ----------------------------
   let maxWidth = DEFAULT_MAX_WIDTH;
 
-// HOME-BILDER IGNORIEREN
-if (relFromOriginals.startsWith("home/")) {
-  console.log(`Skipping HOME image (no optimization): ${relFromOriginals}`);
-  await fs.copyFile(srcPath, outPath);
-  return;
-}
-  // Dynamische Optimierung für THE WID
   if (relFromOriginals.startsWith("thewid/hero/")) {
     maxWidth = THEWID_HERO_MAX_WIDTH;
   } else if (relFromOriginals.startsWith("thewid/")) {
@@ -54,6 +62,8 @@ if (relFromOriginals.startsWith("home/")) {
     meta = await sharp(srcPath).metadata();
   } catch (err) {
     console.log(`Skipping (sharp error): ${relFromOriginals}`);
+    console.log("  →", err.message);
+    // Sicher: Original einfach kopieren
     await fs.copyFile(srcPath, outPath);
     return;
   }
@@ -64,14 +74,18 @@ if (relFromOriginals.startsWith("home/")) {
     return;
   }
 
-  // Wenn Bild klein genug → normal kopieren
+  // Wenn Bild eh schon klein genug → nur kopieren
   if (meta.width <= maxWidth) {
-    console.log(`Copy only: ${relFromOriginals} (${meta.width}px <= ${maxWidth}px)`);
+    console.log(
+      `Copy only (<= maxWidth): ${relFromOriginals} (${meta.width}px <= ${maxWidth}px)`
+    );
     await fs.copyFile(srcPath, outPath);
     return;
   }
 
-  // Verkleinerung (mild)
+  // ----------------------------
+  // 3) Mild verkleinern
+  // ----------------------------
   console.log(
     `Optimizing ${relFromOriginals}: ${meta.width}px → ${maxWidth}px`
   );
@@ -100,7 +114,9 @@ async function walk(dir) {
 }
 
 walk(ORIGINALS_DIR)
-  .then(() => console.log("✅ Mild optimization finished: media_originals → media"))
+  .then(() => {
+    console.log("✅ Optimization finished: media_originals → media");
+  })
   .catch((err) => {
     console.error(err);
     process.exit(1);
