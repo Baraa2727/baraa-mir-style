@@ -4,9 +4,9 @@ import sharp from "sharp";
 
 const ROOT = process.cwd();
 
-// Originale
+// Eingang: große Originalbilder
 const ORIGINALS_DIR = path.join(ROOT, "public", "media_originals");
-// Ausgabe (optimiert)
+// Ausgabe: optimierte Bilder (von der Website benutzt)
 const OUTPUT_DIR = path.join(ROOT, "public", "media");
 
 // Maximalbreiten
@@ -18,18 +18,22 @@ const QUALITY = 80;
 
 async function optimizeImage(srcPath) {
   const ext = path.extname(srcPath).toLowerCase();
-  if (![".jpg", ".jpeg", ".png"].includes(ext)) return;
+
+  // Nur JPG / JPEG / PNG anfassen – alles andere ignorieren
+  if (![".jpg", ".jpeg", ".png"].includes(ext)) {
+    console.log(`Skipping (unsupported extension): ${srcPath}`);
+    return;
+  }
 
   const relFromOriginals = path
     .relative(ORIGINALS_DIR, srcPath)
     .replace(/\\/g, "/");
 
-  // Zielpfad unter public/media
   const outPath = path.join(OUTPUT_DIR, relFromOriginals);
   const outDir = path.dirname(outPath);
   await fs.mkdir(outDir, { recursive: true });
 
-  // Max-Breite je nach Ordner
+  // Maximalbreite je nach Pfad bestimmen
   let maxWidth = DEFAULT_MAX_WIDTH;
   if (relFromOriginals.startsWith("thewid/hero/")) {
     maxWidth = THEWID_HERO_MAX_WIDTH;
@@ -37,18 +41,28 @@ async function optimizeImage(srcPath) {
     maxWidth = THEWID_OTHER_MAX_WIDTH;
   }
 
-  const img = sharp(srcPath);
-  const meta = await img.metadata();
-
-  if (!meta.width) {
-    console.log(`Skipping (no width): ${relFromOriginals}`);
-    // Original unverändert kopieren
+  let meta;
+  try {
+    meta = await sharp(srcPath).metadata();
+  } catch (err) {
+    console.log(`Skipping (sharp error): ${relFromOriginals}`);
+    console.log("  →", err.message);
+    // Zur Sicherheit das Original einfach nur kopieren
     await fs.copyFile(srcPath, outPath);
     return;
   }
 
+  if (!meta.width) {
+    console.log(`Skipping (no width): ${relFromOriginals}`);
+    await fs.copyFile(srcPath, outPath);
+    return;
+  }
+
+  // Wenn das Bild eh schon kleiner ist als maxWidth → nur kopieren
   if (meta.width <= maxWidth) {
-    console.log(`Copy only (already <= maxWidth): ${relFromOriginals}`);
+    console.log(
+      `Copy only (already <= maxWidth): ${relFromOriginals} (${meta.width}px)`
+    );
     await fs.copyFile(srcPath, outPath);
     return;
   }
@@ -57,7 +71,7 @@ async function optimizeImage(srcPath) {
     `Optimizing ${relFromOriginals}: ${meta.width}px → max ${maxWidth}px`
   );
 
-  await img
+  await sharp(srcPath)
     .resize({
       width: maxWidth,
       withoutEnlargement: true,
