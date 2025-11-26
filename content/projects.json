@@ -127,17 +127,17 @@
     "id": "ext-08",
     "title": "Stadtallendorf",
     "client": "Isabell Battenfeld Architekts",
-    "hero": "/media/projekte/Stadtallendorf/Stadtallendorf-08-01.jpg",
+    "hero": "/media/projekte/allendorf/allendorf-08-01.jpg",
     "website": ["https://www.instagram.com/isabellbattenfeldarchitects/"],
     "intro": "A remodel and extension transform this mixed-use building into a home with flowing transitions between inside and outside. A new garden-facing addition, rooftop terrace, and open living spaces create a generous family residence above the existing commercial area.",
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/projekte/Stadtallendorf/Stadtallendorf-08-02.jpg"]
+        "images": ["/media/projekte/allendorf/allendorf-08-02.jpg"]
       },
       {
         "layout": "single",
-        "images": ["/media/projekte/Stadtallendorf/Stadtallendorf-08-03.jpg"]
+        "images": ["/media/projekte/allendorf/allendorf-08-03.jpg"]
       }
 
     ]
