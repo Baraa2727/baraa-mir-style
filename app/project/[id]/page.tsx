@@ -418,14 +418,11 @@ export default function ProjectPage({ params, searchParams }: PageProps) {
     <main className="project-page">
       {/* Hero mit Slider */}
       <section className="project-hero">
-        <div className="project-hero-media">
-          <Image
+        <div className="project-hero-media project-hero-media--standard">
+          <img
             src={heroImages[heroIndex]}
             alt={project.title}
-            fill
-            className="project-img"
-            sizes="100vw"
-            priority
+            className="project-img project-img--standard"
           />
         </div>
 
@@ -524,6 +521,7 @@ type TheWidPageProps = {
 function TheWidPage({ initialHouseId }: TheWidPageProps) {
   useProjectImageReveal();
 
+  // Beim ersten Render der THE-WID-Seite immer ganz nach oben
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -559,6 +557,18 @@ function TheWidPage({ initialHouseId }: TheWidPageProps) {
   const [activeHouseId, setActiveHouseId] = useState<string>(
     houses.find((h) => h.id === initialHouseId)?.id ?? fallbackHouse.id
   );
+
+ // 👉 Immer wenn ein anderes Haus aktiv wird, Pfeil-Animation zurücksetzen
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const link = document.querySelector<HTMLElement>(
+      ".project-page--thewid .project-next-link"
+    );
+    if (link) {
+      link.classList.remove("project-next-link-inview");
+    }
+  }, [activeHouseId]);
 
   const activeHouse =
     houses.find((h) => h.id === activeHouseId) ?? fallbackHouse;
@@ -655,7 +665,7 @@ const handleSetHouse = (houseId: string, scrollToTabs: boolean) => {
     <main className="project-page project-page--thewid">
       {/* Globaler THE-WID Hero (Slider) */}
       <section className="project-hero">
-        <div className="project-hero-media">
+        <div className="project-hero-media wid-global-hero-media">
           <div
             className="wid-hero-slider"
             onTouchStart={(e) => {

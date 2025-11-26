@@ -45,7 +45,7 @@
     "id": "ext-03",
     "title": "Portal Berlin",
     "client": "terraneo",
-    "hero": "/media/projekte/portal/ext-03-01.jpg",
+    "hero": "/media/projekte/portal/portal-03-01.jpg",
     "intro": "At a place shaped by urban transformation, this building makes a statement with a sense of history. Its entrance does more than open — it welcomes, guiding visitors from the city’s rhythm into a calm and ordered interior.",
     "website": ["https://www.terraneo.de", "https://www.portal-berlin.com"],
 
@@ -53,19 +53,19 @@
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/projekte/portal/ext-03-02.jpg"]
+        "images": ["/media/projekte/portal/portal-03-02.jpg"]
       },
       {
         "layout": "double",
-        "images": ["/media/projekte/portal/ext-03-03.jpg", "/media/projekte/portal/ext-03-04.jpg"]
+        "images": ["/media/projekte/portal/portal-03-03.jpg", "/media/projekte/portal/ext-03-04.jpg"]
       },
       {
         "layout": "single",
-        "images": ["/media/projekte/portal/ext-03-05.jpg"]
+        "images": ["/media/projekte/portal/portal-03-05.jpg"]
       },
       {
         "layout": "single",
-        "images": ["/media/projekte/portal/ext-03-06.jpg"]
+        "images": ["/media/projekte/portal/portal-03-06.jpg"]
       }
     ]
   },
@@ -74,12 +74,13 @@
     "id": "ext-04",
     "title": "Hinwil",
     "client": "Backes Zarali Architekten",
-    "hero": "/media/ext-04-hero.jpg",
-    "intro": "",
+    "hero": "/media/projekte/hinwil/hinwil-04-01.jpg",
+    "intro": "A replacement courthouse in Hinwil, Switzerland, designed with a clear contemporary character while respecting its civic role. A concise, modern structure that lends the site a renewed and confident presence.",
+    "website": ["https://www.backeszarali.ch"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-04-hero.jpg"]
+        "images": ["/media/projekte/hinwil/hinwil-04-02.jpg"]
       }
     ]
   },
@@ -88,13 +89,19 @@
     "id": "ext-05",
     "title": "Mainau Insel",
     "client": "Königs Architekten",
-    "hero": "/media/ext-05.jpg",
-    "intro": "",
+    "hero": "/media/projekte/mainau/ext-05-01.jpg",
+    "intro": "Mainau Island is defined by constant transformation — a natural cycle of growth and change. This idea extends to its architecture, where temporary structures are not defects but adaptive, resilient elements with their own aesthetic. The island feels complete at every moment, with transitions understood as part of its inherent logic.",
+ "website": ["https://www.koenigs-architekten.de"],
     "rows": [
       {
-        "layout": "double",
-        "images": ["/media/ext-05.jpg", "/media/ext-05.jpg"]
+        "layout": "single",
+        "images": ["/media/projekte/mainau/ext-05-02.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/mainau/ext-05-03.jpg"]
       }
+
     ]
   },
 

@@ -488,6 +488,27 @@ body.ai-page .side-dock nav a:hover {
   margin: 16px var(--edge) 0;
 }
 
+/* ========================================= */
+/* DESKTOP: Normale Projekte – Fullscreen Hero */
+/* ========================================= */
+@media (min-width: 781px) {
+  /* Nur normale Projekte, nicht THE WID */
+  .project-page:not(.project-page--thewid) .project-hero {
+    margin: 17; /* Kein extra Abstand oben/unten um den Hero */
+  }
+
+  .project-page:not(.project-page--thewid) .project-hero-media {
+    height: 97,5vh;      /* füllt die gesamte Fensterhöhe */
+    min-height: 520px;
+  }
+
+  .project-page:not(.project-page--thewid) .project-hero-media .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* füllt komplett, darf schneiden */
+    object-position: center;
+  }
+}
 .project-hero-media {
   position: relative;
   width: 100%;
@@ -639,49 +660,25 @@ body.ai-page .side-dock nav a:hover {
     margin-bottom: 16px;
   }
 
-  /* Titelbild auf Mobile im Original-Format,
-     aber nur für normale Projekte (nicht THE WID) */
-  .project-page:not(.project-page--thewid) .project-hero-media {
+  .project-hero-media {
+    height: min(60vh, 420px);
+    min-height: 260px;
+  }
+  /* Normale Projektseiten (nicht THE WID):
+     Hero-Bild im Original-Format auf Mobile */
+  .project-hero-media:not(.wid-global-hero-media) {
     height: auto;
     min-height: 0;
   }
 
-  .project-page:not(.project-page--thewid) .project-hero-media .project-img {
+  .project-hero-media:not(.wid-global-hero-media) .project-img {
     position: static !important;
     width: 100% !important;
     height: auto !important;
     object-fit: contain !important;
   }
 
-  .project-hero-media {
-    border-radius: 0;
-  }
 
-  .project-hero-overlay {
-    left: 16px;
-    right: 16px;
-    bottom: 12px;
-    padding: 8px 10px;
-  }
-
-  .project-title {
-    font-size: 20px;
-    margin-bottom: 6px;
-  }
-
-  .project-meta {
-    font-size: 12px;
-    gap: 6px;
-  }
-
-  .project-meta-item {
-    padding: 4px 8px;
-  }
-
-  .project-body {
-    margin-top: 12px;
-    padding: 0 16px;
-  }
 
   .project-info-card {
     position: static;
@@ -695,33 +692,20 @@ body.ai-page .side-dock nav a:hover {
     gap: 12px;
     margin-top: 16px;
     margin-bottom: 16px;
-  }
-
-  .row[data-layout="single"] {
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .row[data-layout="double"] {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    padding: 0 var(--edge);
   }
 
   .project-row-double {
-    display: grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 12px;
   }
 
-  .project-next-link {
-    margin-top: 8px;
-    margin-bottom: 12px;
+  .project-image img {
+    max-height: calc(100vh - 140px);
   }
 
   .project-hero-arrow {
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px;
+    width: 32px;
     height: 32px;
     font-size: 18px;
     display: none;
@@ -735,7 +719,6 @@ body.ai-page .side-dock nav a:hover {
     right: 16px;
   }
 }
-
 
 /* ===== THE WID – Haus-Tabs (Desktop) ===== */
 
@@ -823,17 +806,108 @@ body.ai-page .side-dock nav a:hover {
 }
 
 /* Haus-spezifische Feintuning-Klassen (Desktop) */
-.wid-house-info-card-1 { left: 475px; bottom: 40px; }
+.wid-house-info-card-1 { left: 438px; bottom: 17px; }
 .wid-house-info-card-2 { left: 485px; bottom: 17px; }
 .wid-house-info-card-3 { left: 487px; bottom: 17px; }
 .wid-house-info-card-4 { left: 487px; bottom: 17px; }
-.wid-house-info-card-5 { left: 475px; bottom: 39px; }
-.wid-house-info-card-6 { left: 475px; bottom: 39px; }
-.wid-house-info-card-7 { left: 475px; bottom: 39px; }
-.wid-house-info-card-8 { left: 475px; bottom: 39px; }
-.wid-house-info-card-9 { left: 474px; bottom: 38px; }
+.wid-house-info-card-5 { left: 438px; bottom: 17px; }
+.wid-house-info-card-6 { left: 438px; bottom: 17px; }
+.wid-house-info-card-7 { left: 438px; bottom: 17px; }
+.wid-house-info-card-8 { left: 438px; bottom: 17px; }
+.wid-house-info-card-9 { left: 438px; bottom: 17px; }
 
+/* Mobile THE WID – Haus-Tabs & Detail */
+@media (max-width: 780px) {
+  /* Container: THE-WID-Textbox → Tabs → Haus-Detail */
+  .wid-houses {
+    padding: 0 var(--edge);
+    margin-top: 20px !important;   /* Abstand THE-WID-Text → Tabs */
+    gap: 40px !important;          /* KEIN extra Abstand Tabs → Haus-Detail */
+  }
 
+  /* 3x3 Raster für Hausnummern */
+  .wid-houses-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 8px;                 /* Abstand zwischen den Zeilen der Hausnummern */
+    justify-items: center;
+    margin-bottom: 0 !important;  /* kein Extra-Abstand nach unten */
+  }
+
+  .wid-house-tab {
+    font-size: 12px;
+    padding-bottom: 0;
+  }
+
+  /* Haus-Detail: Hero ↔ Textbox ↔ Galerie */
+  .wid-house-detail {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    gap: 16px !important;          /* hier stellst du ein, wie nah alles zusammenrückt */
+  }
+
+  /* Haus-Hero selbst: kein zusätzlicher Margin */
+  .wid-house-hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* WICHTIG: eigener, schlanker Hero-Container statt Vollbild-Höhe */
+  .wid-house-hero-media {
+    position: relative;
+    width: 100%;
+    height: auto !important;      /* überschreibt project-hero-media */
+    max-height: none !important;  /* kein künstlicher „Riesenblock“ */
+    aspect-ratio: 3 / 2;          /* Querformat – probier 4/3 oder 16/9, wenn du willst */
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .wid-house-hero-media .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;            /* füllt den Container, kein Weiß oben/unten */
+  }
+
+  /* Textbox direkt unter dem Haus-Hero */
+  .wid-house-info-card {
+    position: static;
+    left: auto;
+    bottom: auto;
+    max-width: none;
+    margin-top: 2px !important;   /* 0px = direkt ans Bild kleben */
+    padding: 20px 0 8px !important;
+  }
+
+  .wid-house-info-card .project-title {
+    margin: 0 0 2px;
+  }
+
+  .wid-house-info-card .project-client {
+    margin: 0 0 4px;
+  }
+
+  .wid-house-info-card .project-intro {
+    margin: 0;
+  }
+
+  /* Galerie unter dem Haus-Hero */
+  .wid-house-detail .project-gallery {
+    margin-top: 8px !important;
+    padding: 0 !important;
+    gap: 12px !important;
+  }
+
+  .wid-house-detail .project-gallery .project-row {
+    margin: 0;
+    padding: 0;
+  }
+
+  .wid-house-detail .project-gallery .project-image {
+    margin: 0;
+  }
+}
 
 /* Fade-In Animation für Haus-Wechsel – nur Opacity */
 
@@ -972,8 +1046,38 @@ body.ai-page .side-dock nav a:hover {
   opacity: 1;
 }
 
+/* Mobile: THE-WID-Hero im Querformat + Punkte direkt unter dem Bild */
 
+@media (max-width: 780px) {
+  /* THE-WID Haupt-Hero-Bilder: wie Haus-Hero → contain */
+  .wid-hero-slide-layer .project-img {
+    object-fit: contain;
+    max-height: calc(100vh - 140px);
+  }
 
+  /* THE-WID Haupt-Hero näher ans Logo ziehen */
+  .wid-hero-slider {
+    margin-top: -60px; /* ggf. -16 oder -20, wenn noch näher */
+  }
+
+  .wid-hero-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: -135px;
+    margin-bottom: 2px;
+  }
+
+  .wid-hero-dot {
+    transition: background 0.25s ease, transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  .wid-hero-dot-active {
+    transform: scale(1.15);
+  }
+}
 
 /* ===================== Bottom navigation (next project / next house) ===================== */
 
@@ -1025,147 +1129,152 @@ body.ai-page .side-dock nav a:hover {
 }
 /* Scroll-Position für THE WID Haus-Tabs */
 #wid-houses-anchor {
-  scroll-margin-top: 56px; /* Desktop & Mobile: direkt unter der festen Header-Leiste */
+  scroll-margin-top: 60px; /* Desktop: Abstand nach oben */
 }
 
 @media (max-width: 780px) {
   #wid-houses-anchor {
-    scroll-margin-top: 56px; /* Handy: direkt unter der Header-Leiste */
+    scroll-margin-top: -60px; /* Handy: etwas Luft über den Tabs */
   }
 }
 
+
 /* ========================================================= */
-/* THE WID – Mobile (nur THE WID Seite anpassen)            */
+/* THE WID – gezielte Mobile-Overrides (nur THE WID Seite)   */
 /* ========================================================= */
 @media (max-width: 780px) {
-/* THE-WID Haupt-Hero-Bilder: wie Haus-Hero → contain */
-  .wid-hero-slide-layer .project-img {
-    object-fit: contain;
-    max-height: calc(100vh - 500px);
+  /* Globaler THE-WID-Hero: kompakter Abstand */
+  .project-page--thewid .project-hero {
+    margin-top: -60px;
+    margin-bottom: 8px;
   }
 
-  /* THE-WID Haupt-Hero NICHT mehr nach oben schieben */
-  .wid-hero-slider {
+  /* THE-WID-Hero-Bild oben */
+  .project-page--thewid .wid-hero-slide-layer .project-img {
+    object-fit: contain;
+    max-height: 55vh;
+  }
+
+  .project-page--thewid .wid-hero-slider {
     margin-top: 0;
   }
 
-  .wid-hero-dots {
+  .project-page--thewid .wid-hero-dots {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    margin-top: -470px;
-    margin-bottom: 2px;
+    margin-top: -70px;   /* Bild → Punkte */
+    margin-bottom: 4px;/* Punkte → THE-WID-Textbox */
   }
 
-  .wid-hero-dot {
-    transition: background 0.25s ease, transform 0.25s ease,
-      opacity 0.25s ease;
-  }
-
-  .wid-hero-dot-active {
-    transform: scale(1.15);
-  
-  }
-
-
-  /* THE WID: Info-Textbox direkt unter dem Hero, mit minimalem Abstand */
+  /* THE-WID Infobox unter dem globalen Hero */
   .project-page--thewid .project-info-card {
     margin-top: 4px;
-    padding: 10px 10px 8px;
-  }
-/* Container: THE-WID-Textbox → Tabs → Haus-Detail */
-  .wid-houses {
-    padding: 0 var(--edge);
-    margin-top: 8px !important;    /* Abstand THE-WID-Text → Tabs (sehr knapp) */
-    gap: 0px !important;          /* Minimaler Abstand Tabs → Haus-Detail */
+    padding: 8px 10px 6px;
   }
 
-  /* 3x3 Raster für Hausnummern */
-  .wid-houses-tabs {
+  /* Container: THE-WID-Textbox → Tabs → Haus-Detail */
+  .project-page--thewid .wid-houses {
+    padding: 0 var(--edge);
+    margin-top: 4px;   /* Textbox → Tabs */
+    gap: 8px;          /* Tabs → Haus-Detail (Hero + Text + Galerie) */
+  }
+
+  /* Tabs-Raster */
+  .project-page--thewid .wid-houses-tabs {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px 8px;                 /* Abstand zwischen den Zeilen der Hausnummern */
+    gap: 6px 6px;
     justify-items: center;
-    margin-bottom: -100px !important;  /* kein Extra-Abstand nach unten */
+    margin-bottom: 0;
   }
 
-  .wid-house-tab {
+  .project-page--thewid .wid-house-tab {
     font-size: 12px;
-    padding-bottom: 0;
+    padding-bottom: 2px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .project-page--thewid .wid-houses-tabs,
+  .project-page--thewid .wid-house-tab {
+    position: relative;
+    z-index: 2;
   }
 
   /* Haus-Detail: Hero ↔ Textbox ↔ Galerie */
-  .wid-house-detail {
-    margin-top: 0px;
-    padding-top: 0 !important;
-    gap: 0px !important;          /* sehr enger Abstand zwischen Hero, Textbox und Galerie */
+  .project-page--thewid .wid-house-detail {
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Haus-Hero ↔ Textbox ↔ Galerie */
   }
 
-  /* Haus-Hero selbst: kein zusätzlicher Margin */
-  .wid-house-hero {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
+  .project-page--thewid .wid-house-hero {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
   }
 
- /* Haus-Hero-Container: keine künstliche Höhe / kein weißer Block */
-  .wid-house-hero-media {
+  .project-page--thewid .wid-house-hero-media {
     position: relative;
     width: 100%;
-    height: auto !important;      /* passt sich dem Bild an */
-    max-height: none !important;
-    aspect-ratio: auto;           /* keine feste Ratio mehr */
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
     margin: 0;
     padding: 0;
-    background: transparent;      /* kein eigener weißer Hintergrund */
+    background: transparent;
   }
 
-  /* Bild im Haus-Hero: wie ein normales responsives Bild */
-  .wid-house-hero-media .project-img {
+  .project-page--thewid .wid-house-hero-media .project-img {
     position: static;
     display: block;
     width: 100%;
     height: auto;
-    object-fit: contain;          /* nichts abschneiden, komplettes Bild */
+    object-fit: contain;
   }
 
-  /* Textbox direkt unter dem Haus-Hero */
-  .wid-house-info-card {
+  .project-page--thewid .wid-house-info-card {
     position: static;
     left: auto;
     bottom: auto;
     max-width: none;
-    margin-top: -100px !important;     /* direkt ans Bild geklebt */
-    padding: 10px 0 10px !important;
+    margin-top: 4px;       /* Bild → Textbox */
+    padding: 8px 0 6px;    /* Innenabstand */
   }
 
-  .wid-house-info-card .project-title {
+  .project-page--thewid .wid-house-info-card .project-title {
     margin: 0 0 2px;
   }
 
-  .wid-house-info-card .project-client {
+  .project-page--thewid .wid-house-info-card .project-client {
     margin: 0 0 4px;
   }
 
-  .wid-house-info-card .project-intro {
+  .project-page--thewid .wid-house-info-card .project-intro {
     margin: 0;
   }
 
-  /* Galerie unter dem Haus-Hero */
-  .wid-house-detail .project-gallery {
-    margin-top: 4px !important;
-    padding: 0 !important;
-    gap: 15px !important;          /* enger Abstand zwischen den Bildreihen */
+  /* Galerie unter dem Haus-Hero-Block (Textbox → erste Row) */
+  .project-page--thewid .wid-house-detail .project-gallery {
+    margin-top: 6px;   /* Textbox → erste Row */
+    margin-bottom: 8px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;         /* Abstand zwischen Rows (2→3→4...) */
   }
 
-  .wid-house-detail .project-gallery .project-row {
+  .project-page--thewid .wid-house-detail .project-gallery .project-row {
     margin: 0;
     padding: 0;
   }
 
-  .wid-house-detail .project-gallery .project-image {
+  .project-page--thewid .wid-house-detail .project-gallery .project-image {
     margin: 0;
-}
-
+  }
 }

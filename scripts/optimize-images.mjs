@@ -11,8 +11,8 @@ const OUTPUT_DIR = path.join(ROOT, "public", "media");
 
 // Milde, hochwertige Maximalbreiten
 const DEFAULT_MAX_WIDTH = 3200;      // normale Projekte
-const THEWID_HERO_MAX_WIDTH = 2800;  // THE WID Haupt-Hero / Haus-Hero
-const THEWID_OTHER_MAX_WIDTH = 2400; // THE WID sonstige Bilder
+const THEWID_HERO_MAX_WIDTH = 3000;  // THE WID Haupt-Hero / Haus-Hero
+const THEWID_OTHER_MAX_WIDTH = 2800; // THE WID sonstige Bilder
 
 // Hohe Qualität
 const QUALITY = 90;
@@ -34,6 +34,27 @@ async function optimizeImage(srcPath) {
   const outDir = path.dirname(outPath);
   await fs.mkdir(outDir, { recursive: true });
 
+  // ------------------------------------------
+  // NEU: nur bearbeiten, wenn nötig
+  // → Wenn es bereits ein Output gibt,
+  //   der gleich neu oder neuer ist als das Original,
+  //   dann überspringen wir dieses Bild.
+  // ------------------------------------------
+  try {
+    const [srcStat, outStat] = await Promise.all([
+      fs.stat(srcPath),
+      fs.stat(outPath),
+    ]);
+
+    if (outStat.mtimeMs >= srcStat.mtimeMs) {
+      console.log(`Skipping (already optimized): ${relFromOriginals}`);
+      return;
+    }
+  } catch (err) {
+    // Wenn outPath noch nicht existiert → fs.stat wirft Fehler → normal,
+    // in dem Fall machen wir einfach weiter und optimieren/kopieren das Bild.
+  }
+
   // ----------------------------
   // 1) HAUPTSEITE (MasonryGrid)
   //    → ext-01.jpg, ext-02.jpg, ...
@@ -41,7 +62,9 @@ async function optimizeImage(srcPath) {
   // ----------------------------
   const baseName = path.basename(relFromOriginals);
   if (baseName.startsWith("ext-")) {
-    console.log(`Skipping HOMEPAGE image (no resize): ${relFromOriginals}`);
+    console.log(
+      `Copy HOMEPAGE image (no resize): ${relFromOriginals}`
+    );
     await fs.copyFile(srcPath, outPath);
     return;
   }
