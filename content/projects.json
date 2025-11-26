@@ -57,7 +57,7 @@
       },
       {
         "layout": "double",
-        "images": ["/media/projekte/portal/portal-03-03.jpg", "/media/projekte/portal/ext-03-04.jpg"]
+        "images": ["/media/projekte/portal/portal-03-03.jpg", "/media/projekte/portal/portal-03-04.jpg"]
       },
       {
         "layout": "single",
@@ -89,17 +89,17 @@
     "id": "ext-05",
     "title": "Mainau Insel",
     "client": "Königs Architekten",
-    "hero": "/media/projekte/mainau/ext-05-01.jpg",
+    "hero": "/media/projekte/mainau/mainau-05-01.jpg",
     "intro": "Mainau Island is defined by constant transformation — a natural cycle of growth and change. This idea extends to its architecture, where temporary structures are not defects but adaptive, resilient elements with their own aesthetic. The island feels complete at every moment, with transitions understood as part of its inherent logic.",
  "website": ["https://www.koenigs-architekten.de"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/projekte/mainau/ext-05-02.jpg"]
+        "images": ["/media/projekte/mainau/mainau-05-02.jpg"]
       },
       {
         "layout": "single",
-        "images": ["/media/projekte/mainau/ext-05-03.jpg"]
+        "images": ["/media/projekte/mainau/mainau-05-03.jpg"]
       }
 
     ]
@@ -127,13 +127,19 @@
     "id": "ext-08",
     "title": "Stadtallendorf",
     "client": "Isabell Battenfeld Architekts",
-    "hero": "/media/ext-08.jpg",
-    "intro": "",
+    "hero": "/media/projekte/Stadtallendorf/Stadtallendorf-08-01.jpg",
+    "website": ["https://www.instagram.com/isabellbattenfeldarchitects/"],
+    "intro": "A remodel and extension transform this mixed-use building into a home with flowing transitions between inside and outside. A new garden-facing addition, rooftop terrace, and open living spaces create a generous family residence above the existing commercial area.",
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-08.jpg"]
+        "images": ["/media/projekte/Stadtallendorf/Stadtallendorf-08-02.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/Stadtallendorf/Stadtallendorf-08-03.jpg"]
       }
+
     ]
   },
 
@@ -155,16 +161,14 @@
     "id": "ext-10",
     "title": "Farmsen",
     "client": "Phase 5",
-    "hero": "/media/ext-10.jpg",
-    "intro": "",
+    "hero": "/media/projekte/farmsen/farmsen-10-01.jpg",
+    "intro": "A large, green residential district organized around a central park and lake, featuring curved building layouts, dense tree corridors, and sculptural red towers. The masterplan blends housing, landscape, and public spaces into a cohesive urban environment.",
+    "website": ["https://www.phase5.de"],
     "rows": [
-      {
-        "layout": "single",
-        "images": ["/media/ext-10.jpg"]
-      },
+  
       {
         "layout": "double",
-        "images": ["/media/ext-10.jpg", "/media/ext-10.jpg"]
+        "images": ["/media/projekte/farmsen/farmsen-10-02.jpg", "/media/projekte/farmsen/farmsen-10-03.jpg"]
       }
     ]
   },
@@ -187,26 +191,40 @@
     "id": "ext-12",
     "title": "Campus Kartause Köln",
     "client": "Königs Architekten",
-    "hero": "/media/ext-12.jpg",
-    "intro": "",
+    "hero": "/media/projekte/katause/katause-12-01.jpg",
+    "intro": "Drawing from the historic Carthusian monastery, the design preserves its spirit by creating a place that is both welcoming to the Südstadt and quietly cloister-like inside. The project mediates between dense urban blocks and the monastery’s orthogonal order, using clear forms, framed views, and consistent materials to establish a timeless and calm architectural presence.",
+    "website": ["https://www.koenigs-architekten.de"],
     "rows": [
       {
+        "layout": "single",
+        "images": ["/media/projekte/katause/katause-12-02.jpg"]
+      },
+      {
         "layout": "double",
-        "images": ["/media/ext-12.jpg", "/media/ext-12.jpg"]
+        "images": ["/media/projekte/katause/katause-12-03.jpg", "/media/projekte/katause/katause-12-04.jpg"]
       }
     ]
   },
 
   {
     "id": "ext-16",
-    "title": "Königstraße 3",
+    "title": "Königstraße",
     "client": "Phase 5",
-    "hero": "/media/ext-16-hero.jpg",
-    "intro": "",
+    "hero": "/media/projekte/konig/konig-16-01.jpg",
+    "intro": "A new office building forms a clear urban landmark at Martin-Luther-Platz, strengthening the square’s identity and connecting smoothly to its surroundings. Its refined façade, flexible interiors, and green terraces create a contemporary and enduring addition to the cityscape.",
+    "website": ["https://www.phase5.de"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-16-hero.jpg"]
+        "images": ["/media/projekte/konig/konig-16-02.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/projekte/konig/konig-16-03.jpg", "/media/projekte/konig/konig-16-04.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/konig/konig-16-05.jpg"]
       }
     ]
   },
@@ -363,15 +381,25 @@
     "id": "ext-28",
     "title": "Königstraße",
     "client": "Phase 5",
-    "hero": "/media/ext-28.jpg",
-    "intro": "",
+    "hero": "/media/projekte/konig/konig-16-01.jpg",
+    "intro": "A new office building forms a clear urban landmark at Martin-Luther-Platz, strengthening the square’s identity and connecting smoothly to its surroundings. Its refined façade, flexible interiors, and green terraces create a contemporary and enduring addition to the cityscape.",
+    "website": ["https://www.phase5.de"],
     "rows": [
       {
+        "layout": "single",
+        "images": ["/media/projekte/konig/konig-16-02.jpg"]
+      },
+      {
         "layout": "double",
-        "images": ["/media/ext-28.jpg", "/media/ext-28.jpg"]
+        "images": ["/media/projekte/konig/konig-16-03.jpg", "/media/projekte/konig/konig-16-04.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/konig/konig-16-05.jpg"]
       }
     ]
   },
+
 
   {
     "id": "ext-29",

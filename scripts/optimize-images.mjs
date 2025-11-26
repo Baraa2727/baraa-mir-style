@@ -70,12 +70,19 @@ async function optimizeImage(srcPath) {
   }
 
   // ----------------------------
-  // 2) Maximalbreite je nach Pfad (THE WID vs. rest)
+  // 2) Maximalbreite je nach Pfad
   // ----------------------------
   let maxWidth = DEFAULT_MAX_WIDTH;
 
-  if (relFromOriginals.startsWith("thewid/hero/")) {
+  // Alle Bilder unter public/media_originals/projekte → max. 3000px
+  if (relFromOriginals.startsWith("projekte/")) {
+    maxWidth = 3000;
+
+  // THE WID – Haupt-Hero
+  } else if (relFromOriginals.startsWith("thewid/hero/")) {
     maxWidth = THEWID_HERO_MAX_WIDTH;
+
+  // THE WID – restliche Bilder
   } else if (relFromOriginals.startsWith("thewid/")) {
     maxWidth = THEWID_OTHER_MAX_WIDTH;
   }

@@ -20,7 +20,7 @@
   { "id": "ext-14", "kind": "image", "src": "/media/home/ext-14.jpg", "title": "", "client": "" },
   { "id": "ext-15", "kind": "image", "src": "/media/home/ext-15.jpg", "title": "", "client": "" },
 
-  { "id": "ext-16", "kind": "video", "src": "/media/home/ext-16.mp4", "title": "Königstraße 3", "client": "Phase 5" },
+  { "id": "ext-16", "kind": "video", "src": "/media/home/ext-16.mp4", "title": "Königstraße", "client": "Phase 5" },
   { "id": "ext-17", "kind": "image", "src": "/media/home/ext-17.jpg", "title": "Köln Ehrenfeld", "client": "Isabell Battenfeld Architekts" },
   { "id": "ext-18", "kind": "image", "src": "/media/home/ext-18.jpg", "title": "MO 26", "client": "Alfons & Alfreda" },
   { "id": "ext-19", "kind": "image", "src": "/media/home/ext-19.jpg", "title": "Marburg", "client": "Isabell Battenfeld Architekts" },
