@@ -233,12 +233,13 @@
     "id": "ext-17",
     "title": "Köln Ehrenfeld",
     "client": "Isabell Battenfeld Architekts",
-    "hero": "/media/ext-17.jpg",
-    "intro": "",
+    "hero": "/media/projekte/ehrenfeld/ehrenfeld-17-01.jpg",
+    "intro": "A careful balance of old and new defines this transformation. The restored Art Nouveau façade meets a refined garden-side extension with shimmering metal shingles, unified by consistent design. A green roof terrace and wide seating steps create a seamless flow between interior and garden, forming a harmonious contemporary addition.",
+    "website": ["https://www.instagram.com/isabellbattenfeldarchitects/"],
     "rows": [
       {
         "layout": "double",
-        "images": ["/media/ext-17.jpg", "/media/ext-17.jpg"]
+        "images": ["/media/projekte/ehrenfeld/ehrenfeld-17-02.jpg","/media/projekte/ehrenfeld/ehrenfeld-17-03.jpg"]
       }
     ]
   },
@@ -247,12 +248,13 @@
     "id": "ext-19",
     "title": "Marburg",
     "client": "Isabell Battenfeld Architekts",
-    "hero": "/media/ext-19.jpg",
-    "intro": "",
+    "hero": "/media/projekte/marburg/marburg-19-01.jpg",
+    "intro": "Reimagining the old brings light, air, and greenery back into the neighborhood. This project sets a clear, sustainable impulse in Marburg’s station district — redefining how living, working, leisure, and mobility can come together in a future-oriented urban setting.",
+    "website": ["https://www.instagram.com/isabellbattenfeldarchitects/"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-19.jpg"]
+        "images": ["/media/projekte/marburg/marburg-19-02.jpg"]
       }
     ]
   },
@@ -261,12 +263,13 @@
     "id": "ext-20",
     "title": "Schlägelstraße",
     "client": "Phase 5",
-    "hero": "/media/ext-20.jpg",
-    "intro": "",
+    "hero": "/media/projekte/schleagel/schleagel-20-01.jpg",
+    "intro": "Located directly next to Düsseldorf Central Station, this office building combines a robust brick architecture with generous green spaces. A landscaped rooftop terrace and a planted inner courtyard create relaxing outdoor areas, adding light and nature to an otherwise urban setting.",
+    "website": ["https://www.phase5.de"],
     "rows": [
       {
         "layout": "double",
-        "images": ["/media/ext-20.jpg", "/media/ext-20.jpg"]
+        "images": ["/media/projekte/schleagel/schleagel-20-02.jpg", "/media/projekte/schleagel/schleagel-20-03.jpg"]
       }
     ]
   },
@@ -275,12 +278,13 @@
     "id": "ext-21",
     "title": "Burgfelderstrasse",
     "client": "Backes Zarali Architekten",
-    "hero": "/media/ext-21.jpg",
-    "intro": "",
+    "hero": "/media/projekte/burgfelderstr/burgfelderstr-21-01.jpg",
+    "intro": "Created on a former tram loop site, this project provides around 32 social housing units along with a double kindergarten and day-care facilities. The listed tram pavilion is thoughtfully integrated, turning an obsolete transport area into meaningful, community-oriented space.",
+    "website": ["https://www.backeszarali.ch"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-21.jpg"]
+        "images": ["/media/projekte/burgfelderstr/burgfelderstr-21-02.jpg"]
       }
     ]
   },
@@ -289,13 +293,19 @@
     "id": "ext-22",
     "title": "Potsdam",
     "client": "Phase 5",
-    "hero": "/media/ext-22.jpg",
+    "hero": "/media/projekte/potsdam/potsdam-22-01.jpg",
     "intro": "",
+    "website": ["https://www.phase5.de"],
     "rows": [
       {
         "layout": "double",
-        "images": ["/media/ext-22.jpg", "/media/ext-22.jpg"]
+        "images": ["/media/projekte/potsdam/potsdam-22-02.jpg", "/media/projekte/potsdam/potsdam-22-03.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/potsdam/potsdam-22-04.jpg"]
       }
+
     ]
   },
 
@@ -303,30 +313,27 @@
     "id": "ext-23",
     "title": "Wohnen im Dach",
     "client": "adbarchitektur",
-    "hero": "/media/ext-23.jpg",
+    "hero": "/media/projekte/dach/dach-23-01.jpg",
     "intro": "",
-    "rows": [
-      {
-        "layout": "single",
-        "images": ["/media/ext-23.jpg"]
-      },
-      {
-        "layout": "double",
-        "images": ["/media/ext-23.jpg", "/media/ext-23.jpg"]
-      }
-    ]
+    "website": ["https://www.adbarchitektur.de"],
+    "rows": [ ]
   },
 
   {
     "id": "ext-24",
     "title": "Boutanique",
     "client": "Isabell Battenfeld Architekts",
-    "hero": "/media/ext-24.jpg",
-    "intro": "",
+  "hero": "/media/projekte/blumen/blumen-24-01.jpg",
+    "intro": "A boutique for botany: this concept store combines flowers, plants, décor, a greenhouse, a café, and a flowerschool under one roof. A flowing pink terrazzo counter links all areas, while lush hanging greenery and raw concrete surfaces create a vivid contrast and a dynamic, creative atmosphere.",
+    "website": ["https://www.instagram.com/isabellbattenfeldarchitects/"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-24.jpg"]
+        "images": ["/media/projekte/blumen/blumen-24-02.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/blumen/blumen-24-03.jpg"]
       }
     ]
   },
@@ -335,12 +342,13 @@
     "id": "ext-25",
     "title": "Nürnberger",
     "client": "Isabell Battenfeld Architekts",
-    "hero": "/media/ext-25.jpg",
+    "hero": "/media/projekte/nurnberger/nurnberger-25-01.jpg",
     "intro": "",
+    "website": ["https://www.instagram.com/isabellbattenfeldarchitects/"],
     "rows": [
       {
-        "layout": "double",
-        "images": ["/media/ext-25.jpg", "/media/ext-25.jpg"]
+        "layout": "single",
+        "images": ["/media/projekte/nurnberger/nurnberger-25-02.jpg"]
       }
     ]
   },
@@ -349,13 +357,31 @@
     "id": "ext-26",
     "title": "Terra Calma",
     "client": "Sevencollection Portugal",
-    "hero": "/media/ext-26-hero.jpg",
-    "intro": "",
+    "hero": "/media/projekte/terra/terra-26-01.jpg",
+    "intro": "Terra Calma sits close enough to the sea to hear the waves, while its hillside position offers wide inland views. A sheltered terrace with barbecue and seating lies at the rear, with a second garden level below — generous outdoor spaces for shared moments or quiet retreat.",
+    "website": ["https://www.sevencollection.de"],
     "rows": [
       {
         "layout": "single",
-        "images": ["/media/ext-26-hero.jpg"]
+        "images": ["/media/projekte/terra/terra-26-02.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/terra/terra-26-03.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/projekte/terra/terra-26-04.jpg", "/media/projekte/terra/terra-26-05.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/terra/terra-26-06.jpg"]
+      },
+      {
+        "layout": "double",
+        "images": ["/media/projekte/terra/terra-26-07.jpg", "/media/projekte/terra/terra-26-08.jpg"]
       }
+
     ]
   },
 
@@ -363,16 +389,13 @@
     "id": "ext-27",
     "title": "Hillside",
     "client": "Phase 5",
-    "hero": "/media/ext-27.jpg",
+    "hero": "/media/projekte/hilside/hilside-27-01.jpg",
     "intro": "",
+    "website": ["https://www.phase5.de"],
     "rows": [
       {
-        "layout": "single",
-        "images": ["/media/ext-27.jpg"]
-      },
-      {
         "layout": "double",
-        "images": ["/media/ext-27.jpg", "/media/ext-27.jpg"]
+        "images": ["/media/projekte/hilside/hilside-27-02.jpg", "/media/projekte/hilside/hilside-27-03.jpg"]
       }
     ]
   },
@@ -405,12 +428,13 @@
     "id": "ext-29",
     "title": "Office",
     "client": "Golden Section Office",
-    "hero": "/media/ext-29.jpg",
+    "hero": "/media/projekte/office/office-29-01.jpg",
     "intro": "",
+    "website": ["https://www.facebook.com/golden.sect/"],
     "rows": [
       {
-        "layout": "single",
-        "images": ["/media/ext-29.jpg"]
+        "layout": "double",
+        "images": ["/media/projekte/office/office-29-02.jpg", "/media/projekte/office/office-29-03.jpg"]
       }
     ]
   },
@@ -419,12 +443,13 @@
     "id": "ext-30",
     "title": "Kloster Eberbach",
     "client": "Backes Zarali Architekten",
-    "hero": "/media/ext-30.jpg",
-    "intro": "",
+    "hero": "/media/projekte/kloster/kloster-30-01.jpg",
+    "intro": "Kloster Eberbach is a historic Cistercian monastery in the Rheingau, preserved and managed by a public foundation dedicated to protecting this cultural landmark. Through restoration, cultural programs, events, and public access, the foundation works to keep the site’s heritage alive while shaping its future and fostering dialogue.",
+    "website": ["https://www.backeszarali.ch"],
     "rows": [
       {
-        "layout": "double",
-        "images": ["/media/ext-30.jpg", "/media/ext-30.jpg"]
+        "layout": "single",
+        "images": ["/media/projekte/kloster/kloster-30-02.jpg"]
       }
     ]
   },
@@ -443,17 +468,21 @@
     ]
   },
 
-  {
-    "id": "ext-32",
-    "title": "european street",
-    "client": "",
-    "hero": "/media/ext-32.jpg",
-    "intro": "",
-    "rows": [
-      {
-        "layout": "single",
-        "images": ["/media/ext-32.jpg"]
-      }
+ {
+  "id": "ext-32",
+  "title": "european street",
+  "client": "",
+  "hero": "/media/projekte/europa/europa-32-01.jpg",
+  "intro": "",
+  "rows": [
+    {
+      "layout": "single",
+      "images": ["/media/projekte/europa/europa-32-02.jpg"]
+    },
+    {
+      "layout": "double",
+      "images": ["/media/projekte/europa/europa-32-03.jpg", "/media/projekte/europa/europa-32-04.jpg"]
+    }
     ]
   },
 
@@ -461,12 +490,13 @@
     "id": "ext-34",
     "title": "Sarnen",
     "client": "Backes Zarali Architekten",
-    "hero": "/media/ext-34.jpg",
-    "intro": "",
+    "hero": "/media/projekte/sarnen/sarnen-34-01.jpg",
+    "intro": "A new replacement building in Sarnen is planned as a versatile community center. It will include a larger church hall with stage, a flexible multipurpose room, a welcoming foyer, a central café with kitchen, as well as spaces for childcare, teaching, and creative work.",
+    "website": ["https://www.backeszarali.ch"],
     "rows": [
       {
-        "layout": "double",
-        "images": ["/media/ext-34.jpg", "/media/ext-34.jpg"]
+        "layout": "single",
+        "images": ["/media/projekte/sarnen/sarnen-34-02.jpg"]
       }
     ]
   },
@@ -475,12 +505,13 @@
     "id": "ext-35",
     "title": "Columbarium church in Emden",
     "client": "Königs Architekten",
-    "hero": "/media/ext-35.jpg",
+    "hero": "/media/projekte/emden/emden-35-01.jpg",
     "intro": "",
+    "website": ["https://www.koenigs-architekten.de"],
     "rows": [
       {
-        "layout": "single",
-        "images": ["/media/ext-35.jpg"]
+        "layout": "double",
+        "images": ["/media/projekte/emden/emden-35-02.jpg", "/media/projekte/emden/emden-35-03.jpg"]
       }
     ]
   }
