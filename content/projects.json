@@ -316,7 +316,17 @@
     "hero": "/media/projekte/dach/dach-23-01.jpg",
     "intro": "",
     "website": ["https://www.adbarchitektur.de"],
-    "rows": [ ]
+    "rows": [
+      {
+        "layout": "double",
+        "images": ["/media/projekte/dach/dach-23-02.jpg", "/media/projekte/dach/dach-23-03.jpg"]
+      },
+      {
+        "layout": "single",
+        "images": ["/media/projekte/dach/dach-23-04.jpg"]
+      }
+
+    ]
   },
 
   {
