@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "name": "BARAA",
+    "tagline": "Architectural Images",
+    "subline": "We render, print, and make."
+  },
+  "images": {
+    "row1": [
+      "/media/about/about-1.jpg",
+      "/media/about/about-2.jpg"
+    ],
+    "row2": "/media/about/about-3.jpg",
+    "row3": [
+      "/media/about/about-4.jpg",
+      "/media/about/about-5.jpg"
+    ],
+    "row5": "/media/about/about-6.jpg"
+  },
+  "bio": {
+    "name": "Baraa Shareet",
+    "role": "Architectural 3D Rendering",
+    "paragraphs": [
+      "My work started from a strong affinity for digital media and aesthetics, and from a curiosity for materials, forms, and colour. My studio is based in Wuppertal, framed by valley and river, where I develop and refine my renderings.",
+      "My vision is to translate architectural concepts into visual impressions that open up tomorrow’s perspectives and add individual accents to each project.",
+      "Approaching the realisation of your ideas with care and dedication is at the core of my practice.",
+      "Studium – Bergische Universität Wuppertal, 2021 M. Sc. Architecture."
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "I enjoy speaking about images and architecture. If you would like to discuss a project or have any questions, you are welcome to call or send an email.",
+    "email": "baraashareet@gmail.com",
+    "phone": "+49 160 1064515"
+  },
+  "location": {
+    "title": "Location",
+    "lines": [
+      "Phase 5 GmbH",
+      "Erkrather Str. 230,",
+      "40233 Düsseldorf",
+      "GERMANY"
+    ],
+    "note": "We take visits. Please do not come unannounced."
+  },
+  "clients": {
+    "title": "Clients",
+    "items": [
+      { "name": "Phase 5", "website": "https://www.phase5.de" },
+      { "name": "Alfons & Alfreda", "website": "https://www.alfons-alfreda.com" },
+      { "name": "terraneo", "website": "https://www.terraneo.de" },
+      { "name": "Backes Zarali Architekten", "website": "https://www.backeszarali.ch" },
+      { "name": "Königs Architekten", "website": "https://www.koenigs-architekten.de" },
+      { "name": "Isabell Battenfeld Architekts", "website": "https://www.instagram.com/isabellbattenfeldarchitects/" },
+      { "name": "Urban Agency", "website": "https://www.urban-agency.com" },
+      { "name": "urbanlust", "website": "https://www.urbanlust.de" },
+      { "name": "adbarchitektur", "website": "https://www.adbarchitektur.de" },
+      { "name": "Golden Section Office", "website": "https://www.facebook.com/golden.sect/" },
+      { "name": "Sevencollection Portugal", "website": "https://www.sevencollection.de" },
+      { "name": "Damrau Kusserow", "website": "https://www.damrau-kusserow.de" }
+    ]
+  }
+}
