@@ -7,35 +7,32 @@
 /* HERO */
 .hero {
   text-align: center;
-  margin-bottom: 160px;
+  margin-bottom: 120px;
 }
 
+/* BLAUES BARAA AUSBLENDEN */
 .heroName {
-  font-size: 36px;           /* jetzt so groß wie Architectural Images */
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #00AEEF;
-  margin: 0 0 16px;
+  display: none;
 }
 
 .heroTagline {
   font-size: 36px;
   font-weight: 600;
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 
 .heroSubline {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 400;
   margin: 0;
 }
 
-/* BILDER – große Abstände */
+/* BILDER – Abstand wie zum Rand (DESKTOP) */
 .imageRow {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 160px;              /* doppelt so viel Abstand wie vorher */
-  margin-bottom: 280px;    /* auch vertikal sehr viel Luft */
+  gap: var(--edge);        /* Abstand ≈ Seitenrand */
+  margin-bottom: 96px;
 }
 
 .imageRow img {
@@ -54,16 +51,17 @@
   object-fit: cover;       /* darf unten etwas schneiden */
 }
 
-/* BIO – Text links, Bild rechts */
+/* BIO – DESKTOP: Text links, Bild rechts, volle Breite */
 .bioSection {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  gap: 80px;
-  margin-bottom: 200px;
+  grid-template-columns: 1fr 1fr;  /* beide Spalten gleich breit */
+  gap: 25px;
+  margin: 160px 0 160px;                /* kein max-width, kein auto-center */
 }
 
 .bioTextHeading {
-  max-width: 900px;        /* längere Zeilen */
+  max-width: 700px;
+  margin: 160px 0 160px;
 }
 
 .bioName {
@@ -83,23 +81,36 @@
 .bioParagraph {
   font-size: 20px;
   line-height: 1.85;
-  margin: 0 0 32px;        /* mehr Abstand zwischen Absätzen */
+  margin: 0 0 28px;
 }
 
-.bioImageWrapper img {
+/* Bild rechts auf DESKTOP */
+.bioImageDesktop {
   width: 100%;
 }
 
-/* CONTACT + LOCATION */
+.bioImageDesktop img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Inline-Bild nur für MOBILE – auf Desktop verstecken */
+.bioImageInline {
+  display: none;
+}
+
+/* CONTACT + LOCATION (DESKTOP) */
 .contactLocationSection {
-  margin-bottom: 200px;
+  margin-bottom: 160px;
   text-align: center;
 }
 
 .contactLocationInner {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 160px;              /* mehr Abstand, damit jeder Block unter einem Bild liegt */
+  gap: 120px;              /* viel Luft, Blöcke grob unter den Bildern drüber */
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -142,13 +153,13 @@
   font-style: italic;
 }
 
-/* EINZELBILD – wieder wie vorher, kleiner & mittig */
+/* EINZELBILD (DESKTOP) */
 .singleImageSection {
   margin-bottom: 160px;
 }
 
 .singleImageWrapper {
-  max-width: 760px;   /* wie früher */
+  max-width: 760px;
   margin: 0 auto;
 }
 
@@ -157,7 +168,7 @@
   display: block;
 }
 
-/* CLIENTS */
+/* CLIENTS (DESKTOP) */
 .clientsSection {
   text-align: center;
 }
@@ -172,7 +183,7 @@
 .clientsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 60px 120px;        /* deutlich mehr Luft zwischen den Clients */
+  gap: 60px 120px;
   max-width: 900px;
   margin: 0 auto;
   font-size: 20px;
@@ -189,5 +200,148 @@
 }
 
 .clientWebsite a:hover {
-  color: #00AEEF;         /* blau beim Hover */
+  color: #00AEEF;
+}
+
+/* ========================================= */
+/* MOBILE: Alles untereinander               */
+/* ========================================= */
+
+@media (max-width: 780px) {
+  .aboutPage {
+    padding: 80px var(--edge) 100px;
+  }
+
+  .hero {
+    margin-top: -40px;   /* Architectural Images + Subline weiter nach oben */
+    margin-bottom: 60px;
+  }
+
+  .heroTagline {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .heroSubline {
+    font-size: 16px;
+  }
+
+  /* Bilder: einspaltig untereinander, Abstand wie zum Rand */
+  .imageRow {
+    grid-template-columns: 1fr;
+    gap: var(--edge);
+    margin-bottom: 56px;
+  }
+
+  .imageRow:first-of-type img {
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Bio: alles untereinander */
+  .bioSection {
+    display: block;
+    margin: 0 0 72px;
+  }
+
+  .bioTextHeading {
+    max-width: none;
+  }
+
+  .bioName {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .bioRole {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .bioParagraph {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  /* Bild about-3 NUR auf Handy zwischen den Textabschnitten */
+  .bioImageInline {
+    display: block;
+    margin: 24px 0;
+  }
+
+  .bioImageInline img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Rechtsstehendes Desktop-Bild auf Handy ausblenden */
+  .bioImageDesktop {
+    display: none;
+  }
+
+  /* Contact + Location: untereinander */
+  .contactLocationSection {
+    margin-bottom: 80px;
+  }
+
+  .contactLocationInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: none;
+    text-align: left;
+  }
+
+  .contactBlockTitle {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .contactIntro {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .contactDetail {
+    font-size: 14px;
+  }
+
+  .locationLines {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .locationNote {
+    font-size: 13px;
+  }
+
+  /* Einzelbild: volle Breite */
+  .singleImageSection {
+    margin-bottom: 80px;
+  }
+
+  .singleImageWrapper {
+    max-width: none;
+  }
+
+  /* Clients: 1 Spalte mit Luft */
+  .clientsTitle {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .clientsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: none;
+    font-size: 14px;
+  }
+
+  .clientName {
+    font-size: 14px;
+  }
+
+  .clientWebsite a {
+    font-size: 13px;
+  }
 }
