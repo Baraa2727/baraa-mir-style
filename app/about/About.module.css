@@ -210,10 +210,14 @@
 /* ========================================= */
 
 @media (max-width: 780px) {
+
+  .heroName {
+    display: none !important;
+  }
+
   .aboutPage {
     padding: 80px var(--edge) 100px;
   }
-
   .hero {
     margin-top: -40px;   /* Architectural Images + Subline weiter nach oben */
     margin-bottom: 60px;
