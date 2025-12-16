@@ -10,9 +10,11 @@
   margin-bottom: 120px;
 }
 
-/* BLAUES BARAA AUSBLENDEN */
 .heroName {
-  display: none;
+  font-size: 36px;
+  font-weight: 600;
+  color: #00AEEF;
+  margin: 0 0 8px;
 }
 
 .heroTagline {
