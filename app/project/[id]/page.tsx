@@ -296,6 +296,8 @@ const NEXT_PROJECT_MAP: Record<string, string> = {
   "ext-30": "ext-32",
   "ext-32": "ext-34",
   "ext-34": "ext-35",
+  "ext-35": "ext-39",
+  "ext-39": "ext-40",
 };
 
 const NEXT_HOUSE_MAP: Record<

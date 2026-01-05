@@ -48,5 +48,8 @@
 
   { "id": "ext-36", "kind": "image", "src": "/media/home/ext-36.jpg", "title": "Down by the River", "client": "" },
   { "id": "ext-37", "kind": "image", "src": "/media/home/ext-37.jpg", "title": "kagawa", "client": "" },
-  { "id": "ext-38", "kind": "image", "src": "/media/home/ext-38.jpg", "title": "Astronaut", "client": "" }
+  { "id": "ext-38", "kind": "image", "src": "/media/home/ext-38.jpg", "title": "Astronaut", "client": "" },
+
+  { "id": "ext-39", "kind": "image", "src": "/media/home/ext-39.jpg", "title": "WSW", "client": "Arntz Erke Architekten" },
+  { "id": "ext-40", "kind": "image", "src": "/media/home/ext-40.jpg", "title": "Mythos", "client": "Schmeing Baugruppe" }
 ]

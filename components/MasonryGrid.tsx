@@ -58,6 +58,9 @@ const ROW_SPECS_DEFAULT: RowSpec[] = [
   { cols: 4, aspect: "portrait" },
   { cols: 2, aspect: "square" },
   { cols: 4, aspect: "portrait", videoAtIndex: 2 },
+  { cols: 3, aspect: "portrait" },
+  { cols: 3, aspect: "portrait" },
+  { cols: 2, aspect: "square" },
 ];
 const DEFAULT_SPEC_DEFAULT: RowSpec = { cols: 3, aspect: "portrait" };
 
