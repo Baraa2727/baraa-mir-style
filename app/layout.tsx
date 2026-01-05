@@ -1,9 +1,9 @@
-// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import SideDock from "../components/SideDock";
 import MobileNav from "../components/MobileNav";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "BARAA — Architectural Images",
@@ -26,6 +26,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* Inhalt */}
         <main className="site">{children}</main>
+
+        {/* Vercel Web Analytics */}
+        <Analytics />
       </body>
     </html>
   );
