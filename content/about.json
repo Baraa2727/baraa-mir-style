@@ -56,7 +56,11 @@
       { "name": "adbarchitektur", "website": "https://www.adbarchitektur.de" },
       { "name": "Golden Section Office", "website": "https://www.facebook.com/golden.sect/" },
       { "name": "Sevencollection Portugal", "website": "https://www.sevencollection.de" },
-      { "name": "Damrau Kusserow", "website": "https://www.damrau-kusserow.de" }
+      { "name": "Damrau Kusserow", "website": "https://www.damrau-kusserow.de" },
+      { "name": "Instarender", "website": "https://instagram.com/instarender" },
+      { "name": "Arntz Erke Architekten", "website": "https://www.arntz-erke.de" },
+      { "name": "Schmeing Baugruppe", "website": "https://www.schmeing-baugruppe.de" }
+
     ]
   }
 }
