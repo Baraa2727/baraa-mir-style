@@ -532,7 +532,7 @@
     "client": "Arntz Erke Architekten",
     "hero": "/media/projekte/wsw/wsw-39-01.jpg",
     "intro": "A new steam-to-district-heating conversion station is being built in Wuppertal-Elberfeld as part of the city’s energy transition. The compact technical building supports the shift from a steam network to an efficient hot-water system, integrating high-performance infrastructure into an urban riverside setting.",
-    "website": ["https://www.arntz-erke.de/"],
+    "website": ["https://www.arntz-erke.de"],
     "rows": [
       {
         "layout": "single",
@@ -547,7 +547,7 @@
     "client": "Schmeing Baugruppe",
     "hero": "/media/projekte/mythos/mythos-40-01.jpg",
     "intro": "This newly renovated Greek restaurant in Bocholt combines warm materials, soft lighting, and contemporary detailing. Natural wood, greenery, and a calm, open layout create an inviting atmosphere that reinterprets Mediterranean hospitality in a modern interior.",
-    "website": ["https://www.schmeing-baugruppe.de/"],
+    "website": ["https://www.schmeing-baugruppe.de"],
     "rows": [
       {
         "layout": "double",
