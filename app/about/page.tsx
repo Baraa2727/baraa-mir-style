@@ -127,6 +127,12 @@ export default function AboutPage() {
           })}
         </div>
       </section>
+      {/* Impressum Link */}
+<div style={{ textAlign: "center", marginTop: 120 }}>
+  <a href="/impressum" className={styles.impressumLink}>
+    Impressum
+  </a>
+</div>
     </main>
   );
 }

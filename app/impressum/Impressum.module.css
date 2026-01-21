@@ -1,0 +1,78 @@
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 120px var(--edge) 120px;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 120px);
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+}
+
+.title {
+  font-size: 28px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 28px;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.text p {
+  margin: 0 0 18px;
+}
+
+.text a {
+  text-decoration: none;
+}
+
+.text a:hover {
+  color: #00AEEF;
+}
+
+.back {
+  margin-top: 26px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.back a {
+  text-decoration: none;
+}
+
+.back a:hover {
+  color: #00AEEF;
+}
+
+@media (max-width: 780px) {
+  .page {
+    padding: 80px var(--edge) 100px;
+    min-height: auto;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .text {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+.impressumLink {
+  text-decoration: none;
+}
+
+.impressumLink:hover {
+  color: #00AEEF; /* BARAA Blau */
+}
+
+}

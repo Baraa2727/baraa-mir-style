@@ -350,4 +350,16 @@
   .clientWebsite a {
     font-size: 13px;
   }
+
+}
+
+/* Impressum Link */
+.impressumLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.impressumLink:hover {
+  color: #00AEEF !important;        /* überschreibt globales a:hover */
+  text-decoration: none !important;
 }
