@@ -79,7 +79,7 @@ const THEWID_PROJECT: {
       label: "Haus 1",
       title: "Haus 1",
       client: "Phase 5",
-      intro: THEWID_INTRO,
+      intro: "Inspired by the historic 1908 gasworks, this building combines a distinctive setting with modern design. Its intimate location suits single-tenant use, with flexible floor layouts ideal for offices or alternative functions.",
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus1/building1.jpg",
       rows: [
@@ -92,7 +92,7 @@ const THEWID_PROJECT: {
       label: "Haus 2",
       title: "Haus 2",
       client: "Phase 5",
-      intro: THEWID_INTRO,
+      intro: "A pair of buildings designed to enhance both architecture and urban life. A distinctive tower marks the western gateway, while the space between the structures forms a lively plaza with dining, public uses, and room for social interaction.",
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus2/building2.jpg",
       rows: [
@@ -114,7 +114,7 @@ const THEWID_PROJECT: {
       label: "Haus 3",
       title: "Haus 3",
       client: "Phase 5 + Urban Agency",
-      intro: THEWID_INTRO,
+      intro: "A distinctive tower shapes the building’s identity, blending subtle brick heritage with modern character. Crafted details add quality, while the green rear facade creates a contemporary contrast.",
       website: ["https://www.phase5.de", "https://www.urban-agency.com"],
       hero: "/media/thewid/haus3/building3.jpg",
       rows: [
@@ -136,7 +136,7 @@ const THEWID_PROJECT: {
       label: "Haus 4",
       title: "Haus 4",
       client: "Phase 5 + Urbanlust",
-      intro: THEWID_INTRO,
+      intro: "A continuous brick base anchors the design in the district’s history, while modern office floors rise above in a clear contemporary style. One building features Cologne-inspired brick tones and a distinctive pattern, while its counterpart contrasts with a grey brick base and shimmering steel panels that turn industrial rigor into lightness.",
       website: ["https://www.phase5.de", "https://www.urbanlust.de"],
       hero: "/media/thewid/haus4/building4.jpg",
       rows: [
@@ -158,7 +158,7 @@ const THEWID_PROJECT: {
       label: "Haus 5",
       title: "Haus 5",
       client: "Damrau Kusserow",
-      intro: THEWID_INTRO,
+      intro: "A surrounding trapezoid arch structures the base, framing windows, doors, and the garage entrance. Above it sits a ceramic curtain façade, creating a functional and visually striking building that marks the gateway to the THE WID district.",
       website: ["https://www.damrau-kusserow.de"],
       hero: "/media/thewid/haus5/building5.jpg",
       rows: [
@@ -180,7 +180,7 @@ const THEWID_PROJECT: {
       label: "Haus 6",
       title: "Haus 6",
       client: "Phase 5 + Urban Agency",
-      intro: THEWID_INTRO,
+      intro: "Arches define the character of THE WID. One building reinterprets the arcade with a memorable façade, while the second offers a calmer counterpart with clear structure and generous windows. A third extends the motif toward Widdersdorfer Straße, giving the ensemble presence and cohesion.",
       website: ["https://www.phase5.de", "https://www.urban-agency.com"],
       hero: "/media/thewid/haus6/building6.jpg",
       rows: [
@@ -210,7 +210,7 @@ const THEWID_PROJECT: {
       label: "Haus 7",
       title: "Haus 7",
       client: "urbanlust",
-      intro: THEWID_INTRO,
+      intro: "Clear structure and strong identity define this building at the western square. Its brick façade plays with light and shadow, while a green roof adds softness to the urban scene. A confident yet harmonious addition to the district.",
       website: ["https://www.urbanlust.de"],
       hero: "/media/thewid/haus7/building7.jpg",
       rows: [
@@ -229,7 +229,7 @@ const THEWID_PROJECT: {
       label: "Haus 8",
       title: "Haus 8",
       client: "Phase 5",
-      intro: THEWID_INTRO,
+      intro: "Marking the gateway to the district, this building bridges past and present. Evolved from existing structures and expanded with a new hotel, it combines bold arcades, vertical greenery, and clear brick surfaces to create a strong entry on the campus’s west side.",
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus8/building8.jpg",
       rows: [
@@ -248,7 +248,7 @@ const THEWID_PROJECT: {
       label: "Haus 9+10",
       title: "Haus 9+10",
       client: "Phase 5",
-      intro: THEWID_INTRO,
+      intro: "Two buildings shape the heart of the district: one forms a strong ensemble with varied façades, arcades, and terraces that connect past and present, while the other preserves the historic gasworks as a listed structure, soon revived as an event venue with its own gastronomy.",
       website: ["https://www.phase5.de"],
       hero: "/media/thewid/haus9/building9.jpg",
       rows: [
