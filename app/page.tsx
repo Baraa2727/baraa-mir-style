@@ -5,7 +5,7 @@ export default function Page() {
     <main>
       <header className="header">
         <h1>Architectural Images.</h1>
-        <h1>We render, print, and make.</h1>
+        <h1>We render, print, and create.</h1>
       </header>
 
       <MasonryGrid />
