@@ -35,6 +35,7 @@ export default function Logo({
   return (
     <Link
       href="/"
+      aria-label="BARAA VISUALS — Home"
       onClick={onClick}
       className={className}
       style={{ textDecoration: 'none' }}
@@ -43,8 +44,10 @@ export default function Logo({
         style={{
           display: 'inline-flex',
           alignItems: 'center',
+          flexDirection: 'column',
+          gap: 3,
           justifyContent: 'center',
-          height: logoHeight,
+          height: Math.max(logoHeight, 38),
           minWidth: width,
           padding: '0 4px',
           // Century Gothic + Fallbacks
@@ -59,7 +62,8 @@ export default function Logo({
           ...style,
         }}
       >
-        BARAA
+        <span>BARAA</span>
+        <span style={{ fontSize: Math.max(7, logoHeight * 0.25), fontWeight: 500, letterSpacing: '0.24em' }}>VISUALS</span>
       </span>
     </Link>
   );

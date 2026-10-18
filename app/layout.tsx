@@ -6,8 +6,10 @@ import MobileNav from "../components/MobileNav";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "BARAA — Architectural Images",
+  metadataBase: new URL("https://visuals.baraa.de"),
+  title: "BARAA VISUALS — Architectural Images",
   description: "Architectural Images, 3D Print & Models",
+  openGraph: { title: "BARAA VISUALS — Architectural Images", siteName: "BARAA VISUALS", type: "website" },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
